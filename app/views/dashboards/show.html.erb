@@ -5,3 +5,6 @@
 <% elsif current_user.admin? %>
     <p>Hello <%= current_user.full_name %> admin member.</p>
 <% end %>
+
+
+<%= line_chart Ahoy::Visit.group_by_month(:started_at).count %>

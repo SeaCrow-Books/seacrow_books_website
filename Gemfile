@@ -74,8 +74,11 @@ group :test do
   gem "webdrivers"
 end
 
+gem 'ahoy_matey'
 gem "bootstrap"
+gem 'chartkick'
 gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
+gem 'groupdate'
 gem "meta-tags"
 gem 'pundit'
