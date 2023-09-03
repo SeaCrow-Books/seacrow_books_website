@@ -1,4 +1,4 @@
-class GenrePolicy < ApplicationPolicy
+class PostPolicy < ApplicationPolicy
 
     def index?
       true
@@ -9,7 +9,7 @@ class GenrePolicy < ApplicationPolicy
     end
   
     def create?
-      user.admin?
+        user.admin? || user.staff?
     end
   
     def destroy?
@@ -27,4 +27,3 @@ class GenrePolicy < ApplicationPolicy
     end
 
 end
-  

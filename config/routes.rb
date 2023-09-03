@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   # Genres
   resources :genres
 
+  # Blog
+  resources :posts, path: 'blog'
+
   # Defines the root path route ("/")
   root "pages#index"
 

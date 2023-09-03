@@ -21,13 +21,12 @@ class Book < ApplicationRecord
     title_changed?
   end 
 
-
   private
   
   def validate_cover
-    if cover.attached? && !cover.content_type.in?(%w(image/jpeg image/png))
-      errors.add(:cover, 'Must be a JPEG or PNG')
-    end
+    if cover.attached? && !cover.content_type.in?(%w(image/jpeg image/png image/webp))
+      errors.add(:cover, 'Must be a JPEG, PNG, or WEBP')
+    end    
   end
 
 end
