@@ -1,0 +1,7 @@
+<h1>Dashboards#show</h1>
+<p>Find me in app/views/dashboards/show.html.erb</p>
+<% if current_user.staff? %>
+    <p>Hello <%= current_user.full_name %> staff member.</p>
+<% elsif current_user.admin? %>
+    <p>Hello <%= current_user.full_name %> admin member.</p>
+<% end %>
