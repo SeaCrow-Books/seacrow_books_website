@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- Head -->
+  <%= render "shared/head" %>
+
+  <!-- Navbar -->
+  <%= render "shared/navbar" %>
+
+  <!-- Notices -->
+  <%= render "shared/notices" %>
+
+  <!-- Body -->
+  <body>
+    <main class="<%= controller_name %> <%= action_name %>">
+      <%= yield %>
+    </main>
+  </body>
+
+  <!-- Footer -->
+  <%= render "shared/footer" %>
+
+</html>
