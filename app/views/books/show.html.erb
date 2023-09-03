@@ -1,0 +1,31 @@
+<!-- app/views/books/show.html.erb -->
+
+<h1><%= @book.title %></h1>
+
+<% if @book.cover.attached? %>
+  <%= image_tag @book.cover, alt: @book.title, class: "book-cover" %>
+<% else %>
+  <p>No Cover</p>
+<% end %>
+
+<p><strong>Author:</strong> <%= @book.author_name %></p>
+<p><strong>Publication Date:</strong> <%= @book.publication_date.strftime("%B %d, %Y") %></p>
+
+<!-- Updated genre section -->
+<p><strong>Genres:</strong></p>
+<ul>
+  <% @book.genres.each do |genre| %>
+    <li><%= genre.name %></li>
+  <% end %>
+</ul>
+
+<p><strong>Description:</strong></p>
+<p><%= @book.description %></p>
+
+<% if policy(@book).edit? %>
+  <%= link_to 'Edit', edit_book_path(@book) %>
+<% end %>
+<% if policy(@book).destroy? %>
+  <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<%= link_to 'Back to Books', books_path %>

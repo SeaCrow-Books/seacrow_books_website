@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   # Dashboard
   get 'dashboard', to: 'dashboards#show', as: 'dashboard'
 
+  # books
+  resources :books
+
+  # Genres
+  resources :genres
+
   # Defines the root path route ("/")
   root "pages#index"
 

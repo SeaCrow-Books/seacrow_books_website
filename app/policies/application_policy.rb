@@ -43,11 +43,27 @@ class ApplicationPolicy
     end
 
     def resolve
-      raise NotImplementedError, "You must define #resolve in #{self.class}"
+      if user.admin?
+        scope.all
+      elsif user.staff?
+        scope.where(author: user) # or another scope according to your business logic
+      else
+        scope.none
+      end
     end
 
     private
 
     attr_reader :user, :scope
+  end
+
+  private
+
+  def admin?
+    user&.admin?
+  end
+
+  def staff?
+    user&.staff?
   end
 end
