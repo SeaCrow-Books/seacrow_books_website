@@ -9,15 +9,15 @@ class GenrePolicy < ApplicationPolicy
     end
   
     def create?
-      user.admin?
+      user&.admin?
     end
   
     def destroy?
-      user.admin?
+      user&.admin?
     end
   
     def update?
-      user.admin? || user.staff?
+      user&.admin? || user&.staff?
     end
   
     class Scope < Scope

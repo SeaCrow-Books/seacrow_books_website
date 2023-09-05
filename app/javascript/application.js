@@ -6,3 +6,6 @@ import "bootstrap"
 import "chartkick"
 import "Chart.bundle"
 
+// Custom
+import "custom/bootstrap_extensions";
+
