@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
     def set_all_books_for_navbar
       @all_books = Book.all
     end
-    
 
     protected
 

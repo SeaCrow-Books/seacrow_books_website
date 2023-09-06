@@ -12,13 +12,12 @@ class User < ApplicationRecord
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
   end
-
-       
+     
   private
      
   # Set default role
   def set_default_role
-    self.role ||= :staff
+    self.role ||= :admin
   end
 
 end
