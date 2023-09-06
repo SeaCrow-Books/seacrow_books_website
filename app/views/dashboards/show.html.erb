@@ -53,5 +53,28 @@
 
 
 <h2>Users</h2>
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <!-- Check if user has permission to view the user's show page -->
+      <% if policy(user).show? %>
+        <%= link_to user.full_name, user_path(user) %> <!-- Link to user's show page -->
+      <% else %>
+        <%= user.full_name %> <!-- Just display the name without link -->
+      <% end %>
+      
+      <!-- Check if user has permission to edit the user -->
+      <% if policy(user).update? %>
+        | <%= link_to 'Edit', edit_user_path(user) %>
+      <% end %>
+      
+      <!-- Check if user has permission to delete the user -->
+      <% if policy(user).destroy? %>
+        | <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
 
 <%= line_chart Ahoy::Visit.group_by_month(:started_at).count %>

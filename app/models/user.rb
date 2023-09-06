@@ -10,8 +10,12 @@ class User < ApplicationRecord
 
   # Sets full_name method e.g. @user.full_name
   def full_name
-    "#{first_name.capitalize} #{last_name.capitalize}"
+    [
+      first_name&.capitalize,
+      last_name&.capitalize
+    ].compact.join(' ')
   end
+  
      
   private
      
