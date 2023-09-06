@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # Site config
   patch 'update_account_creation_permission', to: 'site_configs#update_account_creation_permission'
-  post 'run_seed', to: 'site_configs#run_seed' if Rails.env.production? 
+  get 'run_seed', to: 'site_configs#run_seed'
 
   # Pages
   get 'about', to: 'pages#about'
