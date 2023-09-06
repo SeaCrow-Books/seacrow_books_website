@@ -6,6 +6,12 @@ class SiteConfigsController < ApplicationController
       redirect_to dashboard_path, notice: "Users creation status updated!"
     end
     
+    # This will run the seed if needed, it is turned off, need to uncomment the root to run - USE WITH CARE
+    def run_seed
+      system("rails db:seed")
+      render plain: "Seeded successfully"
+    end
+
     private
     
     def site_config_params
