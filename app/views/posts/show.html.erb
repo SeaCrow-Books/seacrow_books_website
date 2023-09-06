@@ -3,9 +3,18 @@
 <h1><%= @post.title %></h1>
 
 <p>By: <%= @post.writer %></p>
+<p><strong>Publication Date:</strong> <%= @post.published_at.strftime('%B %d, %Y') %></p>
+
+<p>
+    <% @post.categories.each do |category| %>
+    <%= link_to category.name, category_path(category) %> <!-- assuming you have a category show page -->
+    <%= ',' unless category == @post.categories.last %> <!-- adds a comma except for the last category -->
+  <% end %>
+</p>
+
 <%= raw @post.content %>
 
 
 <%= link_to 'Edit', edit_post_path(@post) %>
-<%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Delete', post_path(@post), method: :delete, data: { turbo_method: :delete } %>
 <%= link_to 'Back to All Posts', posts_path %>

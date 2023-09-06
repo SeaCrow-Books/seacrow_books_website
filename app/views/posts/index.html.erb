@@ -4,10 +4,15 @@
 
 <%= link_to 'New Post', new_post_path %>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= link_to post.title, post_path(post) %>
-    </li>
-  <% end %>
-</ul>
+<% if @published_posts.any? %>
+  <ul>
+    <% @published_posts.each do |post| %>
+      <li>
+        <%= link_to post.title, post_path(post) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Sorry, no posts published</p>
+<% end %>
+

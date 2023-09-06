@@ -11,11 +11,8 @@ Rails.application.routes.draw do
   # Dashboard
   get 'dashboard', to: 'dashboards#show', as: 'dashboard'
 
-  # books
-  resources :books
-
-  # Genres
-  resources :genres
+  # Resources
+  resources :books, :genres, :categories
 
   # Blog
   resources :posts, path: 'blog'

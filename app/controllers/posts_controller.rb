@@ -2,12 +2,17 @@ class PostsController < ApplicationController
     before_action :set_post, only: %i[show edit update destroy]
   
     def index
-      @posts = policy_scope(Post)
+      @posts = Post.all
+      @published_posts = @posts.published
       authorize @posts
+      @page_title = 'xxx Blog' 
+      @page_description = 'Articles all about erotic fiction.'
     end
   
     def show
       authorize @post
+      @page_title = @post.meta_title 
+      @page_description = @post.meta_description
     end
   
     def new
@@ -51,7 +56,7 @@ class PostsController < ApplicationController
     end
   
     def post_params
-      params.require(:post).permit(:title, :content, :slug, :published_at, :writer)
+      params.require(:post).permit(:title, :meta_title, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, category_ids: [])
     end
   end
   
