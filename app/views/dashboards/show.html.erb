@@ -1,10 +1,52 @@
-<h1>Dashboards#show</h1>
-<p>Find me in app/views/dashboards/show.html.erb</p>
-<% if current_user.staff? %>
-    <p>Hello <%= current_user.full_name %> staff member.</p>
-<% elsif current_user.admin? %>
-    <p>Hello <%= current_user.full_name %> admin member.</p>
-<% end %>
+<h2>Books</h2>
+<%= link_to 'New Book', new_book_path, class: 'btn btn-sm btn-outline-primary' if policy(Book.new).new? %>
+
+<ul>
+  <% @books.each do |book| %>
+    <li>
+      <%= link_to book.title, book_path(book) %> | 
+      <%= link_to 'Edit', edit_book_path(book) if policy(book).update? %> |
+      <%= link_to 'Delete', book_path(book), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } if policy(book).destroy? %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Genres</h2>
+<%= link_to 'New Genre', new_genre_path, class: 'btn btn-sm btn-outline-primary' if policy(Genre.new).new? %>
+<ul>
+  <% @genres.each do |genre| %>
+    <li>
+      <%= link_to genre.name, genre_path(genre) %> | 
+      <%= link_to 'Edit', edit_genre_path(genre) if policy(genre).update? %> |
+      <%= link_to 'Delete', genre_path(genre), method: :delete, data: { confirm: 'Are you sure?' } if policy(genre).destroy? %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Categories</h2>
+<%= link_to 'New Category', new_category_path, class: 'btn btn-sm btn-outline-primary' if policy(Category.new).new? %>
+<ul>
+  <% @categories.each do |category| %>
+    <li>
+      <%= link_to category.name, category_path(category) %> | 
+      <%= link_to 'Edit', edit_category_path(category) if policy(category).update? %> |
+      <%= link_to 'Delete', category_path(category), method: :delete, data: { confirm: 'Are you sure?' } if policy(category).destroy? %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Posts</h2>
+<%= link_to 'New Post', new_post_path, class: 'btn btn-sm btn-outline-primary' if policy(Post.new).new? %>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.title, post_path(post) %> | 
+      <%= link_to 'Edit', edit_post_path(post) if policy(post).update? %> |
+      <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } if policy(post).destroy? %>
+    </li>
+  <% end %>
+</ul>
+
 
 
 <%= line_chart Ahoy::Visit.group_by_month(:started_at).count %>

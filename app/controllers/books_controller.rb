@@ -41,7 +41,7 @@ class BooksController < ApplicationController
     def destroy
       authorize @book
       @book.destroy
-      redirect_to books_url, notice: 'Book was successfully destroyed.'
+      redirect_to dashboard_path, notice: 'Book was successfully destroyed.'
     end
   
     private

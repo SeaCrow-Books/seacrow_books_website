@@ -2,6 +2,9 @@ class DashboardsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    # Your code for gathering stats, etc.
+    @books = Book.all
+    @genres = Genre.all
+    @categories = Category.all
+    @posts = Post.all
   end
 end
