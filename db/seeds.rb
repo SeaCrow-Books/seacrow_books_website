@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+# db/seeds.rb
+
+# Allows site configeration to work
+SiteConfig.create!(allow_new_accounts: false) unless SiteConfig.exists?

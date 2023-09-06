@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   get 'dashboards/show'
   
   # Users
-  devise_for :users
- 
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
+  # Site config
+  patch 'update_account_creation_permission', to: 'site_configs#update_account_creation_permission'
+
   # Pages
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
