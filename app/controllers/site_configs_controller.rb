@@ -7,6 +7,7 @@ class SiteConfigsController < ApplicationController
     end
     
     # This will run the seed if needed, it is turned off, need to uncomment the root to run - USE WITH CARE
+    # Navigate to /run_seed
     def run_seed
       system("rails db:seed")
       render plain: "Seeded successfully"
