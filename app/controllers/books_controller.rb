@@ -7,6 +7,7 @@ class BooksController < ApplicationController
     end
   
     def show
+      @page_title = "#{@book.title.titleize} by #{@book.author_name.titleize}"
       authorize @book
     end
   
