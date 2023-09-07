@@ -13,6 +13,12 @@ class Post < ApplicationRecord
   validates :slug, uniqueness: true
   validates :writer, presence: true
   validates :meta_description, length: { maximum: 120 }
+  
+  # For ActiveStorage attachment validation:
+  validates :main_image, image_content_type: true
+
+  # Attachments
+  has_one_attached :main_image
 
   # Friendly_id
   extend FriendlyId

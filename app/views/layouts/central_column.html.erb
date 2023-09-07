@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- Head -->
+  <%= render "shared/head" %>
+
+  <!-- Navbar -->
+  <%= render "shared/navbar" %>
+
+  <!-- Notices -->
+  <%= render "shared/notices" %>
+
+  <!-- Body -->
+  <body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-5">
+                <main class="<%= controller_name %> <%= action_name %>">
+                    <%= yield %>
+                </main>
+            </div>
+        </div>
+    </div>
+  </body>
+
+
+  <!-- Footer -->
+  <%= render "shared/footer" %>
+
+</html>

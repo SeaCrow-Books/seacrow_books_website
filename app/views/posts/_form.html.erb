@@ -41,6 +41,12 @@
     <%= f.text_field :writer %>
   </div>
 
+  <!-- Main Post Image -->
+  <div class="field">
+    <%= f.label :main_image %>
+    <%= f.file_field :main_image %>
+  </div>
+
 <!-- Determines is a post is published or unpublished -->
 <% if @post.published? %>
   <p>This post is published</p>

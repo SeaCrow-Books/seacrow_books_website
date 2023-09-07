@@ -9,9 +9,9 @@ class Book < ApplicationRecord
   validates :publication_date, presence: true
   # validates :genre, presence: true
 
-  # For ActiveStorage attachment validation (assuming you're not using a gem for this):
-  validate :validate_cover
-  
+  # For ActiveStorage attachment validation:
+  validates :cover, image_content_type: true
+
   # Friendly_id
   extend FriendlyId
   friendly_id :title, use: :slugged

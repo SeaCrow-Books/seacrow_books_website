@@ -1,20 +1,45 @@
-<!-- app/views/posts/show.html.erb -->
+<!-- Main Image -->
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <% if @post.main_image.attached? %>
+      <%= image_tag @post.main_image, alt: "Description of Image", class: "img-fluid mx-auto d-block" %>
+    <% end %>
+  </div>
+</div>
 
-<h1><%= @post.title %></h1>
+<!-- Text -->
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
 
-<p>By: <%= @post.writer %></p>
-<p><strong>Publication Date:</strong> <%= @post.published_at.strftime('%B %d, %Y') %></p>
+     <h1><%= @post.title %></h1>
 
-<p>
-    <% @post.categories.each do |category| %>
-    <%= link_to category.name, category_path(category) %> <!-- assuming you have a category show page -->
-    <%= ',' unless category == @post.categories.last %> <!-- adds a comma except for the last category -->
-  <% end %>
-</p>
+      <div class="metadata">
+        <p><%= @post.writer %> on <%= @post.published_at.strftime('%B %d, %Y') %> | <%= read_time(@post.content) %></p>
+        <p class="categories">
+          <% @post.categories.each do |category| %>
+            <%= link_to category.name, category_path(category) %> <!-- assuming you have a category show page -->
+            <%= '|' unless category == @post.categories.last %> <!-- adds a comma except for the last category -->
+          <% end %>
+        </p>
+      </div>
 
-<%= raw @post.content %>
+      <%= raw @post.content %>         
+             
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_post_path(@post) %>
-<%= link_to 'Delete', post_path(@post), method: :delete, data: { turbo_method: :delete } %>
-<%= link_to 'Back to All Posts', posts_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
