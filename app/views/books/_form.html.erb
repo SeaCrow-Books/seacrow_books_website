@@ -17,15 +17,17 @@
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
-<div class="field">
-  <%= f.label :author_name %>
-  <%= f.text_field :author_name, value: @book.author_name || "Best Writer" %>
-</div>
 
   <div class="field">
     <%= f.label :publication_date %>
     <%= f.date_select :publication_date %>
   </div>
+
+  <div class="field">
+  <%= f.label :author_id, "Author" %>
+  <%= f.collection_select :author_id, Author.order(:name), :id, :name %>
+</div>
+
 
 <div class="field">
   <%= f.label :genre_ids, "Genres" %>

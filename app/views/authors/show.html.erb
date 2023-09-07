@@ -1,0 +1,17 @@
+<%= render @author %>
+
+<h3>Books by <%= @author.name %>:</h3>
+<ul>
+  <% @author.books.each do |book| %>
+    <li>
+      <%= link_to book.title, book_path(book) %>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to "Edit this author", edit_author_path(@author) %> |
+  <%= link_to "Back to authors", authors_path %>
+
+  <%= button_to "Destroy this author", @author, method: :delete %>
+</div>

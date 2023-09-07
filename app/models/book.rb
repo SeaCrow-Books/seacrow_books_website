@@ -1,11 +1,16 @@
 class Book < ApplicationRecord
-  has_one_attached :cover
+  
+  #Relationships
+  belongs_to :author
   has_and_belongs_to_many :genres, join_table: 'books_genres'
+
+  #Attachments
+  has_one_attached :cover
 
   # Validations
   validates :title, presence: true
   validates :description, presence: true
-  validates :author_name, presence: true
+  validates :author_id, presence: true
   validates :publication_date, presence: true
   # validates :genre, presence: true
 
@@ -20,13 +25,5 @@ class Book < ApplicationRecord
   def should_generate_new_friendly_id?
     title_changed?
   end 
-
-  private
-  
-  def validate_cover
-    if cover.attached? && !cover.content_type.in?(%w(image/jpeg image/png image/webp))
-      errors.add(:cover, 'Must be a JPEG, PNG, or WEBP')
-    end    
-  end
 
 end

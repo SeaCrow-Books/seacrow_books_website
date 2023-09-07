@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_07_084319) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_07_145225) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,14 +84,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_084319) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_authors_on_slug", unique: true
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "author_name"
     t.date "publication_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["slug"], name: "index_books_on_slug", unique: true
   end
 
@@ -174,6 +183,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_084319) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "books", "authors"
   add_foreign_key "categories_posts", "categories"
   add_foreign_key "categories_posts", "posts"
 end

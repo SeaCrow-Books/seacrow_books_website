@@ -11,6 +11,19 @@
   <% end %>
 </ul>
 
+<h2>Authors</h2>
+<%= link_to 'New Author', new_author_path, class: 'btn btn-sm btn-outline-primary' if policy(Author.new).new? %>
+<ul>
+  <% @authors.each do |author| %>
+    <li>
+      <%= link_to author.name, author_path(author) %> | 
+      <%= link_to 'Edit', edit_author_path(author) if policy(author).update? %> |
+      <%= link_to 'Delete', author_path(author), method: :delete, data: { confirm: 'Are you sure?' } if policy(author).destroy? %>
+    </li>
+  <% end %>
+</ul>
+
+
 <h2>Genres</h2>
 <%= link_to 'New Genre', new_genre_path, class: 'btn btn-sm btn-outline-primary' if policy(Genre.new).new? %>
 <ul>

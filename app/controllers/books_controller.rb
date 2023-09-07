@@ -2,12 +2,13 @@ class BooksController < ApplicationController
     before_action :set_book, only: %i[show edit update destroy]
     
     def index
+      @page_title = "Books"
       @books = policy_scope(Book)
       authorize @books
     end
   
     def show
-      @page_title = "#{@book.title.titleize} by #{@book.author_name.titleize}"
+      @page_title = "#{@book.title.titleize} by #{@book.author.name.titleize}"
       authorize @book
     end
   
@@ -52,7 +53,7 @@ class BooksController < ApplicationController
     end
   
     def book_params
-      params.require(:book).permit(:title, :description, :cover, :author_name, :publication_date, genre_ids: [])
+      params.require(:book).permit(:title, :description, :cover, :author_id, :publication_date, genre_ids: [])
     end
   end
   

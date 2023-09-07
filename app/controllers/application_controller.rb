@@ -2,11 +2,12 @@ class ApplicationController < ActionController::Base
     include Pundit::Authorization
 
     before_action :configure_permitted_parameters, if: :devise_controller? # sets up params white list for user
-    before_action :set_all_books_for_navbar # This allows book to be shown in the navbar
+    before_action :set_variables_for_navbar
 
-    # Sets books for navbar
-    def set_all_books_for_navbar
+    # Sets variables for navbar
+    def set_variables_for_navbar
       @all_books = Book.all
+      @all_authors = Author.all
     end
 
     protected

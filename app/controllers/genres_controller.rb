@@ -2,11 +2,13 @@ class GenresController < ApplicationController
     before_action :set_genre, only: %i[show edit update destroy]
   
     def index
+      @page_title = "Genres"
       @genres = policy_scope(Genre)
       authorize @genres
     end
   
     def show
+      @page_title = "#{@genre.name.titleize}"
       authorize @genre
     end
   

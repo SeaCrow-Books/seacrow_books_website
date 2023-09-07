@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  resources :authors
   get 'dashboards/show'
 
   # Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Resources
-  resources :books, :genres, :categories, :users
+  resources :books, :genres, :categories, :users, :authors
 
   # Site config
   patch 'update_account_creation_permission', to: 'site_configs#update_account_creation_permission'

@@ -2,11 +2,13 @@ class CategoriesController < ApplicationController
     before_action :set_category, only: %i[show edit update destroy]
   
     def index
+      @page_title = "Categories"
       @categories = policy_scope(Category)
       authorize @categories
     end
   
     def show
+      @page_title = "#{@category.name.titleize}"
       authorize @category
     end
   
