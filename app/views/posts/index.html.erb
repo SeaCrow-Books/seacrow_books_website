@@ -1,18 +1,87 @@
-<!-- app/views/posts/index.html.erb -->
+<div class="mt-5 row justify-content-center">
+    <div class="col-lg-10">
 
-<h1>All Posts</h1>
+        <div class="row d-flex align-items-stretch"> <!-- Nested row with flexbox to stretch child columns -->
 
-<%= link_to 'New Post', new_post_path %>
+            <div class="col-lg-6"> <!-- First column (50%) -->
+              <%= link_to post_path(@featured_post), class: "image-link" do %>
+                <%= image_tag @featured_post.main_image, alt: @featured_post.main_image_alt_text, class: "img-fluid clickable-image" %>
+              <% end %>
 
-<% if @published_posts.any? %>
-  <ul>
-    <% @published_posts.each do |post| %>
-      <li>
-        <%= link_to post.title, post_path(post) %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Sorry, no posts published</p>
+              <h2 class="featured-post-title"><%= link_to @featured_post.title.titleize, post_path(@featured_post) %></h2>
+              <p class="featured-post-description"><%= @featured_post.description %></p>
+            </div>
+
+            <div class="col-lg-6 d-flex flex-column justify-content-between"> <!-- Second column (50%) with flexbox for even spacing -->
+              <% @featured_posts.each do |post| %>
+                <div class="row post-row"> <!-- Nested row for each post's content with the added class -->
+
+                  <div class="col-md-6"> <!-- Image column (left) -->
+                    <%= link_to post_path(post), class: "image-link" do %>
+                      <%= image_tag post.main_image, alt: post.main_image_alt_text, class: "img-fluid clickable-image" %>
+                    <% end %>
+                  </div>
+
+                  <div class="col-md-6"> <!-- Text column (right) -->
+                    <h3 class="featured-posts-title"><%= link_to post.title, post_path(post) %></h3>
+                    <p><%= post.description %></p>
+                  </div>
+
+                </div>
+              <% end %>
+            </div>
+        </div>
+
+        <div class="row">
+
+          <div class="latest-posts">
+
+            <div class="header">
+              <h2>Latest Posts</h2>
+            </div>
+
+            <div class="post-list row"> <!-- Add the row class -->
+
+  <!-- Left column for blog posts -->
+  <div class="col-md-8">
+    <% if @published_posts.any? %>
+      
+<% @latest_posts.each do |post| %>
+  <div class="row my-2 mt-4"> <!-- Each post will be a new row with a bit of margin for separation -->
+    
+    <!-- Image on the left -->
+    <div class="col-sm-4"> 
+      <%= link_to post_path(post), class: "image-link" do %>
+        <%= image_tag post.main_image, alt: post.main_image_alt_text, class: "img-fluid clickable-image" %>
+      <% end %>
+    </div>
+
+    <!-- Title and description on the right -->
+    <div class="col-sm-8">
+      <h3 class="latest-posts-title"><%= link_to post.title, post_path(post) %></h3>
+      <p><%= post.description %></p>
+    </div>
+
+  </div>
 <% end %>
+
+      
+    <% else %>
+      <p>Sorry, no posts published</p>
+    <% end %>
+  </div>
+
+  <!-- Right empty column -->
+  <div class="col-md-8">
+    <!-- Empty for now, but you can put any content here later. -->
+  </div>
+
+</div>
+          </div>
+          
+        </div>
+
+    </div>
+</div>
+
 

@@ -41,10 +41,20 @@
     <%= f.text_field :writer %>
   </div>
 
+  <!-- Description -->
+  <%= f.label :description, "Description" %>
+  <%= f.text_field :description %>
+
   <!-- Main Post Image -->
   <div class="field">
     <%= f.label :main_image %>
     <%= f.file_field :main_image %>
+  </div>
+
+  <!-- Main Image Alt Text -->
+  <div class="field">
+    <%= f.label :main_image_alt_text, "Main Image Alt Text" %>
+    <%= f.text_field :main_image_alt_text %>
   </div>
 
 <!-- Determines is a post is published or unpublished -->

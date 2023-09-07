@@ -42,10 +42,12 @@
     <li>
       <%= link_to post.title, post_path(post) %> | 
       <%= link_to 'Edit', edit_post_path(post) if policy(post).update? %> |
-      <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } if policy(post).destroy? %>
+      <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } if policy(post).destroy? %> |
+      Views: <%= Ahoy::Event.where(name: "Post:#{post.id}").count %>
     </li>
   <% end %>
 </ul>
+
 
 <!-- Toggles account creation -->
 <% config = SiteConfig.first %>

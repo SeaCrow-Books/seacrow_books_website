@@ -4,8 +4,12 @@ class PostsController < ApplicationController
     def index
       @posts = Post.all
       @published_posts = @posts.published
+      @all_featured_posts = Post.most_viewed
+      @featured_posts = @all_featured_posts.order(created_at: :desc).offset(1).limit(3)
+      @featured_post = @all_featured_posts.first || Post.order(created_at: :desc).first
+      @latest_posts = @published_posts.order(created_at: :desc).limit(10)
       authorize @posts
-      @page_title = 'xxx Blog' 
+      @page_title = 'Articles' 
       @page_description = 'Articles all about erotic fiction.'
     end
   
@@ -13,6 +17,13 @@ class PostsController < ApplicationController
       authorize @post
       @page_title = @post.meta_title 
       @page_description = @post.meta_description
+
+      # Tracking the view
+      event_name = "Post:#{@post.id}"
+      if not Ahoy::Event.where(name: event_name, properties: current_visit.visit_token).exists?
+        ahoy.track event_name, current_visit.visit_token
+      end
+
     end
   
     def new
@@ -56,7 +67,7 @@ class PostsController < ApplicationController
     end
   
     def post_params
-      params.require(:post).permit(:title, :main_image, :meta_title, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, category_ids: [])
+      params.require(:post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, category_ids: [])
     end
 
   end
