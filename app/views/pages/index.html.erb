@@ -1,1 +1,44 @@
-<p>Hello World!</p>
+<div class="mt-5 row justify-content-center">
+    <div class="col-lg-10">
+
+        <!-- Featured books -->
+        <div class="row">
+            <% @featured_books.each do |book| %>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-3">
+                    <%= link_to book_path(book) do %>
+                        <div class="image-link">
+                            <%= image_tag book.cover, alt: "#{book.title} cover", class: "img-fluid clickable-image" %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+
+    </div>
+</div>
+
+<!-- Second row with same width as first -->
+<div class="mt-5 row justify-content-center">
+    <div class="col-lg-10">
+
+        <!-- Two-column layout -->
+        <div class="row">
+
+            <!-- Left column: Latest Posts -->
+            <div class="col-lg-8 col-md-12">
+                <h1 class="blog-page-header">Latest Articles</h1>
+
+                <% @latest_posts.each do |post| %>
+                    <%= render partial: 'shared/blog/horizontal_post_layout', locals: { post: post } %>
+                <% end %>
+            </div>
+
+            <!-- Right column: Currently blank -->
+            <div class="col-lg-4 col-md-12">
+                <!-- Placeholder for future content -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
