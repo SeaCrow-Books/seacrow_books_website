@@ -1,65 +1,72 @@
-// Styles the post indes pages
+// Styles all aspects of the blog and categories etc.
 
-.posts.index {
+// Page header
 
-    // Styles titles
-    .featured-post-title, .featured-posts-title, .latest-posts-title { 
-        a { 
-            color: inherit; // this ensures the link has the same color as its parent h2 element
-            text-decoration: none; // this removes the underline
-    
-            // change color on hover to gray
-            &:hover {
-                color: gray;
-            }
-        }
-    }
-
-    .featured-post-title {
-        margin-top: 1rem;
-    }
-
-    .featured-posts-title {
-        font-size: 1.5rem;
-    }
-
-    // Styles post image
-    .image-link {
-        background-color: grey;
-        display: inline-block;
-        
-        img.clickable-image {
-            transition: opacity 0.3s ease;
-            
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-    }
-
-    // Styles the post description
-    .post-description {
-        margin-top: 1rem;
-    }
-
-    // Spacing posts
-    .post-row:not(:first-child) {
-        margin-top: 1rem;
-    }
-
-    // Styling latest posts
-
-    .latest-posts {
-
-        .header {
-            margin-top: 5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #000; 
-
-            h2 {
-                color: gray;
-            }
-        }
-    }
-
+.blog-page-header {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
+
+// Styles titles
+.featured-post-title, .featured-posts-title, .latest-posts-title { 
+    a { 
+        color: inherit; // this ensures the link has the same color as its parent h2 element
+        text-decoration: none; // this removes the underline
+    
+        // change color on hover to gray
+        &:hover {
+            color: gray;
+        }
+    }
+}
+
+// Styles post image
+.image-link {
+    background-color: grey;
+    display: inline-block;
+        
+    img.clickable-image {
+        transition: opacity 0.3s ease;
+            
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}
+
+
+// Post titles
+.featured-post-title {
+    margin-top: 1rem;
+}
+
+.featured-posts-title {
+    font-size: 1.5rem;
+}
+
+
+// Styles the post description
+.post-description {
+    margin-top: 1rem;
+}
+
+// Spacing posts
+.post-row:not(:first-child) {
+    margin-top: 1rem;
+}
+
+// Styling latest posts
+
+.latest-posts {
+
+    .header {
+        margin-top: 5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #000; 
+
+        h2 {
+            color: gray;
+        }
+    }
+}
+

@@ -1,0 +1,16 @@
+<div class="row my-2 mt-4"> <!-- Each post will be a new row with a bit of margin for separation -->
+            
+    <!-- Image on the left -->
+    <div class="col-sm-4"> 
+        <%= link_to post_path(post), class: "image-link" do %>
+            <%= image_tag post.main_image, alt: post.main_image_alt_text, class: "img-fluid clickable-image" %>
+        <% end %>
+    </div>
+
+    <!-- Title and description on the right -->
+    <div class="col-sm-8">
+        <h3 class="latest-posts-title"><%= link_to post.title, post_path(post) %></h3>
+        <p><%= post.description %></p>
+    </div>
+
+</div>
