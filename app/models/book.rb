@@ -1,5 +1,7 @@
 class Book < ApplicationRecord
-  
+  include ViewCountable # Allows viewcount
+  include Viewable # Allows most viewed
+
   #Relationships
   belongs_to :author
   has_and_belongs_to_many :genres, join_table: 'books_genres'

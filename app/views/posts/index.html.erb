@@ -42,41 +42,26 @@
 
             <div class="post-list row"> <!-- Add the row class -->
 
-  <!-- Left column for blog posts -->
-  <div class="col-md-8">
-    <% if @published_posts.any? %>
-      
-      <% @latest_posts.each do |post| %>
-        <div class="row my-2 mt-4"> <!-- Each post will be a new row with a bit of margin for separation -->
-          
-          <!-- Image on the left -->
-          <div class="col-sm-4"> 
-            <%= link_to post_path(post), class: "image-link" do %>
-              <%= image_tag post.main_image, alt: post.main_image_alt_text, class: "img-fluid clickable-image" %>
-            <% end %>
-          </div>
+            <!-- Left column for blog posts -->
+            <div class="col-md-8">
+              <% if @published_posts.any? %>
+                
+                <% @latest_posts.each do |post| %>
+                    <%= render partial: 'shared/blog/horizontal_post_layout', locals: { post: post }%>
+                <% end %>
 
-          <!-- Title and description on the right -->
-          <div class="col-sm-8">
-            <h3 class="latest-posts-title"><%= link_to post.title, post_path(post) %></h3>
-            <p><%= post.description %></p>
+                
+              <% else %>
+                <p>Sorry, no posts published</p>
+              <% end %>
+            </div>
+
+          <!-- Right empty column -->
+          <div class="col-md-8">
+            <!-- Empty for now, but you can put any content here later. -->
           </div>
 
         </div>
-      <% end %>
-
-      
-    <% else %>
-      <p>Sorry, no posts published</p>
-    <% end %>
-  </div>
-
-  <!-- Right empty column -->
-  <div class="col-md-8">
-    <!-- Empty for now, but you can put any content here later. -->
-  </div>
-
-</div>
           </div>
           
         </div>

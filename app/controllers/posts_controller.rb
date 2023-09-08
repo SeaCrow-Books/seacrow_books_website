@@ -19,10 +19,7 @@ class PostsController < ApplicationController
       @page_description = @post.meta_description
 
       # Tracking the view
-      event_name = "Post:#{@post.id}"
-      if not Ahoy::Event.where(name: event_name, properties: current_visit.visit_token).exists?
-        ahoy.track event_name, current_visit.visit_token
-      end
+      AhoyEventTracker.new(@post, current_visit.visit_token).track_event
 
     end
   

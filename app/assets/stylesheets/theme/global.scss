@@ -1,0 +1,12 @@
+// Styling that is used across more than one controller or model
+
+.gray-link {
+    a {
+        text-decoration: none;  /* Removes the underline */
+        color: gray;
+    }
+
+    a:hover {
+        text-decoration: underline; /* Adds the underline back when hovered */
+    }
+}

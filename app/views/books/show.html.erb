@@ -1,31 +1,71 @@
-<!-- app/views/books/show.html.erb -->
+<div class="mt-5 row justify-content-center">
+    <div class="col-lg-10">
+        <div class="row">
 
-<h1><%= @book.title %></h1>
+            <!-- Left column for the book cover -->
+            <div class="col-lg-3">
+              
+              <div><!-- Book Cover -->
+                <% if @book.cover.attached? %>
+                    <%= image_tag @book.cover, alt: @book.title, class: "book-cover img-fluid" %>
+                <% else %>
+                    <p>No Cover</p>
+                <% end %>
+              </div>
 
-<% if @book.cover.attached? %>
-  <%= image_tag @book.cover, alt: @book.title, class: "book-cover" %>
-<% else %>
-  <p>No Cover</p>
-<% end %>
+              <div class="book-details"><!-- Book Details -->
+                <h3>Book Details</h3>
+                <table class="table book-details-table">
+                    <tbody>
+                        <tr style="border-top: 1px solid #dee2e6;">
+                            <td>Published:</td>
+                            <td><%= @book.publication_date.strftime("%B %d, %Y") %></td>
+                        </tr>
+                        <tr>
+                            <td>Genre:</td>
+                            <td>
+                                <% @book.genres.each do |genre| %>
+                                    <span class="gray-link"><%= link_to genre.name, genre_path(genre) %></span>
+                                <% end %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Format:</td>
+                            <td>Digital</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-<p><strong>Author:</strong> <%= @book.author.name %></p>
-<p><strong>Publication Date:</strong> <%= @book.publication_date.strftime("%B %d, %Y") %></p>
+              </div>
 
-<!-- Updated genre section -->
-<p><strong>Genres:</strong></p>
-<ul>
-  <% @book.genres.each do |genre| %>
-    <li><%= genre.name %></li>
+              <div class="other-titles"><!-- Other titles -->
+                <h3>Other Titles</h3>
+                <ul>
+  <% @related_books.each do |related_book| %>
+    <li><%= related_book.title %></li>
   <% end %>
 </ul>
+              </div>
 
-<p><strong>Description:</strong></p>
-<p><%= @book.description %></p>
+            </div>
 
-<% if policy(@book).edit? %>
-  <%= link_to 'Edit', edit_book_path(@book) %>
-<% end %>
-<% if policy(@book).destroy? %>
-  <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-<%= link_to 'Back to Books', books_path %>
+            <!-- Right column  for the book details -->
+            <div class="col-lg-8">
+                <h1><%= @book.title %></h1>
+                <p class="gray-link lead"><%= link_to @book.author.name, author_path(@book.author) %></p>
+
+                <p><strong>Description:</strong></p>
+                <div><%= raw @book.description %></div>
+
+                <% if policy(@book).edit? %>
+                    <%= link_to 'Edit', edit_book_path(@book) %>
+                <% end %>
+                <% if policy(@book).destroy? %>
+                    <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+                <%= link_to 'Back to Books', books_path %>
+            </div>
+
+        </div> <!-- end of inner row -->
+    </div> <!-- end of col-lg-10 -->
+</div> <!-- end of outer row -->

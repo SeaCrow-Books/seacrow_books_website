@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  include ViewCountable # Allows viewcount
+  include Viewable # Allows most viewed
+
   # Relationships
   has_and_belongs_to_many :categories, join_table: 'categories_posts'
     
@@ -39,15 +42,7 @@ class Post < ApplicationRecord
   
   # Scopes
   scope :published, -> { where(published: true) }
-  
-  # This scope returns the post with the highest number of views.
-  scope :most_viewed, -> {
-    select('posts.*, COUNT(ahoy_events.id) as view_count')
-    .joins("INNER JOIN ahoy_events ON ahoy_events.name = CONCAT('Post:', posts.id)")
-    .group('posts.id')
-    .order('view_count DESC')
-    .limit(1)
-  }
+
 
   private
 
