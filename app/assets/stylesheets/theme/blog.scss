@@ -20,19 +20,6 @@
     }
 }
 
-// Styles post image
-.image-link {
-    background-color: grey;
-    display: inline-block;
-        
-    img.clickable-image {
-        transition: opacity 0.3s ease;
-            
-        &:hover {
-            opacity: 0.7;
-        }
-    }
-}
 
 
 // Post titles

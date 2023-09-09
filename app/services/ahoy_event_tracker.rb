@@ -7,9 +7,10 @@ class AhoyEventTracker
   
     def track_event
       return if event_exists?
-  
-      Ahoy::Event.track @event_name, @visit_token
+      
+      Ahoy::Event.create(name: @event_name, properties: { visit_token: @visit_token })
     end
+    
   
     private
   

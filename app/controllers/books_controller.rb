@@ -11,13 +11,12 @@ class BooksController < ApplicationController
       @page_title = "#{@book.title.titleize} by #{@book.author.name.titleize}"
       genre = @book.genres.first
       # Exclude the current book and retrieve the top 3 most viewed books from the same genre
-      @related_books = genre.books.most_viewed(3)
+      @related_books = genre.books.where.not(id: @book.id).most_viewed(3)
       
       authorize @book
 
       # Tracking the view
       AhoyEventTracker.new(@book, current_visit.visit_token).track_event
-
     end
   
     def new

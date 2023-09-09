@@ -2,17 +2,16 @@
     <div class="col-lg-10">
         <div class="row">
 
-            <!-- Left column for the book cover -->
+            <!-- Left column for the book cover and related titles -->
             <div class="col-lg-3">
               
-              <div><!-- Book Cover -->
-                <% if @book.cover.attached? %>
-                    <%= image_tag @book.cover, alt: @book.title, class: "book-cover img-fluid" %>
-                <% else %>
-                    <p>No Cover</p>
-                <% end %>
-              </div>
-
+              <!-- Book Cover -->
+              <% if @book.cover.attached? %>
+                  <%= image_tag @book.cover, alt: @book.title, class: "book-cover img-fluid mb-4" %>
+              <% else %>
+                  <p>No Cover</p>
+              <% end %>
+              
               <div class="book-details"><!-- Book Details -->
                 <h3>Book Details</h3>
                 <table class="table book-details-table">
@@ -35,28 +34,31 @@
                         </tr>
                     </tbody>
                 </table>
-
               </div>
 
-              <div class="other-titles"><!-- Other titles -->
-                <h3>Other Titles</h3>
-                <ul>
-  <% @related_books.each do |related_book| %>
-    <li><%= related_book.title %></li>
-  <% end %>
-</ul>
-              </div>
+                <!-- Other titles within the left column -->
+                <div class="other-titles mt-4 custom-gray-bg"><!-- Other titles -->
+                    <h3>Other titles you might like</h3>
+                    <div class="row">
+                        <% @related_books.each do |related_book| %>
+                            <div class="col-4">
+                                <%= link_to book_path(related_book) do %>
+                                    <%= image_tag related_book.cover, alt: related_book.title, class: "book-cover img-fluid mb-4 clickable-image" %>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+
 
             </div>
 
             <!-- Right column  for the book details -->
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <h1><%= @book.title %></h1>
                 <p class="gray-link lead"><%= link_to @book.author.name, author_path(@book.author) %></p>
-
                 <p><strong>Description:</strong></p>
                 <div><%= raw @book.description %></div>
-
                 <% if policy(@book).edit? %>
                     <%= link_to 'Edit', edit_book_path(@book) %>
                 <% end %>
