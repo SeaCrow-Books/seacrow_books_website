@@ -57,7 +57,6 @@
             <div class="col-lg-9">
                 <h1><%= @book.title %></h1>
                 <p class="gray-link lead"><%= link_to @book.author.name, author_path(@book.author) %></p>
-                <p><strong>Description:</strong></p>
                 <div><%= raw @book.description %></div>
                 <% if policy(@book).edit? %>
                     <%= link_to 'Edit', edit_book_path(@book) %>
@@ -65,7 +64,6 @@
                 <% if policy(@book).destroy? %>
                     <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
-                <%= link_to 'Back to Books', books_path %>
             </div>
 
         </div> <!-- end of inner row -->
