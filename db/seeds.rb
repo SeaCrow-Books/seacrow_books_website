@@ -8,4 +8,4 @@
 # db/seeds.rb
 
 # Allows site configeration to work
-SiteConfig.create!(allow_new_accounts: false) unless SiteConfig.exists?
+SiteConfig.create!(allow_new_accounts: true) unless SiteConfig.exists?
