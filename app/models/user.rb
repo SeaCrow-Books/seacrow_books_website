@@ -15,7 +15,6 @@ class User < ApplicationRecord
       last_name&.capitalize
     ].compact.join(' ')
   end
-  
      
   private
      
