@@ -1,60 +1,56 @@
 <div class="mt-5 row justify-content-center">
     <div class="col-lg-10">
 
-        <div class="row d-flex align-items-stretch"> <!-- Nested row with flexbox to stretch child columns -->
+        <div class="row d-flex align-items-stretch"> 
 
-            <div class="col-lg-6"> <!-- First column (50%) -->
-              <%= link_to post_path(@featured_post), class: "image-link" do %>
-                <%= image_tag @featured_post.main_image, alt: @featured_post.main_image_alt_text, class: "img-fluid clickable-image" %>
-              <% end %>
+            <div class="col-lg-6"> 
+              <div class="featured-post">
+                <%= link_to post_path(@featured_post), class: "image-link" do %>
+                  <%= image_tag @featured_post.main_image, alt: @featured_post.main_image_alt_text, class: "img-fluid clickable-image featured-post__image" %>
+                <% end %>
 
-              <h2 class="featured-post-title"><%= link_to @featured_post.title.titleize, post_path(@featured_post) %></h2>
-              <p class="featured-post-description"><%= @featured_post.description %></p>
+                <h2 class="featured-post__title"><%= link_to @featured_post.title.titleize, post_path(@featured_post), class: "featured-post__title-link" %></h2>
+                <p class="featured-post__description"><%= @featured_post.description %></p>
+              </div>
             </div>
 
-            <div class="col-lg-6 d-flex flex-column justify-content-between"> <!-- Second column (50%) with flexbox for even spacing -->
+            <div class="col-lg-6"> <!-- Second column (50%) with flexbox for even spacing -->
+              
               <% @featured_posts.each do |post| %>
-                <div class="row post-row"> <!-- Nested row for each post's content with the added class -->
+                
+                <!-- Render the tile posts -->
+                <%= render partial: 'shared/tile_post', locals: { post: post }%>
 
-                  <div class="col-md-6"> <!-- Image column (left) -->
-                    <%= link_to post_path(post), class: "image-link" do %>
-                      <%= image_tag post.main_image, alt: post.main_image_alt_text, class: "img-fluid clickable-image" %>
-                    <% end %>
-                  </div>
-
-                  <div class="col-md-6"> <!-- Text column (right) -->
-                    <h3 class="featured-posts-title"><%= link_to post.title, post_path(post) %></h3>
-                    <p><%= post.description %></p>
-                  </div>
-
-                </div>
               <% end %>
+
             </div>
         </div>
 
         <div class="row">
 
-          <div class="latest-posts">
+          <h2 class="tile-post__sub-title">Latest Posts</h2>
 
-            <div class="header">
-              <h2>Latest Posts</h2>
-            </div>
 
-            <div class="post-list row"> <!-- Add the row class -->
+          <div class="post-list row"> <!-- Add the row class -->
 
-            <!-- Left column for blog posts -->
-            <div class="col-md-8">
-              <% if @published_posts.any? %>
+          <!-- Left column for blog posts -->
+          <div class="col-lg-8 d-flex flex-column justify-content-between"> 
+
+            <% if @published_posts.any? %>
                 
-                <% @latest_posts.each do |post| %>
-                    <%= render partial: 'shared/blog/horizontal_post_layout', locals: { post: post }%>
-                <% end %>
+              <% @latest_posts.each do |post| %>
 
+                <!-- Render the tile posts -->
+                <%= render partial: 'shared/tile_post', locals: { post: post }%>
                 
-              <% else %>
-                <p>Sorry, no posts published</p>
               <% end %>
-            </div>
+                
+            <% else %>
+
+              <p>Sorry, no posts published</p>
+            <% end %>
+            
+          </div>
 
           <!-- Right empty column -->
           <div class="col-md-8">

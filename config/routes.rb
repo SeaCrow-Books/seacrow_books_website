@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # Resources
   Rails.application.routes.draw do
-    resources :books
+    resources :books, except: [:index]
     resources :genres
     resources :categories, except: [:index]
     resources :users
@@ -29,6 +29,6 @@ Rails.application.routes.draw do
   resources :posts, path: 'blog'
 
   # Defines the root path route ("/")
-  root "pages#index"
+  root "pages#home"
 
 end

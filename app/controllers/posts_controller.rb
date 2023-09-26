@@ -15,16 +15,19 @@ class PostsController < ApplicationController
   
     def show
       authorize @post
-      @page_title = @post.meta_title 
+      @page_title = @post.meta_title.titleize 
       @page_description = @post.meta_description
 
       # Tracking the view
-      AhoyEventTracker.new(@post, current_visit.visit_token).track_event
+      if current_visit
+        AhoyEventTracker.new(@post, current_visit.visit_token).track_event
+      end      
 
     end
   
     def new
       @post = Post.new
+      @page_title = "New Post"
       authorize @post
     end
   
@@ -40,6 +43,7 @@ class PostsController < ApplicationController
   
     def edit
       authorize @post
+      @page_title = "Editing" + " " + @post.meta_title.titleize 
     end
   
     def update

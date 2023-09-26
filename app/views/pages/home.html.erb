@@ -26,10 +26,11 @@
 
             <!-- Left column: Latest Posts -->
             <div class="col-lg-8 col-md-12">
-                <h1 class="blog-page-header">Latest Articles</h1>
+                <h1 class="home-page__sub-title">Latest Articles</h1>
 
                 <% @latest_posts.each do |post| %>
-                    <%= render partial: 'shared/blog/horizontal_post_layout', locals: { post: post } %>
+                    <!-- Render the tile posts -->
+                    <%= render partial: 'shared/tile_post', locals: { post: post }%>        
                 <% end %>
             </div>
 

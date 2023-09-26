@@ -1,7 +1,15 @@
-<!-- app/views/posts/new.html.erb -->
+<div class="row justify-content-center">
+  <div class="col-lg-8">
 
-<h1>New Post</h1>
+    <!-- Header -->
+    <div class="post-header">
+      <h1 class="post-header__title">New post</h1>
+    </div>
 
-<%= render 'form', post: @post %>
+      <!-- form -->
+      <div class="post-form">
+        <%= render 'form', post: @post %>
+      </div>
 
-<%= link_to 'Back to All Posts', posts_path %>
+  </div>
+</div>

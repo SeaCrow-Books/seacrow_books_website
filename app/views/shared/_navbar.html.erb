@@ -40,8 +40,21 @@
               <%= current_user.full_name %>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-              <li><%= link_to 'Dashboard', dashboard_path, class: 'dropdown-item' %></li>
-              <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item' %></li> <!-- New link for Edit Profile -->
+              <li>
+                <%= link_to dashboard_path, class: 'dropdown-item' do %>
+                  <i class="bi bi-speedometer2"></i> Dashboard
+                <% end %>  
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
+                  <i class="bi bi-person"></i> Edit Profile
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: 'dropdown-item' do %>
+                  <i class="bi bi-box-arrow-right"></i> Log Out
+                <% end %>
+              </li>  
             </ul>
           </li>
         </ul>
