@@ -1,33 +1,39 @@
 <!-- Main Image -->
 <div class="row justify-content-center">
   <div class="col-lg-10">
-    <% if @post.main_image.attached? %>
-      <%= image_tag @post.main_image, alt: @post.main_image_alt_text, class: "img-fluid mx-auto d-block" %>
-    <% end %>
+    <div class="post-show__main-image">
+      <% if @post.main_image.attached? %>
+        <%= image_tag @post.main_image, alt: @post.main_image_alt_text, class: "img-fluid mx-auto d-block" %>
+      <% end %>
+    </div>
   </div>
 </div>
 
 <!-- Article -->
-
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8">
-      <article>
-        <h1><%= @post.title.titleize %></h1>
 
-        <div class="metadata">
-          <p><%= @post.writer %> on <%= @post.published_at.strftime('%B %d, %Y') %> | <%= read_time(@post.content) %></p>
-          <p class="categories">
-            <% @post.categories.each do |category| %>
-              <%= link_to category.name, category_path(category) %> <!-- assuming you have a category show page -->
-              <%= '|' unless category == @post.categories.last %> <!-- adds a comma except for the last category -->
-            <% end %>
-          </p>
+      <h1 class="post-show__title"><%= @post.title.titleize %></h1>
+
+        <div class="post-show__metadata">
+          <%= @post.writer %> on <%= @post.published_at.strftime('%B %d, %Y') %> | <i class="bi bi-stopwatch"></i> <%= read_time(@post.content) %>
         </div>
 
-        <%= raw @post.content %>         
+        <div class="post-show__categories">
+            <% @post.categories.each do |category| %>
+              <%= link_to category.name, category_path(category) %> 
+              <%= '|' unless category == @post.categories.last %>
+            <% end %>
+        </div>
+      
+        <div class="post-show__article">
+          <%= raw @post.content %>         
+        </div>
+
       </article>        
     </div>
   </div>
+
 
 
 

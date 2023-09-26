@@ -1,28 +1,49 @@
 // Styling the book page
 
-.book-details, .other-titles {
+// STYLING THE BOOK INDEX PAGE
 
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-
-    h3 {
-        font-size: 1rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-    }
-
-}    
-
-.book-details {
-
-    .book-details-table td {
-       font-size: 0.75rem;
-    }
-    
+.book-show__cover-image {
+    // Style the cover image
+    margin-bottom: 2rem;
 }
 
-.other-titles {
+.book-show__book-details {
+    // Style the book details
+    margin-bottom: 1rem;
+}
+
+.book-show__book-details-table {
+    // Styles the book details table
+    font-size: 0.8rem;
+}
+
+.book-show__book-details-table-link {
+    // Stlyes table link
+    @include gray-link;
+}
+
+.book-show__other-titles  {
+    // Styles other titles
     padding-top: 1rem;
     padding-left: 1rem;
-    padding-right: 1rem;
+    padding-right: 1rem;   
+}
+
+.book-show_other-titles-title {
+    // Styles the other titles title
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.book-show__book-title {
+    // Sytles the book title
+}
+
+.book-show__book-author {
+    // Styles book author
+    @include gray-link;
+}
+
+.book-show__book-description {
+    // Styles book description
 }

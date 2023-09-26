@@ -1,0 +1,88 @@
+// These are the mixins for the site.
+
+// Provides the gray link
+@mixin gray-link-formatting {
+    a { 
+        color: inherit; // this ensures the link has the same color as its parent h2 element
+        text-decoration: none; // this removes the underline
+    
+        // change color on hover to gray
+        &:hover {
+            color: gray;
+        }
+    }
+}
+
+
+// Styles the table of contents
+@mixin table-of-contents {
+    // Styles the TOC
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    
+    .table-of-contents__title {
+        // styles the header
+        font-size: 1.4rem;
+    }
+
+    .table-of-contents__link {
+        // Styles link
+        a { text-decoration: none; }
+    }
+
+    .table-of-contents__link-child {
+        // Styles child link
+        margin-left: 20px;
+        a { text-decoration: none; }
+    }
+}
+
+// Styles the FAQ
+@mixin faq {
+    // styles faq
+   
+    .faq__title {
+        // Styles titles
+    }
+
+    .faq__description {
+        // Styles description
+    }
+
+    .faq__block {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
+    .faq__question {
+        // Styles question
+        font-size: 1.5rem;
+    }
+
+    .faq__answer {
+        // styles answer
+    }
+
+}
+
+// Styles the blockquote
+@mixin blockquote {
+    padding-left: 1rem;            /* Provides space between the text and the border */
+    border-left: 4px solid #ccc;   /* Gray border on the left */
+    font-style: italic;            /* Typically, blockquotes are italicized */
+    margin-left: 0;                /* Reset left margin */
+    margin-right: 0;               /* Reset right margin */
+}
+
+
+// Styles a link to gray
+@mixin gray-link {
+    a {
+        text-decoration: none;  /* Removes the underline */
+        color: gray;
+    }
+
+    a:hover {
+        text-decoration: underline; /* Adds the underline back when hovered */
+    }
+}
