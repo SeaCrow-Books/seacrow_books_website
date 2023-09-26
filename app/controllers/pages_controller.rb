@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-    def index
+    def home
       @page_title = 'Welcome' 
       @page_description = 'Home of high quality erotic fiction'
       @featured_books = Book.order(created_at: :desc).limit(4)

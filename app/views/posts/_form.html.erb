@@ -1,7 +1,7 @@
-<%= form_with(model: post) do |f| %>
+<%= form_with(model: post, class: 'needs-validation', novalidate: '') do |f| %>
   <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h4>
       <ul>
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,66 +10,118 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <!-- Title -->
+  <div class="form-group">
+    <%= f.label :title, class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">This is the title for the post.<p>
+    <%= f.text_field :title, placeholder: "Add the post's title...", class: 'form-control post_form__input' %>
   </div>
 
-  <%= f.label :meta_title, "Meta Title (leave blank to use title)" %>
-  <%= f.text_field :meta_title %>
-
-   <%= f.label :meta_description, "Meta Description (limit 120 characters)" %>
-  <%= f.text_field :meta_description, maxlength: 120, rows: 4, class: 'form-control', placeholder: 'Enter meta description...' %>
-<div class="field">
-  <%= f.label :category_ids, "Category" %>
-  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
-</div>
-
-<!-- Sets the url for the post, if left blank it defaults to the post title -->
-<div class="field">
-  <%= f.label :custom_url, "Custom URL" %>
-  <%= f.text_field :custom_url, placeholder: 'Leave blank to use title' %>
-</div>
-
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
+  <!-- Meta Title -->
+  <div class="form-group">
+    <%= f.label :meta_title, "SEO Title", class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">This is the title that Google will see. <em>If you leave this blank, the post title will be set as the SEO title.</em><p>
+    <%= f.text_field :meta_title, placeholder: "Leave blank if you want the post title to be set here...", class: 'form-control post_form__input' %>
   </div>
 
-  <div class="field">
-    <%= f.label :writer %>
-    <%= f.text_field :writer %>
+  <!-- Custom URL -->
+  <div class="form-group">
+    <%= f.label :custom_url, "Custom URL", class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">This is the url that will be displayed, e.g. seacrowbooks/blog/a-great-post. If left blank it will use the post title.<p>
+    <%= f.text_field :custom_url, class: 'form-control post_form__input', placeholder: 'Leave blank to use title' %>
   </div>
 
-  <!-- Description -->
-  <%= f.label :description, "Description" %>
-  <%= f.text_field :description %>
-
-  <!-- Main Post Image -->
-  <div class="field">
-    <%= f.label :main_image %>
-    <%= f.file_field :main_image %>
+  <!-- Writer -->
+  <div class="form-group">
+    <%= f.label :writer, class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">This is author of the post, e.g. Stephen King.<p>
+    <%= f.text_field :writer, placeholder: "Add the name of the post's author...", class: 'form-control post_form__input' %>
   </div>
 
-  <!-- Main Image Alt Text -->
-  <div class="field">
-    <%= f.label :main_image_alt_text, "Main Image Alt Text" %>
-    <%= f.text_field :main_image_alt_text %>
+  <!-- Meta description -->
+  <div class="form-group">
+    <%= f.label :meta_description, "Meta Description", class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">This is the description Google sees, limit of 120 characters.<p>
+    <%= f.text_field :meta_description, maxlength: 120, class: 'form-control post_form__input', placeholder: 'Enter meta description...' %>
   </div>
 
-<!-- Determines is a post is published or unpublished -->
-<% if @post.published? %>
-  <p>This post is published</p>
-  <%= f.label :published, "Unpublish?" %>
-  <%= f.check_box :published, {}, false, true %> <!-- this will uncheck the box if checked by the user -->
-<% else %>
-  <p>This post is unpublished</p>
-  <%= f.label :published, "Publish?" %>
-  <%= f.check_box :published %>
-<% end %>
-
-
-  <div class="actions">
-    <%= f.submit %>
+  <!-- Post description -->
+  <div class="form-group">
+    <%= f.label :description, "Description", class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">This is the description that will be shown on the blog front page.<p>
+    <%= f.text_field :description, placeholder: "Describe the post for the reader...", class: 'form-control post_form__input' %>
   </div>
+
+  <!-- Category -->
+  <div class="form-group">
+    <%= f.label :category_ids, "Category", class: 'form-label post-form__input-label mb-2' %> <!-- Added a margin-bottom for spacing between label and checkboxes -->
+    <p class="post_form__input-description">Select one or more categories.<p>
+    <!-- For better organization and spacing, loop through the categories and render each checkbox individually -->
+    <% Category.all.each do |category| %>
+      <div class="form-check mb-1"> <!-- Added a margin-bottom for spacing between individual checkboxes -->
+        <%= f.check_box :category_ids, { multiple: true, class: 'form-check-input' }, category.id, nil %> <!-- Note the change here, using f.check_box instead -->
+        <%= f.label :category_ids, category.name, class: 'form-check-label', value: category.id %> <!-- Note the value attribute and the change to use category.name -->
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Main Image -->
+  <div class="form-group">
+    <%= f.label :main_image, class: 'form-label post-form__input-label' %>
+    
+    <% if f.object.main_image.attached? %>
+      <div class="mb-3 d-flex align-items-center justify-content-center" style="max-width: 200px;">
+        <%= image_tag f.object.main_image, alt: "Main Image", class: "img-fluid rounded shadow" %>
+      </div>
+      <p class="post_form__input-description">Select new file to replace image. It must be a JPEG, PNG, or WEBP.<p>
+    <% else %>
+      <p class="post_form__input-description">Select file for main image. It must be a JPEG, PNG, or WEBP.<p>
+    <% end %>
+
+    <%= f.file_field :main_image, class: 'form-control' %>
+  </div>
+
+  <!-- Image alt text -->
+  <div class="form-group">
+    <%= f.label :main_image_alt_text, "Main Image Alt Text", class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">The alt attribute in images offers a textual substitute, capturing the essence of the image's content. Its primary roles are twofold. Firstly, it enhances accessibility by offering a description which screen readers vocalize for those with visual impairments. Secondly, in scenarios where the image doesn't display, this description serves as a placeholder, ensuring users grasp the intended visual content.<p>
+    <%= f.text_field :main_image_alt_text, class: 'form-control' %>
+  </div>
+
+  <!-- Content -->
+  <div class="form-group">
+    <%= f.label :content, class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">This is the post input, ensure that you are using HTML tags. Use this <a href="https://docs.google.com/document/d/1lOAOAF--VS2B4hFeL-YNM0Qf0j8mRPpUCS6k0YChDRc/edit?usp=sharing" target="_blank">Google Doc for HTML formating guidelines</a>.<p>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+
+  <!-- Published -->
+  <div class="form-group">
+    <%= f.label :published, 'Publication Status', class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">Click to set publish status.</a>.<p>
+    <%= f.text_area :content, class: 'form-control', data: { controller: "textarea", action: "input->textarea#resizeOnInput" } %>
+    <% if @post.published? %>
+      <div class="alert alert-success" role="alert">
+        This post is published
+      </div>
+      <div class="form-check">
+        <%= f.check_box :published, { class: 'form-check-input', checked: false, unchecked: true } %>
+        <%= f.label :published, "Unpublish?".html_safe, class: 'form-check-label post-form__label' %>
+      </div>
+    <% else %>
+      <div class="alert alert-danger" role="alert">
+        This post is unpublished
+      </div>
+      <div class="form-check">
+        <%= f.check_box :published, class: 'form-check-input' %>
+        <%= f.label :published, "Publish?</i>".html_safe, class: 'form-check-label post-form__label' %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Button -->
+  <div class="d-grid gap-2">
+    <%= f.submit class: 'btn btn-primary btn-block post_form__button btn-lg' %>
+  </div>
+
 <% end %>
