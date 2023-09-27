@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
     def show
       @page_title = "#{@category.name.titleize}"
       @category_posts = @category.posts
+      @published_category_posts = @category_posts.published
       authorize @category
     end
   
