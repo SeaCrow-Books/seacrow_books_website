@@ -12,7 +12,7 @@
 <!-- Article -->
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8">
-
+      <article>
       <h1 class="post-show__title"><%= @post.title.titleize %></h1>
 
         <div class="post-show__metadata">
@@ -27,7 +27,9 @@
         </div>
       
         <div class="post-show__article">
-          <%= raw @post.content %>         
+          <div data-spy="scroll" data-target="#toc" data-offset="0">
+            <%= raw @post.content %>      
+          </div> 
         </div>
 
       </article>        
