@@ -105,6 +105,12 @@
     margin-bottom: 0.5rem;
 }
 
+.post-show__metadata-edit-link {
+    // Styles the edit link
+    text-decoration: none;
+    color: inherit;
+}
+
 .post-show__categories {
     // Styles the categories
     @include gray-link-formatting;
