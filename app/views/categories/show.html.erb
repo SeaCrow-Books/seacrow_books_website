@@ -2,10 +2,13 @@
   <div class="col-lg-6 col-md-8">
     <section>
 
-      <h1 class="blog-page-header"><%= @category.name %> Articles</h1>
+      <h1 class="category-show__title"><%= @category.name %> Articles</h1>
 
-        <% @category_posts.each do |post| %>
-          <%= render partial: 'shared/blog/horizontal_post_layout', locals: { post: post }%>
+        <% @published_category_posts.each do |post| %>
+          
+          <!-- Render the tile posts -->
+          <%= render partial: 'shared/tile_post', locals: { post: post }%>
+
         <% end %>
 
     </section>
