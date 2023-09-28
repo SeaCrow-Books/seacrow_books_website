@@ -28,6 +28,7 @@ class PostsController < ApplicationController
     def new
       @post = Post.new
       @page_title = "New Post"
+      @personas = Persona.for_posts
       authorize @post
     end
   
@@ -43,6 +44,7 @@ class PostsController < ApplicationController
   
     def edit
       authorize @post
+      @personas = Persona.for_posts
       @page_title = "Editing" + " " + @post.meta_title.titleize 
     end
   
@@ -68,7 +70,7 @@ class PostsController < ApplicationController
     end
   
     def post_params
-      params.require(:post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, category_ids: [])
+      params.require(:post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, :persona_id, category_ids: [])
     end
 
   end
