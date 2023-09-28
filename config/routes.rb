@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     resources :authors, except: [:index]
   end  
 
+  # Personas
+  resources :personas do
+    resources :persona_versions
+  end
+  
   # Site config
   patch 'update_account_creation_permission', to: 'site_configs#update_account_creation_permission'
   # get 'run_seed', to: 'site_configs#run_seed'

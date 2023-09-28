@@ -1,0 +1,27 @@
+<%= form_with(model: [@persona, @persona_version], local: true, html: { class: 'mt-4' }) do |form| %>
+
+  <% if @persona_version.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(@persona_version.errors.count, "error") %> prohibited this persona version from being saved:</h4>
+      <ul>
+        <% @persona_version.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :number, class: 'form-label' %>
+    <%= form.text_field :number, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :document_link, 'Document URL', class: 'form-label' %>
+    <%= form.text_field :document_link, class: 'form-control' %>
+  </div>
+
+  <div class="actions mt-3">
+    <%= form.submit "Submit", class: 'btn btn-primary' %>
+  </div>
+<% end %>
