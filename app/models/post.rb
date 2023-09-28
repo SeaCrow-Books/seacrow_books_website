@@ -4,6 +4,7 @@ class Post < ApplicationRecord
 
   # Relationships
   has_and_belongs_to_many :categories, join_table: 'categories_posts'
+  belongs_to :persona
     
   # Callbacks
   before_save :set_meta_title
@@ -14,6 +15,7 @@ class Post < ApplicationRecord
   validates :content, presence: true
   validates :slug, uniqueness: true
   validates :writer, presence: true
+  validates :persona_id, presence: true
   validates :description, length: { maximum: 250 }
   validates :meta_description, length: { maximum: 120 }
   validates :main_image_alt_text, length: { maximum: 125, message: "should not exceed 125 characters" }

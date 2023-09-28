@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
+
+    <h1 class="persona__title"> <%= @persona.name.titleize %> <%= @most_recent_version&.number %></h1>
+
+    <p class="persona-show__content-type"><strong>Content Type:</strong> <%= @persona.content_type.titleize %></p>
+    <p class="persona-show__ai_version"><strong>Ai Version:</strong> <%= @persona.ai_version %></p>
+    <p class="persona-show__description"><strong>Description:</strong> <%= @persona.description %></p>
+    <p class="persona-show__document">
+      <strong>Description:</strong> 
+      <%= link_to @most_recent_version.document_link, target: "_blank", class: "persona-show__document-link-anchor" do %>
+        <i class="bi bi-file-earmark-text"></i> View Google Document
+      <% end %>
+
+</p>
+
+   
+<%= link_to 'New Persona', new_persona_path, class: 'btn btn-success' %>
+
+
+
+
+
+    <% if policy(@persona).edit? %>
+      <%= link_to 'Edit Persona', edit_persona_path(@persona), class: 'btn btn-outline-primary' %>
+    <% end %>
+    
+    <% if policy(@persona).destroy? %>
+      <%= button_to 'Delete Persona', persona_path(@persona), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "btn btn-outline-danger" %>
+    <% end %>
+
+  
+  </div>
+</div>
+

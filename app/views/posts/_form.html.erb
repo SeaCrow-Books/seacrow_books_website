@@ -88,11 +88,19 @@
     <%= f.text_field :main_image_alt_text, class: 'form-control' %>
   </div>
 
+  <!-- Persona -->
+  <div class="form-group">
+    <%= f.label :persona_id, "Persona", class: 'form-label post-form__input-label' %>
+    <p class="post_form__input-description">Select the persona associated with this post.<p>
+    <%= f.collection_select :persona_id, @personas, :id, :name, {}, { class: 'form-control post_form__input' } %>
+  </div>
+
   <!-- Content -->
   <div class="form-group">
     <%= f.label :content, class: 'form-label post-form__input-label' %>
     <p class="post_form__input-description">This is the post input, ensure that you are using HTML tags. Use this <a href="https://docs.google.com/document/d/1lOAOAF--VS2B4hFeL-YNM0Qf0j8mRPpUCS6k0YChDRc/edit?usp=sharing" target="_blank">Google Doc for HTML formating guidelines</a>.<p>
-    <%= f.text_area :content, class: 'form-control' %>
+    <%= f.text_area :content, class: 'form-control', data: { controller: "textarea" } %>
+
   </div>
 
   <!-- Published -->
