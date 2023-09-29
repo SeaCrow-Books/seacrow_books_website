@@ -4,10 +4,10 @@ class PostsController < ApplicationController
     def index
       @posts = Post.all
       @published_posts = @posts.published
-      @all_featured_posts = Post.published.most_viewed
+      @all_featured_posts = @published_posts.most_viewed
       @featured_posts = @all_featured_posts.order(created_at: :desc).offset(1).limit(3)
       @featured_post = @all_featured_posts.first || Post.published.order(created_at: :desc).first
-      @latest_posts = @published_posts.order(created_at: :desc).limit(10)
+      @latest_posts = @published_posts.where.not(id: @featured_post.id).order(created_at: :desc).limit(10)
       authorize @posts
       @page_title = 'Articles' 
       @page_description = 'Articles all about erotic fiction.'
