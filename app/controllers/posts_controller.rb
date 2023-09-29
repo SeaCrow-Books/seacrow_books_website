@@ -34,6 +34,7 @@ class PostsController < ApplicationController
   
     def create
       @post = Post.new(post_params)
+      @personas = Persona.for_posts
       authorize @post
       if @post.save
         redirect_to @post, notice: 'Post was successfully created.'
