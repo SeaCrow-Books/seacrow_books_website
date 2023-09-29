@@ -99,15 +99,14 @@
   <div class="form-group">
     <%= f.label :content, class: 'form-label post-form__input-label' %>
     <p class="post_form__input-description">This is the post input, ensure that you are using HTML tags. Use this <a href="https://docs.google.com/document/d/1lOAOAF--VS2B4hFeL-YNM0Qf0j8mRPpUCS6k0YChDRc/edit?usp=sharing" target="_blank">Google Doc for HTML formating guidelines</a>.<p>
-    <%= f.text_area :content, class: 'form-control', data: { controller: "textarea" } %>
+    <%= f.text_area :content, class: 'form-control', data: { controller: "textarea", action: "input->textarea#resizeOnInput" } %>
 
   </div>
-
-  <!-- Published -->
+  
+<!-- Published -->
   <div class="form-group">
     <%= f.label :published, 'Publication Status', class: 'form-label post-form__input-label' %>
-    <p class="post_form__input-description">Click to set publish status.</a>.<p>
-    <%= f.text_area :content, class: 'form-control', data: { controller: "textarea", action: "input->textarea#resizeOnInput" } %>
+    <p class="post_form__input-description">Click to set publish status.</p>
     <% if @post.published? %>
       <div class="alert alert-success" role="alert">
         This post is published
@@ -122,7 +121,7 @@
       </div>
       <div class="form-check">
         <%= f.check_box :published, class: 'form-check-input' %>
-        <%= f.label :published, "Publish?</i>".html_safe, class: 'form-check-label post-form__label' %>
+        <%= f.label :published, "Publish?".html_safe, class: 'form-check-label post-form__label' %>
       </div>
     <% end %>
   </div>
