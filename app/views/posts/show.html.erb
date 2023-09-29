@@ -16,7 +16,7 @@
       <h1 class="post-show__title"><%= @post.title.titleize %></h1>
 
         <div class="post-show__metadata">
-          <%= @post.writer %> on <%= @post.published_at.strftime('%B %d, %Y') %> | 
+          <%= @post.writer %> on <%= @post.updated_at.strftime('%B %d, %Y') %> | 
           <i class="bi bi-stopwatch"></i> <%= read_time(@post.content) %>
           <% if policy(@post).edit? %>
             | <%= link_to @post.persona.name, persona_path(@post.persona), class: "post-show__metadata-persona-link" %>
