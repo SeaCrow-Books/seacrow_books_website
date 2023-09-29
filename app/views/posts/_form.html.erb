@@ -103,27 +103,14 @@
 
   </div>
   
-<!-- Published -->
+  <!-- Published -->
   <div class="form-group">
-    <%= f.label :published, 'Publication Status', class: 'form-label post-form__input-label' %>
-    <p class="post_form__input-description">Click to set publish status.</p>
-    <% if @post.published? %>
-      <div class="alert alert-success" role="alert">
-        This post is published
-      </div>
-      <div class="form-check">
-        <%= f.check_box :published, { class: 'form-check-input', checked: false, unchecked: true } %>
-        <%= f.label :published, "Unpublish?".html_safe, class: 'form-check-label post-form__label' %>
-      </div>
-    <% else %>
-      <div class="alert alert-danger" role="alert">
-        This post is unpublished
-      </div>
-      <div class="form-check">
-        <%= f.check_box :published, class: 'form-check-input' %>
-        <%= f.label :published, "Publish?".html_safe, class: 'form-check-label post-form__label' %>
-      </div>
-    <% end %>
+    <%= f.label :published, class: 'form-label post-form__input-label' %>
+    <div class="form-check form-switch">
+      <%= f.check_box :published, class: 'form-check-input', id: 'published-toggle' %>
+      <%= f.label :published, @post.published ? 'Unpublish Post' : 'Publish Post', class: 'form-check-label', for: 'published-toggle' %>
+    </div>
+    <p class="post_form__input-description"><%= @post.published ? 'This post is currently published.' : 'This post is currently unpublished.' %></p>
   </div>
 
   <!-- Button -->
