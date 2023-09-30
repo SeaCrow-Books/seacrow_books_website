@@ -3,6 +3,7 @@
     <section>
 
       <h1 class="category-show__title"><%= @category.name %> Articles</h1>
+      <p class="category-show__description"><%= @category.description %></p>
 
         <% @published_category_posts.each do |post| %>
           
