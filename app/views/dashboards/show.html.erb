@@ -1,96 +1,167 @@
-<h2>Books</h2>
-<%= link_to 'New Book', new_book_path, class: 'btn btn-sm btn-outline-primary' if policy(Book.new).new? %>
+<div class="row justify-content-center">
+  <div class="col-lg-10">
 
-<ul>
-  <% @books.each do |book| %>
-    <li>
-      <%= link_to book.title, book_path(book) %> | 
-      <%= link_to 'Edit', edit_book_path(book) if policy(book).update? %> |
-      <%= link_to 'Delete', book_path(book), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(book).destroy? %>
-      
-    </li>
-  <% end %>
-</ul>
-
-<h2>Authors</h2>
-<%= link_to 'New Author', new_author_path, class: 'btn btn-sm btn-outline-primary' if policy(Author.new).new? %>
-<ul>
-  <% @authors.each do |author| %>
-    <li>
-      <%= link_to author.name, author_path(author) %> | 
-      <%= link_to 'Edit', edit_author_path(author) if policy(author).update? %> |
-      <%= link_to 'Delete', author_path(author), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(author).destroy? %>
-    </li>
-  <% end %>
-</ul>
-
-
-<h2>Genres</h2>
-<%= link_to 'New Genre', new_genre_path, class: 'btn btn-sm btn-outline-primary' if policy(Genre.new).new? %>
-<ul>
-  <% @genres.each do |genre| %>
-    <li>
-      <%= link_to genre.name, genre_path(genre) %> | 
-      <%= link_to 'Edit', edit_genre_path(genre) if policy(genre).update? %> |
-      <%= link_to 'Delete', genre_path(genre), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(genre).destroy? %>
-    </li>
-  <% end %>
-</ul>
-
-<h2>Categories</h2>
-<%= link_to 'New Category', new_category_path, class: 'btn btn-sm btn-outline-primary' if policy(Category.new).new? %>
-<ul>
-  <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.name, category_path(category) %> | 
-      <%= link_to 'Edit', edit_category_path(category) if policy(category).update? %> |
-      <%= link_to 'Delete', category_path(category), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(category).destroy? %>
-    </li>
-  <% end %>
-</ul>
-
-<h2>Posts</h2>
-<%= link_to 'New Post', new_post_path, class: 'btn btn-sm btn-outline-primary' if policy(Post.new).new? %>
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= link_to post.title, post_path(post) %> | 
-      <%= link_to 'Edit', edit_post_path(post) if policy(post).update? %> |
-      <%= link_to 'Delete', post_path(post), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(post).destroy? %> |
-      Views: <%= Ahoy::Event.where(name: "Viewed post", properties: { post_id: post.id}).count %>
-    </li>
-  <% end %>
-</ul>
+ <div class="row mt-5">
+      <div class="col-lg-4">
+          <!-- Card for first column -->
+          <div class="card h-100">
+              <div class="card-body">
+                  <h2 class="card-title">Books</h2>
+                  <ul>
+                    <% @books.each do |book| %>
+                      <li class="card-text">
+                        <%= link_to book.title, book_path(book) %> | 
+                        <%= link_to 'Edit', edit_book_path(book) if policy(book).update? %> |
+                        <%= link_to 'Delete', book_path(book), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(book).destroy? %>
+                      </li>
+                    <% end %>
+                  </ul>
+                  <%= link_to 'New Book', new_book_path, class: 'btn btn-sm btn-outline-primary' if policy(Book.new).new? %>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4">
+          <!-- Card for second column -->
+          <div class="card h-100">
+              <div class="card-body">
+                  <h2 class="card-title">Authors</h2>
+                  <ul>
+                    <% @authors.each do |author| %>
+                      <li class="card-text">
+                        <%= link_to author.name, author_path(author) %> | 
+                        <%= link_to 'Edit', edit_author_path(author) if policy(author).update? %> |
+                        <%= link_to 'Delete', author_path(author), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(author).destroy? %>
+                      </li>
+                    <% end %>
+                  </ul>
+                  <%= link_to 'New Author', new_author_path, class: 'btn btn-sm btn-outline-primary' if policy(Author.new).new? %>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4">
+          <!-- Card for third column -->
+          <div class="card h-100">
+              <div class="card-body">
+                  <h2 class="card-title">Genres</h2>
+                  <ul>
+                    <% @genres.each do |genre| %>
+                      <li class="card-text">
+                        <%= link_to genre.name, genre_path(genre) %> | 
+                        <%= link_to 'Edit', edit_genre_path(genre) if policy(genre).update? %> |
+                        <%= link_to 'Delete', genre_path(genre), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(genre).destroy? %>
+                      </li>
+                    <% end %>
+                  </ul>
+                  <%= link_to 'New Genre', new_genre_path, class: 'btn btn-sm btn-outline-primary' if policy(Genre.new).new? %>
+              </div>
+          </div>
+      </div>
+    </div>
 
 
-<!-- Toggles account creation -->
-<% config = SiteConfig.first %>
-<%= button_to (config.allow_new_accounts ? "Turn off account creation" : "Turn on account creation"), update_account_creation_permission_path, method: :patch, class: 'btn btn-sm btn-outline-danger' %>
+     <div class="row mt-5">
+      <div class="col-lg-8">
+          <!-- Card for posts -->
+          <div class="card h-100">
+              <div class="card-body">
+                  <h2 class="card-title">Posts</h2>
+                  <ul>
+                      <% @posts.each do |post| %>
+                        <li>
+                          <%= link_to post.title, post_path(post) %> | 
+                          <%= link_to 'Edit', edit_post_path(post) if policy(post).update? %> |
+                          <%= link_to 'Delete', post_path(post), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(post).destroy? %> |
+                          Views: <%= Ahoy::Event.where(name: "Viewed post", properties: { post_id: post.id}).count %>
+                        </li>
+                      <% end %>
+                    </ul>
+
+                  <%= link_to 'New Post', new_post_path, class: 'btn btn-sm btn-outline-primary' if policy(Post.new).new? %>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4">
+          <!-- Card for Categories -->
+          <div class="card h-100">
+              <div class="card-body">
+                  <h2 class="card-title">Categories</h2>
+                  <ul>
+                    <% @categories.each do |category| %>
+                      <li>
+                        <%= link_to category.name, category_path(category) %> | 
+                        <%= link_to 'Edit', edit_category_path(category) if policy(category).update? %> |
+                        <%= link_to 'Delete', category_path(category), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(category).destroy? %>
+                      </li>
+                    <% end %>
+                  </ul>
+                  <%= link_to 'New Category', new_category_path, class: 'btn btn-sm btn-outline-primary' if policy(Category.new).new? %>
+              </div>
+          </div>
+      </div>
+
+    </div>
+
+    <div class="row mt-5">
+          <div class="col-lg-4">
+          <!-- Card for Users -->
+          <div class="card h-100">
+              <div class="card-body">
+                  <h2 class="card-title">Users</h2>
+                  <ul>
+                    <% @users.each do |user| %>
+                      <li>
+                        <!-- Check if user has permission to view the user's show page -->
+                        <% if policy(user).show? %>
+                          <%= link_to user.full_name, user_path(user) %> <!-- Link to user's show page -->
+                        <% else %>
+                          <%= user.full_name %> <!-- Just display the name without link -->
+                        <% end %>
+
+                        <!-- Check if user has permission to edit the user -->
+                        <% if policy(user).update? %>
+                          | <%= link_to 'Edit', edit_user_path(user) %>
+                        <% end %>
+
+                        <!-- Check if user has permission to delete the user -->
+                        <% if policy(user).destroy? %>
+                          | <%= link_to 'Delete', user_path(user), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+
+                  <% config = SiteConfig.first %>
+                  <% if current_user.admin? %>
+                    <%= button_to (config.allow_new_accounts ? "Turn off account creation" : "Turn on account creation"), update_account_creation_permission_path, method: :patch, class: 'btn btn-sm btn-outline-danger' %>
+                  <% end %>
 
 
-<h2>Users</h2>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <!-- Check if user has permission to view the user's show page -->
-      <% if policy(user).show? %>
-        <%= link_to user.full_name, user_path(user) %> <!-- Link to user's show page -->
-      <% else %>
-        <%= user.full_name %> <!-- Just display the name without link -->
-      <% end %>
-      
-      <!-- Check if user has permission to edit the user -->
-      <% if policy(user).update? %>
-        | <%= link_to 'Edit', edit_user_path(user) %>
-      <% end %>
-      
-      <!-- Check if user has permission to delete the user -->
-      <% if policy(user).destroy? %>
-        | <%= link_to 'Delete', user_path(user), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+              </div>
+          </div>
+      </div>
+
+    </div>
+
+    <div class="row mt-5">
+      <%= line_chart Ahoy::Visit.group_by_month(:started_at).count %>
+    </div>
 
 
-<%= line_chart Ahoy::Visit.group_by_month(:started_at).count %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
