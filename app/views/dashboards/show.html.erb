@@ -6,7 +6,7 @@
     <li>
       <%= link_to book.title, book_path(book) %> | 
       <%= link_to 'Edit', edit_book_path(book) if policy(book).update? %> |
-      <%= link_to 'Delete', book_path(book), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } if policy(book).destroy? %>
+      <%= link_to 'Delete', book_path(book), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(book).destroy? %>
       Views: <%= book.view_count %>
     </li>
   <% end %>
@@ -19,7 +19,7 @@
     <li>
       <%= link_to author.name, author_path(author) %> | 
       <%= link_to 'Edit', edit_author_path(author) if policy(author).update? %> |
-      <%= link_to 'Delete', author_path(author), method: :delete, data: { confirm: 'Are you sure?' } if policy(author).destroy? %>
+      <%= link_to 'Delete', author_path(author), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(author).destroy? %>
     </li>
   <% end %>
 </ul>
@@ -32,7 +32,7 @@
     <li>
       <%= link_to genre.name, genre_path(genre) %> | 
       <%= link_to 'Edit', edit_genre_path(genre) if policy(genre).update? %> |
-      <%= link_to 'Delete', genre_path(genre), method: :delete, data: { confirm: 'Are you sure?' } if policy(genre).destroy? %>
+      <%= link_to 'Delete', genre_path(genre), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(genre).destroy? %>
     </li>
   <% end %>
 </ul>
@@ -44,7 +44,7 @@
     <li>
       <%= link_to category.name, category_path(category) %> | 
       <%= link_to 'Edit', edit_category_path(category) if policy(category).update? %> |
-      <%= link_to 'Delete', category_path(category), method: :delete, data: { confirm: 'Are you sure?' } if policy(category).destroy? %>
+      <%= link_to 'Delete', category_path(category), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(category).destroy? %>
     </li>
   <% end %>
 </ul>
@@ -56,7 +56,7 @@
     <li>
       <%= link_to post.title, post_path(post) %> | 
       <%= link_to 'Edit', edit_post_path(post) if policy(post).update? %> |
-      <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } if policy(post).destroy? %> |
+      <%= link_to 'Delete', post_path(post), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(post).destroy? %> |
       Views: <%= post.view_count %>
     </li>
   <% end %>
@@ -86,7 +86,7 @@
       
       <!-- Check if user has permission to delete the user -->
       <% if policy(user).destroy? %>
-        | <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+        | <%= link_to 'Delete', user_path(user), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } %>
       <% end %>
     </li>
   <% end %>

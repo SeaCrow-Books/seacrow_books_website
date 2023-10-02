@@ -45,7 +45,6 @@ class Post < ApplicationRecord
   # Scopes
   scope :published, -> { where(published: true) }
 
-
   private
 
   def set_meta_title
