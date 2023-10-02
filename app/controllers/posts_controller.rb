@@ -7,22 +7,26 @@ class PostsController < ApplicationController
       @all_featured_posts = @published_posts.most_viewed
       @featured_posts = @all_featured_posts.order(created_at: :desc).offset(1).limit(3)
       @featured_post = @all_featured_posts.first || Post.published.order(created_at: :desc).first
-      @latest_posts = @published_posts.where.not(id: @featured_post.id).order(created_at: :desc).limit(10)
+    
+      if @featured_post
+        @latest_posts = @published_posts.where.not(id: @featured_post.id).order(created_at: :desc).limit(10)
+      else
+        @latest_posts = @published_posts.order(created_at: :desc).limit(10)
+      end
+    
       authorize @posts
-      @page_title = 'Articles' 
+      @page_title = 'Articles'
       @page_description = 'Articles all about erotic fiction.'
     end
-  
+    
     def show
       authorize @post
       @page_title = @post.meta_title.titleize 
       @page_description = @post.meta_description
 
       # Tracking the view
-      if current_visit
-        AhoyEventTracker.new(@post, current_visit.visit_token).track_event
-      end      
-
+      AhoyEventTracker.new(@post, current_visit.visit_token).track_event
+    
     end
   
     def new
@@ -61,7 +65,7 @@ class PostsController < ApplicationController
     def destroy
       authorize @post
       @post.destroy
-      redirect_to posts_url, notice: 'Post was successfully destroyed.'
+      redirect_to dashboard_path, notice: 'Post was successfully destroyed.'
     end
   
     private
