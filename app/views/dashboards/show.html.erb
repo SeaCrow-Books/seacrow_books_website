@@ -7,7 +7,7 @@
       <%= link_to book.title, book_path(book) %> | 
       <%= link_to 'Edit', edit_book_path(book) if policy(book).update? %> |
       <%= link_to 'Delete', book_path(book), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(book).destroy? %>
-      Views: <%= book.view_count %>
+      
     </li>
   <% end %>
 </ul>
@@ -57,7 +57,7 @@
       <%= link_to post.title, post_path(post) %> | 
       <%= link_to 'Edit', edit_post_path(post) if policy(post).update? %> |
       <%= link_to 'Delete', post_path(post), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(post).destroy? %> |
-      Views: <%= post.view_count %>
+      Views: <%= Ahoy::Event.where(name: "Viewed post", properties: { post_id: post.id}).count %>
     </li>
   <% end %>
 </ul>
