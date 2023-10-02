@@ -1,6 +1,5 @@
 class Post < ApplicationRecord
-  include ViewCountable # Allows viewcount
-  include Viewable # Allows most viewed
+  include ViewTrackable # Allows views to be tracked
 
   # Relationships
   has_and_belongs_to_many :categories, join_table: 'categories_posts'

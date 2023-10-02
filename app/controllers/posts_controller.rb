@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     def index
       @posts = Post.all
       @published_posts = @posts.published
-      @all_featured_posts = @published_posts.most_viewed
+      @all_featured_posts = @published_posts
       @featured_posts = @all_featured_posts.order(created_at: :desc).offset(1).limit(3)
       @featured_post = @all_featured_posts.first || Post.published.order(created_at: :desc).first
     
@@ -22,11 +22,8 @@ class PostsController < ApplicationController
     def show
       authorize @post
       @page_title = @post.meta_title.titleize 
-      @page_description = @post.meta_description
-
-      # Tracking the view
-      AhoyEventTracker.new(@post, current_visit.visit_token).track_event
-    
+      @page_description = @post.meta_description  
+      
     end
   
     def new
