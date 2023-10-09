@@ -9,6 +9,7 @@ class DashboardsController < ApplicationController
     @posts = Post.all
     @users = User.all
     @authors = Author.all
+    @personas = Persona.all
   end
   
 end
