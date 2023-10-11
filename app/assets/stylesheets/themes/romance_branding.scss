@@ -22,7 +22,7 @@ $secondary:     $romance-gray !default;
 // $font-size-base: 1rem !default;
 // $line-height-base: 1.5 !default;
 $font-family-base: 'Poppins', sans-serif; 
-$headings-font-family: 'Cormorant Garamond', serif;
+// $headings-font-family: 'Cormorant', serif;
 // $font-size-sm:             $font-size-base * .875 !default;
 // $font-size-lg:             $font-size-base * 1.25 !default;
 // $font-weight-normal:       400 !default;
@@ -46,6 +46,7 @@ body {
 
 /* Override headings font */
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant', serif;
   color: $romance-dark-pink;
 }
 
