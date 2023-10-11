@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   # Pages
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
+  get 'privacy-policy', to: 'pages#privacy_policy'
 
   # Dashboard
   get 'dashboard', to: 'dashboards#show', as: 'dashboard'
