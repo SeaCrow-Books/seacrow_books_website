@@ -17,5 +17,10 @@ class PagesController < ApplicationController
       @page_description = 'Share your thoughts and ideas'
     end
 
+    def privacy_policy
+      @page_title = 'Privacy Policy' 
+      @page_description = 'Discover our privacy policy'
+    end
+
   end
   

@@ -5,7 +5,7 @@
     // styles the standard header for post views
     margin-top: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid $seacrow-grey;
+
     .post-header__title {
         //styles the title
     }
@@ -133,8 +133,6 @@
     h2, h3, h4, h5, h6 {
         margin-top: 2rem;
     }
-
-    a { text-decoration: none; }
 
     .post-show__sub-title {
         // Styles the subtitles

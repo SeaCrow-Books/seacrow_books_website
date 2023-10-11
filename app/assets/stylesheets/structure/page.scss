@@ -6,11 +6,20 @@
     margin-bottom: 2rem;
 }
 
+.page {
+    // Styles the page
+    
+    h2, h3 {
+        // styles headers
+    }
+
+}
+
 // STYLES THE HOME PAGE
 
 .home-page__sub-title {
     // Styles sub-title
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid $seacrow-grey; 
+
 }
