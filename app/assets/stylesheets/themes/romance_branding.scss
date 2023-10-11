@@ -1,0 +1,55 @@
+// This is the branding doc for the romance imprint
+
+/* Sets branding colours */ 
+$romance-dark-pink: #CC1B34;
+$romance-light-pink: #EED8DB;
+$romance-gray: #EED8DB;
+
+$romance-black: #120809;
+
+/* Default overides */
+$primary:       $romance-dark-pink !default;
+$secondary:     $romance-gray !default;
+// $success:       $green !default;
+// $info:          $cyan !default;
+// $warning:       $yellow !default;
+// $danger:        $red !default;
+// $light:         $gray-100 !default;
+// $dark:          $gray-800 !default;
+
+// $font-family-sans-serif: "Helvetica Neue", sans-serif !default;
+// $font-family-monospace:  Menlo, Monaco, Consolas !default;
+// $font-size-base: 1rem !default;
+// $line-height-base: 1.5 !default;
+$font-family-base: 'Poppins', sans-serif; 
+$headings-font-family: 'Cormorant Garamond', serif;
+// $font-size-sm:             $font-size-base * .875 !default;
+// $font-size-lg:             $font-size-base * 1.25 !default;
+// $font-weight-normal:       400 !default;
+// $font-weight-bold:         700 !default;
+// $headings-font-weight:     500 !default;
+
+
+/* Overides the body */
+body {
+  color: $romance-black;
+
+  a {
+    color: $romance-dark-pink;
+    text-decoration: none;
+    
+    &:hover {
+      color: $romance-light-pink;
+    }
+  }
+}
+
+/* Override headings font */
+h1, h2, h3, h4, h5, h6 {
+  color: $romance-dark-pink;
+}
+
+/* Custom navbar background */
+.branded-bg {
+  background-color: $romance-light-pink; 
+}
