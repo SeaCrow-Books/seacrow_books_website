@@ -3,13 +3,13 @@ class PostsController < ApplicationController
   
     def index
       @posts = Post.all
-      @published_posts = @posts.published
-      @all_featured_posts = @published_posts
-      @featured_posts = @all_featured_posts.order(created_at: :desc).offset(1).limit(3)
-      @featured_post = @all_featured_posts.first || Post.published.order(created_at: :desc).first
-    
+      @published_posts = Post.published
+
+      @featured_post = @published_posts.order(created_at: :desc).first
+      @featured_posts = @published_posts.order(created_at: :desc).offset(1).limit(3)
+      
       if @featured_post
-        @latest_posts = @published_posts.where.not(id: @featured_post.id).order(created_at: :desc).limit(10)
+        @latest_posts = @published_posts.where.not(id: [@featured_post.id, @featured_posts.map(&:id)].flatten).order(created_at: :desc).limit(10)
       else
         @latest_posts = @published_posts.order(created_at: :desc).limit(10)
       end
