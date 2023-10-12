@@ -1,17 +1,17 @@
-// This is the branding doc for the romance imprint
+// This is the overide for colours, it must be loaded before bootstrap
 
 /* Sets branding colours */ 
 $romance-dark-pink: #CC1B34;
-$romance-light-pink: #EED8DB;
+$romance-light-pink: #E16E7F;
 $romance-gray: #EED8DB;
 
 $romance-black: #120809;
 
 /* Default overides */
-$primary:       $romance-dark-pink !default;
-$secondary:     $romance-gray !default;
+$primary:       $romance-dark-pink;
+$secondary:     $romance-gray;
 // $success:       $green !default;
-// $info:          $cyan !default;
+$info:          $romance-light-pink;
 // $warning:       $yellow !default;
 // $danger:        $red !default;
 // $light:         $gray-100 !default;
@@ -22,39 +22,10 @@ $secondary:     $romance-gray !default;
 // $font-size-base: 1rem !default;
 // $line-height-base: 1.5 !default;
 $font-family-base: 'Poppins', sans-serif; 
-// $headings-font-family: 'Cormorant', serif;
+$headings-font-family: 'Cormorant', serif;
 // $font-size-sm:             $font-size-base * .875 !default;
 // $font-size-lg:             $font-size-base * 1.25 !default;
 // $font-weight-normal:       400 !default;
 // $font-weight-bold:         700 !default;
 // $headings-font-weight:     500 !default;
 
-
-/* Overides the body */
-body {
-  color: $romance-black;
-
-  a {
-    color: $romance-dark-pink;
-    text-decoration: none;
-    
-    &:hover {
-      color: $romance-light-pink;
-    }
-  }
-}
-
-/* Override headings font */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cormorant', serif;
-  color: $romance-dark-pink;
-}
-
-h1, h2 {
-  font-weight: 600;
-}
-
-/* Custom navbar background */
-.branded-bg {
-  background-color: $romance-light-pink; 
-}

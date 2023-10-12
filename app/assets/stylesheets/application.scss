@@ -1,13 +1,15 @@
 // Import Mixins
 @import "structure/mixins";
-@import "structure/colours";
 
-/* Import Bootstrap Core */
+// Import custom Bootstrap overrides
+@import "themes/romance_branding_overides";
+
+// Import Bootstrap Core
 @import "bootstrap";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
 
-/* Import other Application-specific Styles */
+// Import other Application-specific Styles
 @import "structure/*";
 
-/* Overrides (if any) */
-@import "themes/romance_branding";
+// Import custom Bootstrap styles
+@import "themes/romance_branding_styles";
