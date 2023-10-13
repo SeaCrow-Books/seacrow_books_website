@@ -14,3 +14,5 @@ pin "Chart.bundle", to: "Chart.bundle.js"
 
 # Pin all JS files from the custom directory
 pin_all_from "app/javascript/custom", under: "custom"
+pin "trix"
+pin "@rails/actiontext", to: "actiontext.js"

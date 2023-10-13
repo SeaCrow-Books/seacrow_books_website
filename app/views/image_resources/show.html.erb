@@ -1,0 +1,70 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-lg-8 col-md-6">
+      
+    <!-- Heading -->
+    <div class="d-flex justify-content-between align-items-center">
+      <h1><%= @image_resource.name.titleize %></h1>
+      <% if policy(@image_resource).update? %>
+        <%= link_to 'Edit Image', edit_image_resource_path(@image_resource), class: 'btn btn-outline-primary' %>
+      <% end %>
+    </div>
+
+    <!-- Image and Description -->
+    <div class="row mt-4">
+      <div class="col">
+        <%= image_tag @image_resource.image, alt: @image_resource.alt_description, class: "img-fluid rounded" %>
+      </div>
+    </div>
+    <div class="row mt-4">
+        <div class="mb-3">
+          <h3>Alt Description:</h3>
+          <p><%= @image_resource.alt_description.capitalize %>.</p>
+        </div>
+    </div>
+
+    <!-- Categories and Tags -->
+    <div class="row mt-4">
+        <div class="col-6 mb-3">
+          <h3>Categories:</h3>
+          <ul class="list-group">
+            <% @image_resource.categories.each do |category| %>
+              <li class="list-group-item"><%= category.name.capitalize %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="col-6 mb-3">
+          <h3>Tags:</h3>
+          <ul class="list-group">
+            <% @image_resource.tag_list.each do |tag| %>
+              <li class="list-group-item"><%= tag.capitalize %></li>
+            <% end %>
+          </ul>
+        </div>
+    </div>
+
+    <!-- Notes and Permanent URL -->
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Notes
+          </div>
+          <div class="card-body">
+            <%= @image_resource.notes %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Permanent URL
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= permanent_image_url(@image_resource) %></p>
+            <p class="card-text"><%= h "<img src=\"#{permanent_image_url(@image_resource)}\" alt=\"#{@image_resource.alt_description}\" class=\"img-fluid rounded mx-auto d-block\">" %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
