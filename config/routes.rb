@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :categories, except: [:index]
     resources :users
     resources :authors, except: [:index]
+    resources :image_resources
   end  
 
   # Personas
@@ -33,6 +34,9 @@ Rails.application.routes.draw do
 
   # Blog
   resources :posts, path: 'blog'
+
+  # Sets permanant image url
+  get '/image_resources/:id/permanent_image', to: 'image_resources#permanent_image', as: 'permanent_image'
 
   # Defines the root path route ("/")
   root "pages#home"

@@ -10,3 +10,5 @@ import "Chart.bundle"
 import "custom/bootstrap_extensions";
 
 
+import "trix"
+import "@rails/actiontext"

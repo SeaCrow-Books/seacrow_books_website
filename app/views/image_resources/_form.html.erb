@@ -1,0 +1,56 @@
+<!-- app/views/image_resources/_form.html.erb -->
+
+<%= form_with(model: image_resource, local: true, class: 'row g-3') do |form| %>
+  <!-- Show errors if any -->
+  <% if image_resource.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(image_resource.errors.count, "error") %> prohibited this image resource from being saved:</h4>
+      <ul>
+        <% image_resource.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Preview existing image if available -->
+  <% if image_resource.image.attached? %>
+    <div class="col-12 mb-3">
+      <%= image_tag image_resource.image, alt: image_resource.alt_description, class: "img-fluid rounded" %>
+    </div>
+  <% end %>
+
+  <div class="col-12">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :image, class: 'form-label' %>
+    <%= form.file_field :image, class: 'form-control' %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :alt_description, class: 'form-label' %>
+    <%= form.text_field :alt_description, class: 'form-control' %>
+  </div>
+
+  <div class="col-12">
+    <%= form.label :categories, class: 'form-label' %>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name, {}, class: 'form-check-input' %>
+  </div>
+
+  <div class="col-12">
+    <%= form.label :tag_list, "Tags (separated by commas)", class: 'form-label' %>
+    <%= form.text_field :tag_list, value: @image_resource.tag_list.join(", "), class: 'form-control' %>
+  </div>
+
+  <div class="col-12">
+    <%= form.label :notes, class: 'form-label' %>
+    <%= form.rich_text_area :notes, class: 'form-control' %>
+  </div>
+
+  <div class="col-12">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+  </div>
+<% end %>

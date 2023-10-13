@@ -7,4 +7,11 @@ module PostsHelper
         "#{minutes} min read"
     end
 
+    def embed_images_in_text(text)
+        text.gsub(/\[image=(\d+)\]/) do
+          image = ImageResource.find($1)
+          image_tag(image.url, alt: image.alt_text)
+        end
+      end
+
 end
