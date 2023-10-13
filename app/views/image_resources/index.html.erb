@@ -1,0 +1,60 @@
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-10 col-md-8">
+
+      <%= form_with(url: image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
+        <%= select_tag :filter, 
+            options_for_select(
+              [['All', nil]] +
+              [['Categories', {disabled: true}]] + 
+              Category.all.map { |c| ["Category: #{c.name}", "category_#{c.id}"] } +
+              [['Tags', {disabled: true}]] +
+              ActsAsTaggableOn::Tag.all.map { |t| ["Tag: #{t.name}", "tag_#{t.id}"] },
+              params[:filter]
+            ),
+            class: 'form-select'
+        %>
+        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Filter</button>
+      <% end %>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Categories</th>
+            <th>Tags</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @image_resources.each do |image_resource| %>
+            <tr>
+              <td><%= image_resource.name %></td>
+              <td><%= image_resource.categories.map(&:name).join(', ') %></td>
+
+              <td><%= image_resource.tags.join(', ') %></td>
+              <td>
+                <% if image_resource.image.attached? %>
+                  <%= image_tag image_resource.image.variant(resize_to_limit: [100, 100]) %>
+                <% else %>
+                  No Image
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Show', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
+                <%= link_to 'Edit', edit_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
+                <%= link_to 'Delete', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm', method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(image_resource).destroy? %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+
+
+
+
+  </div>
+</div>
+
+

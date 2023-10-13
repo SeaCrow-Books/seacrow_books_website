@@ -2,6 +2,7 @@ class Category < ApplicationRecord
 
     # Relationships
     has_and_belongs_to_many :posts, join_table: 'categories_posts'
+    has_and_belongs_to_many :image_resources, join_table: 'categories_image_resources'
 
     # Validations
     validates :name, presence: true
