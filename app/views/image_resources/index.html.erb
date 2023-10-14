@@ -6,9 +6,9 @@
             options_for_select(
               [['All', nil]] +
               [['Categories', {disabled: true}]] + 
-              Category.all.map { |c| ["Category: #{c.name}", "category_#{c.id}"] } +
+              Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
               [['Tags', {disabled: true}]] +
-              ActsAsTaggableOn::Tag.all.map { |t| ["Tag: #{t.name}", "tag_#{t.id}"] },
+              ActsAsTaggableOn::Tag.all.map { |t| ["#{t.name}", "tag_#{t.id}"] },
               params[:filter]
             ),
             class: 'form-select'
