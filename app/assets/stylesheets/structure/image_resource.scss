@@ -1,2 +1,6 @@
 // Styles the image resource
 
+.image-resource__resize_to_smaller_image {
+    max-width: 150px; /* Set your desired max width */
+    max-height: 150px; /* Set your desired max height */
+}
