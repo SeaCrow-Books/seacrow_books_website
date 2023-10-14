@@ -1,6 +1,8 @@
 class ImageResource < ApplicationRecord
     acts_as_taggable 
 
+    attr_accessor :new_tag 
+
     # Relationships
     has_and_belongs_to_many :categories, join_table: 'categories_image_resources'
     

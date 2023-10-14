@@ -36,14 +36,35 @@
   </div>
 
   <div class="col-12">
-    <%= form.label :categories, class: 'form-label' %>
-    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name, {}, class: 'form-check-input' %>
+  <p>Categories</p>
+    <% Category.all.each do |category| %>
+      <div class="form-check">
+        <%= form.check_box :category_ids, { multiple: true, checked: image_resource.categories.include?(category) }, category.id, nil %>
+        <%= form.label "category_#{category.id}", class: 'form-check-label' do %>
+          <%= category.name %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="col-12">
-    <%= form.label :tag_list, "Tags (separated by commas)", class: 'form-label' %>
-    <%= form.text_field :tag_list, value: @image_resource.tag_list.join(", "), class: 'form-control' %>
+  <div class="mb-3">
+      <%= form.label :tag_list, "Tags" %><br>
+      <% ActsAsTaggableOn::Tag.pluck(:name).each do |tag_name| %>
+        <div class="form-check">
+          <%= check_box_tag 'image_resource[tag_list][]', tag_name, @image_resource.tag_list.include?(tag_name), class: 'form-check-input' %>
+          <%= label_tag "image_resource_tag_list_#{tag_name}", tag_name, class: 'form-check-label' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :new_tag, "New Tag" %>
+      <%= text_field_tag :new_tag, nil, class: "form-control" %>
+      <small class="form-text text-muted">Enter a new tag here. This will be added to the list of tags.</small>
+    </div>
   </div>
+
 
   <div class="col-12">
     <%= form.label :notes, class: 'form-label' %>
