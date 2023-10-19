@@ -1,37 +1,26 @@
-import { Controller } from "stimulus";
-import { Turbo } from "@hotwired/turbo";
+// app/javascript/controllers/gtm_controller.js
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    if (process.env.NODE_ENV === "production") {
-      this.loadScript();
-      this.registerTurboEvents();
-    }
+    this.loadGTag();
   }
 
-  loadScript() {
-    const script = document.createElement("script");
-    script.src = "https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID";
-    script.async = true;
-    document.head.appendChild(script);
+  loadGTag() {
+    const script1 = document.createElement('script');
+    script1.async = true;
+    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-11H7YH95XC';
+    document.head.appendChild(script1);
 
-    script.addEventListener("load", () => {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'YOUR_TRACKING_ID');
-    });
-  }
-
-  registerTurboEvents() {
-    document.addEventListener("turbo:load", () => {
-      if (typeof gtag === 'function') {
-        gtag('event', 'page_view', {
-          page_location: window.location.href,
-          page_path: window.location.pathname,
-          page_title: document.title,
-        });
-      }
-    });
+    script1.onload = () => {
+      const script2 = document.createElement('script');
+      script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-11H7YH95XC');
+      `;
+      document.head.appendChild(script2);
+    };
   }
 }
