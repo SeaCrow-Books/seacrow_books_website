@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   get 'dashboards/show'
 
+  # Chats
+  resources :chats, only: [:index, :create]
+
   # Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }
 

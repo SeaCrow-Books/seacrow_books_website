@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center align-items-center">
+  <div class="col-md-8">
+    <div class="chat-container">
+      <div class="text-right text-muted my-3">
+        <small>Model: <%= @model_name.titleize %></small>
+      </div>
+      <div class="chat-history my-5">
+        <% @chat.messages.each do |message| %>
+          <div class="chat-message mt-1">
+            <div class="<%= message[:role] %>-message">
+              <div class="alert <%= message[:role] == 'user' ? 'alert-secondary' : 'alert-primary' %>" role="alert">
+                <%= message[:content] %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <nav class="navbar sticky-bottom  pb-5" style="background-color: #fff;">
+
+        <%= form_with url: chats_path, method: :post, local: true, html: { class: 'input-group input-group-lg mb-3' } do |f| %>
+          <%= f.text_field :user_input, placeholder: "Type a message...", class: "form-control", aria: { label: "Type a message", describedby: "button-addon2" } %>
+          <%= f.submit "Send", class: "btn btn-outline-primary", id: "button-addon2" %>
+        <% end %>
+
+      </nav>
+
+    </div>
+  </div>
+</div>
+
