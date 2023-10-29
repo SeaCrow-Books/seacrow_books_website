@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'dashboards/show'
 
   # Chats
-  resources :chats, only: [:index, :create]
+  resources :chat_sessions do
+    resources :chats, only: [:create]
+  end  
 
   # Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }

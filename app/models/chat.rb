@@ -1,10 +1,10 @@
 class Chat < ApplicationRecord
-    serialize :messages, Array
-  
-    before_save :initialize_messages
-  
-    def initialize_messages
-      self.messages ||= []
-    end
+  belongs_to :chat_session
+
+  def self.process_message(content)
+    # Interact with the API and return the response
+    OpenaiService.chat(content)
   end
+end
+
   

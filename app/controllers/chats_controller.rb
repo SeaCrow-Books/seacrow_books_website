@@ -1,17 +1,18 @@
 class ChatsController < ApplicationController
-    def index
-        @page_title = "SeaCrow Chitty Chatty"
-        @chat = Chat.last || Chat.create
-        @model_name = OpenaiService.model_name
-    end
-      
+    before_action :set_chat_session
+  
     def create
-        @chat = Chat.last || Chat.create
-        user_input = params[:user_input]
-        @chat.messages << {'role': 'user', 'content': user_input}
-        bot_response = OpenaiService.chat(@chat)
-        @chat.messages << {'role': 'assistant', 'content': bot_response}
-        @chat.save
-        redirect_to chats_path
+      user_input = params[:chat][:content]
+      @chat = @chat_session.chats.create(role: 'user', content: user_input)
+      bot_response = OpenaiService.chat(user_input)
+      @chat_session.chats.create(role: 'assistant', content: bot_response)
+      redirect_to chat_session_path(@chat_session)
     end
-end
+  
+    private
+  
+    def set_chat_session
+      @chat_session = ChatSession.find(params[:chat_session_id])
+    end
+  end
+  
