@@ -3,9 +3,22 @@
   <%= link_to 'New Chat Session', new_chat_session_path, class: 'btn btn-primary mb-3' %>
   <div class="list-group">
     <% @chat_sessions.each do |chat_session| %>
-      <div class="list-group-item d-flex justify-content-between align-items-center">
-        <%= link_to (chat_session.session_name.presence || "Chat Session #{chat_session.id}"), chat_session_path(chat_session), class: "list-group-item-action" %>
-        <%= button_to 'Delete', chat_session_path(chat_session), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <div class="list-group-item">
+        <div class="d-flex justify-content-between align-items-center">
+          <%= form_with model: chat_session, method: :patch, local: true, class: 'me-3' do |form| %>
+            <% if chat_session.session_name.present? %>
+              <%= form.text_field :session_name, value: chat_session.session_name.titleize, class: 'form-control d-inline-block w-auto' %>
+            <% else %>
+              <%= form.text_field :session_name, value: chat_session.id, class: 'form-control d-inline-block w-auto' %>
+            <% end %>
+            <%= form.submit 'Update', class: 'btn btn-outline-secondary ms-2' %>
+          <% end %>
+          
+          <div>
+            <%= link_to 'Show', chat_session_path(chat_session), class: 'btn btn-outline-primary me-2' %>
+            <%= link_to 'Delete', chat_session_path(chat_session), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

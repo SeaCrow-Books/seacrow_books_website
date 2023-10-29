@@ -18,6 +18,14 @@ class ChatSessionsController < ApplicationController
         end
       end
       
+      def update
+        @chat_session = ChatSession.find(params[:id])
+        if @chat_session.update(chat_session_params)
+          redirect_to chat_sessions_path
+        else
+          redirect_to chat_sessions_path, alert: 'There was an error updating the chat session.'
+        end
+      end  
   
       def show
         @chat = Chat.new

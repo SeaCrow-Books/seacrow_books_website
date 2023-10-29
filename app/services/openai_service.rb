@@ -3,7 +3,7 @@ class OpenaiService
 
   def self.chat(user_input)
     headers = {
-      'Authorization' => "Bearer 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",
+      'Authorization' => "Bearer #{Rails.application.credentials.openai[:api_key]}",
       'Content-Type' => 'application/json'
     }
     payload = {
