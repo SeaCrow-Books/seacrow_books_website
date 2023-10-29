@@ -46,6 +46,11 @@
                 <% end %>  
               </li>
               <li>
+                <%= link_to chat_sessions_path, class: 'dropdown-item' do %>
+                  <i class="bi bi-chat-dots"></i> Chat
+                <% end %>  
+              </li>
+              <li>
                 <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
                   <i class="bi bi-person"></i> Edit Profile
                 <% end %>
