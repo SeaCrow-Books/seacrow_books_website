@@ -1,0 +1,20 @@
+<div class="chat-container">
+  <div class="chat-history my-5">
+    <% chats.each do |chat| %>
+      <div class="chat-message mt-1">
+        <div class="<%= chat.role %>-message">
+          <div class="alert <%= chat.role == 'user' ? 'alert-secondary' : 'alert-primary' %>" role="alert">
+            <%= chat.content %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <nav class="navbar sticky-bottom pb-5" style="background-color: #fff;">
+    <%= form_with url: chat_session_chats_path(@chat_session), method: :post, local: true, html: { class: 'input-group input-group-lg mb-3' } do |f| %>
+      <%= f.text_field :user_input, placeholder: "Type a message...", class: "form-control", aria: { label: "Type a message", describedby: "button-addon2" } %>
+      <%= f.submit "Send", class: "btn btn-outline-primary", id: "button-addon2" %>
+    <% end %>
+  </nav>
+</div>

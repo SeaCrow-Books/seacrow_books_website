@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="chat-session">
+        <h1 class="text-center my-3">Chat Session: <%= @chat_session.session_name.presence.titleize || @chat_session.id %></h1>
+        <div data-controller="autoscroll" class="chats" style="overflow-y: auto; height: 600px;">
+          <% @chats.each do |chat| %>
+            <% if chat.role == 'assistant' %>
+              <div class="alert alert-primary" role="alert">
+                <%= chat.content %>
+              </div>
+            <% else %>
+              <div class="<%= chat.role %> alert alert-light my-1" role="alert">
+                <%= chat.content %>
+              </div>
+            <% end %>
+          <% end %>
+          <div id="chat-bottom"></div>
+        </div>
+        <div class="sticky-bottom bg-body-tertiary mt-5">
+          <%= form_with(model: [ @chat_session, @chat ], local: true) do |form| %>
+            <div class="d-grid gap-2">
+              <%= form.text_area :content, class: 'form-control', aria: { label: 'Type your message here' }, placeholder: 'Type your message here' %>
+              <%= form.submit "Send", class: 'btn btn-outline-secondary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

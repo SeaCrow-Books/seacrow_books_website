@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_13_073740) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_28_081807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -138,6 +138,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_073740) do
     t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_categories_posts_on_category_id"
     t.index ["post_id"], name: "index_categories_posts_on_post_id"
+  end
+
+  create_table "chat_sessions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "session_name"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "user_input"
+    t.string "bot_response"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "messages"
+    t.bigint "chat_session_id"
+    t.string "role"
+    t.text "content"
+    t.index ["chat_session_id"], name: "index_chats_on_chat_session_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -276,6 +294,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_073740) do
   add_foreign_key "books", "authors"
   add_foreign_key "categories_posts", "categories"
   add_foreign_key "categories_posts", "posts"
+  add_foreign_key "chats", "chat_sessions"
   add_foreign_key "persona_versions", "personas"
   add_foreign_key "posts", "personas"
   add_foreign_key "taggings", "tags"

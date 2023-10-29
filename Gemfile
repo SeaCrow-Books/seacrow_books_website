@@ -83,4 +83,6 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'groupdate'
 gem "meta-tags"
 gem 'pundit'
+gem 'rest-client'
+
 
