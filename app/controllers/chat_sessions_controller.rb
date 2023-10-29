@@ -51,7 +51,7 @@ class ChatSessionsController < ApplicationController
     end
   
     def chat_session_params
-      params.require(:chat_session).permit(:session_name)
+      params.require(:chat_session).permit(:session_name, :mode)
     end
   end
   

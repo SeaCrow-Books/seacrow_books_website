@@ -5,6 +5,10 @@
       <%= f.label :session_name, 'Session Name' %>
       <%= f.text_field :session_name, class: 'form-control', placeholder: 'Enter a name for this session (optional)' %>
     </div>
+    <div class="form-group">
+      <%= f.label :mode, 'Mode' %>
+      <%= f.select :mode, options_for_select([['Standard', 'standard'], ['Book Creation', 'book'], ['Post Creation', 'post'], ['Kinky Dom', 'dom'], ['Kinky Sub', 'sub']]), {}, class: 'form-control' %>
+    </div>
     <%= f.submit 'Start Chat', class: 'btn btn-primary mt-2' %>
   <% end %>
 </div>

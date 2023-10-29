@@ -14,9 +14,9 @@
             <%= form.submit 'Update', class: 'btn btn-outline-secondary ms-2' %>
           <% end %>
           
-          <div>
-            <%= link_to 'Show', chat_session_path(chat_session), class: 'btn btn-outline-primary me-2' %>
-            <%= link_to 'Delete', chat_session_path(chat_session), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+          <div class="d-inline-flex">
+            <%= link_to 'Show', chat_session_path(chat_session), class: 'btn btn-outline-primary me-2' %> 
+            <%= button_to 'Delete', chat_session_path(chat_session), method: :delete, form: { data: { turbo_confirm: "Are you sure this should be spanked?" }}, class: 'btn btn-outline-danger' %>
           </div>
         </div>
       </div>

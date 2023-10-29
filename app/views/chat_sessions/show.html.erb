@@ -2,7 +2,15 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="chat-session">
-        <h1 class="text-center my-3">Chat Session: <%= @chat_session.session_name.presence.titleize || @chat_session.id %></h1>
+        <h1 class="text-center my-3">
+          Chat Session: 
+          <% if @chat_session.session_name.present? %>
+            <%= @chat_session.session_name.titleize %>
+          <% else %>
+            <%= @chat_session.id %>
+          <% end %>
+        </h1>
+
         <div data-controller="autoscroll" class="chats" style="overflow-y: auto; height: 600px;">
           <% @chats.each do |chat| %>
             <% if chat.role == 'assistant' %>
@@ -24,6 +32,13 @@
               <%= form.submit "Send", class: 'btn btn-outline-secondary' %>
             </div>
           <% end %>
+          <div class="mt-3 text-small">
+            <%= link_to chat_sessions_path, class: 'text-muted' do %>
+              <i class="bi bi-arrow-bar-left"></i> All Chats
+            <% end %>
+            | Model: <%= OpenaiService.model_name %>
+            | Mode: Add mode as an object
+          </div>
         </div>
       </div>
     </div>

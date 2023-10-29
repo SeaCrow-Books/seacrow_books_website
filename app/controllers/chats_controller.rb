@@ -4,7 +4,10 @@ class ChatsController < ApplicationController
     def create
       user_input = params[:chat][:content]
       @chat = @chat_session.chats.create(role: 'user', content: user_input)
-      bot_response = OpenaiService.chat(user_input)
+      
+      mode = @chat_session.mode # Retrieve the mode from the chat session
+      bot_response = OpenaiService.chat(user_input, mode) # Pass the mode to OpenaiService
+      
       @chat_session.chats.create(role: 'assistant', content: bot_response)
       redirect_to chat_session_path(@chat_session)
     end
