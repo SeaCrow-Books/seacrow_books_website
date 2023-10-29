@@ -8,7 +8,10 @@ class OpenaiService
     }
     payload = {
       'model': 'gpt-4',
-      'messages': [{ 'role': 'user', 'content': user_input }]
+      'messages': [
+        { 'role': 'system', 'content': 'You are a helpful assistant that speaks like a pirate.' },
+        { 'role': 'user', 'content': user_input }
+      ]
     }.to_json
     response = RestClient.post(BASE_URL, payload, headers)
     response_json = JSON.parse(response.body)
