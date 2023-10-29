@@ -19,7 +19,7 @@
     </main>
   </body>
 
-  <!-- Footer -->
-  <%= render "shared/footer" %>
+  <!-- Remove by adding <% content_for :hide_footer, true %> to the view. -->
+  <%= render "shared/footer" unless content_for?(:hide_footer) %>
 
 </html>
