@@ -1,4 +1,5 @@
 class PersonaVersionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_persona_version, only: %i[show edit update destroy]
   before_action :set_persona, only: %i[new create edit update]
 
