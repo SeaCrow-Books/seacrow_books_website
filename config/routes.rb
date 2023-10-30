@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :chats, only: [:create]
   end  
 
+  resources :chat_custom_instructions
+  
   # Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }
 

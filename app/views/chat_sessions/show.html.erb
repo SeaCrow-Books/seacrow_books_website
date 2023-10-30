@@ -37,7 +37,8 @@
               <i class="bi bi-arrow-bar-left"></i> All Chats
             <% end %>
             | Model: <%= OpenaiService.model_name %>
-            | Mode: Add mode as an object
+            | Instructions: <%= @chat_session.chat_custom_instruction.name.titleize %>
+            | Created by: <%= @chat_session.user.full_name.titleize %>
           </div>
         </div>
       </div>

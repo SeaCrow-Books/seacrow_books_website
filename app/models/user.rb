@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Relationships
+  has_many :chat_custom_instructions, dependent: :destroy
+  has_many :chat_sessions, dependent: :destroy
+
   enum role: { staff: 0, admin: 1 }
 
   after_initialize :set_default_role, if: :new_record?

@@ -1,0 +1,26 @@
+<h1>Chat Custom Instructions</h1>
+
+<%= link_to 'New Custom Instruction', new_chat_custom_instruction_path, class: 'btn btn-primary mb-3' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Instruction</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chat_custom_instructions.each do |instruction| %>
+      <tr>
+        <td><%= instruction.name %></td>
+        <td><%= instruction.instruction_text %></td>
+        <td>
+          <%= button_to 'Show', chat_custom_instruction_path(instruction) %> |
+          <%= button_to 'Edit', edit_chat_custom_instruction_path(instruction) %> |
+          <%= button_to 'Delete', chat_custom_instruction_path(instruction), method: :delete, form: { data: { turbo_confirm: "Are you sure this should be punished?" }} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
