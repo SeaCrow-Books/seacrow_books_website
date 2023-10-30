@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_30_151619) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_30_160717) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -156,7 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_30_151619) do
     t.datetime "updated_at", null: false
     t.string "session_name"
     t.bigint "chat_custom_instruction_id"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.index ["chat_custom_instruction_id"], name: "index_chat_sessions_on_chat_custom_instruction_id"
     t.index ["user_id"], name: "index_chat_sessions_on_user_id"
   end
