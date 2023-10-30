@@ -16,8 +16,8 @@
         <td><%= instruction.name %></td>
         <td><%= instruction.instruction_text %></td>
         <td>
-          <%= button_to 'Show', chat_custom_instruction_path(instruction) %> |
-          <%= button_to 'Edit', edit_chat_custom_instruction_path(instruction) %> |
+          <%= link_to 'Show', chat_custom_instruction_path(instruction) %> |
+          <%= link_to 'Edit', edit_chat_custom_instruction_path(instruction) %> |
           <%= button_to 'Delete', chat_custom_instruction_path(instruction), method: :delete, form: { data: { turbo_confirm: "Are you sure this should be punished?" }} %>
         </td>
       </tr>
