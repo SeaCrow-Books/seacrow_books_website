@@ -1,4 +1,5 @@
 class ChatSession < ApplicationRecord
-    has_many :chats, dependent: :destroy
-    validates :mode, presence: true
+    belongs_to :user
+    belongs_to :chat_custom_instruction
+    has_many :chats, dependent: :destroy 
 end

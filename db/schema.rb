@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_29_123755) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_30_151619) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -140,11 +140,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_29_123755) do
     t.index ["post_id"], name: "index_categories_posts_on_post_id"
   end
 
+  create_table "chat_custom_instructions", force: :cascade do |t|
+    t.string "name"
+    t.text "instruction_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "slug"
+    t.index ["slug"], name: "index_chat_custom_instructions_on_slug", unique: true
+    t.index ["user_id"], name: "index_chat_custom_instructions_on_user_id"
+  end
+
   create_table "chat_sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "session_name"
-    t.string "mode"
+    t.bigint "chat_custom_instruction_id"
+    t.bigint "user_id", null: false
+    t.index ["chat_custom_instruction_id"], name: "index_chat_sessions_on_chat_custom_instruction_id"
+    t.index ["user_id"], name: "index_chat_sessions_on_user_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -295,6 +309,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_29_123755) do
   add_foreign_key "books", "authors"
   add_foreign_key "categories_posts", "categories"
   add_foreign_key "categories_posts", "posts"
+  add_foreign_key "chat_custom_instructions", "users"
+  add_foreign_key "chat_sessions", "chat_custom_instructions"
+  add_foreign_key "chat_sessions", "users"
   add_foreign_key "chats", "chat_sessions"
   add_foreign_key "persona_versions", "personas"
   add_foreign_key "posts", "personas"
