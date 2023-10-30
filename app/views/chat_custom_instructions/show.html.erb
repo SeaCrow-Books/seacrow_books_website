@@ -1,0 +1,10 @@
+<h1><%= @chat_custom_instruction.name %></h1>
+
+<p>
+  Instruction: <%= @chat_custom_instruction.instruction_text %>
+</p>
+
+<p>Created by: <%= @chat_custom_instruction.user.full_name.titleize %>
+
+<%= link_to 'Edit', edit_chat_custom_instruction_path(@chat_custom_instruction) %> |
+<%= link_to 'Back', chat_custom_instructions_path %>

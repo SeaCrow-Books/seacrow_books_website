@@ -9,18 +9,19 @@ class ChatSessionsController < ApplicationController
   
     def new
       @chat_session = ChatSession.new
+      @chat_custom_instructions = ChatCustomInstruction.all
       authorize @chat_session
     end
   
     def create
-        @chat_session = ChatSession.new(chat_session_params)
-        authorize @chat_session
-        if @chat_session.save
-          redirect_to chat_session_path(@chat_session)  # This should redirect to the chat session's show page
-        else
-          render :new
-        end
+      @chat_session = current_user.chat_sessions.new(chat_session_params)
+      authorize @chat_session
+      if @chat_session.save
+        redirect_to chat_session_path(@chat_session)  # This should redirect to the chat session's show page
+      else
+        render :new
       end
+    end
       
       def update
         @chat_session = ChatSession.find(params[:id])
@@ -51,7 +52,7 @@ class ChatSessionsController < ApplicationController
     end
   
     def chat_session_params
-      params.require(:chat_session).permit(:session_name, :mode)
+      params.require(:chat_session).permit(:session_name, :chat_custom_instruction_id)
     end
   end
   

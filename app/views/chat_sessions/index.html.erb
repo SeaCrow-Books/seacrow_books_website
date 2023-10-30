@@ -1,6 +1,7 @@
 <div class="chat-sessions">
   <h1>All Chat Sessions</h1>
   <%= link_to 'New Chat Session', new_chat_session_path, class: 'btn btn-primary mb-3' %>
+   <%= link_to 'Custom Instructions', chat_custom_instructions_path, class: 'btn btn-secondary mb-3' %>
   <div class="list-group">
     <% @chat_sessions.each do |chat_session| %>
       <div class="list-group-item">

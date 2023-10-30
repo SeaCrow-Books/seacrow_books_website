@@ -5,10 +5,16 @@
       <%= f.label :session_name, 'Session Name' %>
       <%= f.text_field :session_name, class: 'form-control', placeholder: 'Enter a name for this session (optional)' %>
     </div>
+
+    <!-- New dropdown for selecting a ChatCustomInstruction -->
     <div class="form-group">
-      <%= f.label :mode, 'Mode' %>
-      <%= f.select :mode, options_for_select([['Standard', 'standard'], ['Book Creation', 'book'], ['Post Creation', 'post'], ['Kinky Dom', 'dom'], ['Kinky Sub', 'sub']]), {}, class: 'form-control' %>
+      <%= f.label :chat_custom_instruction_id, 'Select Custom Instruction' %>
+      <%= f.collection_select :chat_custom_instruction_id, @chat_custom_instructions, :id, :name, {prompt: 'Choose a custom instruction'}, class: 'form-control' %>
     </div>
+
     <%= f.submit 'Start Chat', class: 'btn btn-primary mt-2' %>
   <% end %>
 </div>
+
+
+
