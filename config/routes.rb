@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end  
 
   resources :chat_custom_instructions
+  resources :ai_models
   
   # Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }

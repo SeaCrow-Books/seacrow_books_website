@@ -52,7 +52,7 @@ class ChatSessionsController < ApplicationController
     end
   
     def chat_session_params
-      params.require(:chat_session).permit(:session_name, :chat_custom_instruction_id)
+      params.require(:chat_session).permit(:session_name, :chat_custom_instruction_id, :ai_model_id)
     end
   end
   

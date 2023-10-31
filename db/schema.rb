@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_30_160717) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_31_154956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_30_160717) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
+  create_table "ai_models", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -157,6 +164,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_30_160717) do
     t.string "session_name"
     t.bigint "chat_custom_instruction_id"
     t.bigint "user_id"
+    t.bigint "ai_model_id"
+    t.index ["ai_model_id"], name: "index_chat_sessions_on_ai_model_id"
     t.index ["chat_custom_instruction_id"], name: "index_chat_sessions_on_chat_custom_instruction_id"
     t.index ["user_id"], name: "index_chat_sessions_on_user_id"
   end
@@ -310,6 +319,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_30_160717) do
   add_foreign_key "categories_posts", "categories"
   add_foreign_key "categories_posts", "posts"
   add_foreign_key "chat_custom_instructions", "users"
+  add_foreign_key "chat_sessions", "ai_models"
   add_foreign_key "chat_sessions", "chat_custom_instructions"
   add_foreign_key "chat_sessions", "users"
   add_foreign_key "chats", "chat_sessions"

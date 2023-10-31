@@ -1,0 +1,9 @@
+<h1>AI Models</h1>
+
+<%= link_to 'New AI Model', new_ai_model_path, class: "btn btn-primary" %>
+
+<ul>
+  <% @ai_models.each do |ai_model| %>
+    <li><%= link_to ai_model.name, ai_model_path(ai_model) %></li>
+  <% end %>
+</ul>
