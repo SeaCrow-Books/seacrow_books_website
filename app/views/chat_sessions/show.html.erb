@@ -36,7 +36,7 @@
             <%= link_to chat_sessions_path, class: 'text-muted' do %>
               <i class="bi bi-arrow-bar-left"></i> All Chats
             <% end %>
-            | Model: <%= OpenaiService.model_name %>
+            | Model: <%= @chat_session.ai_model.name %>
             | Instructions: <%= @chat_session.chat_custom_instruction.name.titleize %>
             | Created by: <%= @chat_session.user.full_name.titleize %>
           </div>
