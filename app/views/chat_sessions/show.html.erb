@@ -15,11 +15,11 @@
           <% @chats.each do |chat| %>
             <% if chat.role == 'assistant' %>
               <div class="alert alert-primary" role="alert">
-                <%= chat.content.html_safe %>
+                <%= MarkdownRenderer.render(chat.content) %>
               </div>
             <% else %>
               <div class="<%= chat.role %> alert alert-light my-1" role="alert">
-                <%= chat.content.html_safe %>
+                <%= MarkdownRenderer.render(chat.content) %>
               </div>
             <% end %>
           <% end %>
