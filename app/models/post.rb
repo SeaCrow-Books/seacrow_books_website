@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   validates :content, presence: true
   validates :slug, uniqueness: true
-  validates :writer, presence: true
+  validates :writer, presence: true 
   validates :persona_id, presence: true
   validates :description, length: { maximum: 250, message: "should not exceed 250 characters" }
   validates :meta_description, length: { maximum: 120, message: "should not exceed 120 characters" }
