@@ -12,6 +12,12 @@
       <%= f.collection_select :chat_custom_instruction_id, @chat_custom_instructions, :id, :name, {prompt: 'Choose a custom instruction'}, class: 'form-control' %>
     </div>
 
+    <!-- Model -->
+    <div class="form-group">
+      <%= f.label :ai_model_id, "Select AI Model" %>
+      <%= f.collection_select :ai_model_id, AiModel.all, :id, :name, {}, { class: 'form-select' } %>
+    </div>  
+
     <%= f.submit 'Start Chat', class: 'btn btn-primary mt-2' %>
   <% end %>
 </div>

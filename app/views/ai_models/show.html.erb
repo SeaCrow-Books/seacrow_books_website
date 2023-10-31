@@ -1,0 +1,7 @@
+<h1>AI Model Details</h1>
+
+<p><strong>Name:</strong> <%= @ai_model.name %></p>
+<p><strong>Description:</strong> <%= @ai_model.description %></p>
+
+<%= link_to 'Edit', edit_ai_model_path(@ai_model), class: 'btn btn-primary' %>
+<%= link_to 'Back to AI Models List', ai_models_path, class: 'btn btn-secondary' %>
