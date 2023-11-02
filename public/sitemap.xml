@@ -41,5 +41,9 @@
         <loc>https://seacrowbooks.com/blog/sensual-and-explicit-romance</loc>
         <priority>0.6</priority>
     </url>
+    <url>
+        <loc>https://seacrowbooks.com/blog/thematic-romance</loc>
+        <priority>0.6</priority>
+    </url>
 
 </urlset>
