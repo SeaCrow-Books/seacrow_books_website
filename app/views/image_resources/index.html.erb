@@ -1,20 +1,22 @@
 <div class="row justify-content-center mt-5">
     <div class="col-lg-10 col-md-8">
 
-      <%= form_with(url: image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
-        <%= select_tag :filter, 
-            options_for_select(
-              [['All', nil]] +
-              [['Categories', {disabled: true}]] + 
-              Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
-              [['Tags', {disabled: true}]] +
-              ActsAsTaggableOn::Tag.all.map { |t| ["#{t.name}", "tag_#{t.id}"] },
-              params[:filter]
-            ),
-            class: 'form-select'
-        %>
-        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Filter</button>
-      <% end %>
+    <!-- Search form -->
+    <%= form_with(url: image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
+      <%= select_tag :filter, 
+          options_for_select(
+            [['All', nil]] +
+            [['Categories', {disabled: true}]] + 
+            Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
+            [['Tags', {disabled: true}]] +
+            ActsAsTaggableOn::Tag.order(:name).map { |t| ["#{t.name}", "tag_#{t.id}"] },
+            params[:filter]
+          ),
+          class: 'form-select'
+      %>
+      <button class="btn btn-outline-primary" type="submit" id="button-addon2">Filter</button>
+    <% end %>
+
 
       <table class="table table-hover">
         <thead>

@@ -50,16 +50,13 @@
 <!-- Tags -->
 <div class="col-12">
   <div class="mb-3">
-    <%= form.label :tag_list, "Tags" %><br>
+    <label for="image_resource_tag_list">Tags</label><br>
     <div class="row">
-      <% sorted_tags = ActsAsTaggableOn::Tag.pluck(:name).sort %>
+      <% sorted_tags = ActsAsTaggableOn::Tag.pluck(:name).sort { |a, b| a.casecmp(b) } %>
       <% tags_per_column = (sorted_tags.size / 4.0).ceil %>
-      <% 4.times do |col_index| %>
+      <% sorted_tags.in_groups_of(tags_per_column, false) do |column_tags| %>
         <div class="col-md-3">
-          <% tags_per_column.times do |row_index| %>
-            <% tag_index = col_index * tags_per_column + row_index %>
-            <% break if tag_index >= sorted_tags.size %>
-            <% tag_name = sorted_tags[tag_index] %>
+          <% column_tags.each do |tag_name| %>
             <div class="form-check">
               <%= check_box_tag 'image_resource[tag_list][]', tag_name, @image_resource.tag_list.include?(tag_name), class: 'form-check-input' %>
               <%= label_tag "image_resource_tag_list_#{tag_name}", tag_name.titleize, class: 'form-check-label' %>
@@ -69,13 +66,14 @@
       <% end %>
     </div>
   </div>
-
+  
   <div class="mb-3">
     <%= form.label :new_tag, "New Tag" %>
     <%= text_field_tag :new_tags, nil, class: "form-control", placeholder: "Enter tags separated by commas" %>
     <small class="form-text text-muted">Enter a new tag here. This will be added to the list of tags.</small>
   </div>
 </div>
+
 
 
 
