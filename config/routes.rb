@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   get 'dashboards/show'
 
+  # Devise
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
   # Resources
   Rails.application.routes.draw do
     resources :books, except: [:index]
@@ -19,9 +22,6 @@ Rails.application.routes.draw do
   resources :chat_sessions do
     resources :chats, only: [:create]
   end  
-
-  # Devise
-  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Personas
   resources :personas do
