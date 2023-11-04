@@ -1,0 +1,24 @@
+<%= form_with(model: tag, local: true, class: 'row g-3', url: tag.new_record? ? tags_path : tag_path(tag), method: tag.new_record? ? :post : :patch) do |form| %>
+
+  <!-- Show errors if any -->
+  <% if tag.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h4>
+      <ul>
+        <% tag.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-12">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="col-12">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+  </div>
+
+<% end %>

@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    Tag Details
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><%= @tag.name %></h5>
+                    <p class="card-text">Taggings count: <%= @tag.taggings_count %></p>
+                    <%= link_to 'Edit', edit_tag_path(@tag), class: 'btn btn-primary me-2' %>
+                    <%= button_to 'Delete', tag_path(@tag), class: 'btn btn-danger', method: :delete, data: { "turbo-method": :delete, "turbo_confirm": "Are you sure you want to slap it's arse?" } %>
+                </div>
+            </div>
+
+
+    <h2 class="mt-5">Images tagged with '<%= @tag.name %>'</h2>
+
+    <div class="row">
+        <% @image_resources.each do |image_resource| %>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <% if image_resource.image.attached? %>
+                        <%= link_to image_tag(image_resource.image, class: 'card-img-top'), image_resource %>
+                    <% end %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= link_to image_resource.name, image_resource %></h5>
+                        <p class="card-text"><%= image_resource.alt_description %></p>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+        </div>
+    </div>

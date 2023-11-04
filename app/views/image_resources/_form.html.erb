@@ -47,23 +47,36 @@
     <% end %>
   </div>
 
-  <div class="col-12">
+<!-- Tags -->
+<div class="col-12">
   <div class="mb-3">
-      <%= form.label :tag_list, "Tags" %><br>
-      <% ActsAsTaggableOn::Tag.pluck(:name).each do |tag_name| %>
-        <div class="form-check">
-          <%= check_box_tag 'image_resource[tag_list][]', tag_name, @image_resource.tag_list.include?(tag_name), class: 'form-check-input' %>
-          <%= label_tag "image_resource_tag_list_#{tag_name}", tag_name.titleize, class: 'form-check-label' %>
+    <%= form.label :tag_list, "Tags" %><br>
+    <div class="row">
+      <% sorted_tags = ActsAsTaggableOn::Tag.pluck(:name).sort %>
+      <% tags_per_column = (sorted_tags.size / 4.0).ceil %>
+      <% 4.times do |col_index| %>
+        <div class="col-md-3">
+          <% tags_per_column.times do |row_index| %>
+            <% tag_index = col_index * tags_per_column + row_index %>
+            <% break if tag_index >= sorted_tags.size %>
+            <% tag_name = sorted_tags[tag_index] %>
+            <div class="form-check">
+              <%= check_box_tag 'image_resource[tag_list][]', tag_name, @image_resource.tag_list.include?(tag_name), class: 'form-check-input' %>
+              <%= label_tag "image_resource_tag_list_#{tag_name}", tag_name.titleize, class: 'form-check-label' %>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
-
-    <div class="mb-3">
-      <%= form.label :new_tag, "New Tag" %>
-      <%= text_field_tag :new_tag, nil, class: "form-control" %>
-      <small class="form-text text-muted">Enter a new tag here. This will be added to the list of tags.</small>
-    </div>
   </div>
+
+  <div class="mb-3">
+    <%= form.label :new_tag, "New Tag" %>
+    <%= text_field_tag :new_tags, nil, class: "form-control", placeholder: "Enter tags separated by commas" %>
+    <small class="form-text text-muted">Enter a new tag here. This will be added to the list of tags.</small>
+  </div>
+</div>
+
 
 
   <div class="col-12">

@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Tags</h1>
+  <%= link_to 'New Tag', new_tag_path, class: 'btn btn-outline-primary' %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Tag Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td><%= link_to tag.name.titleize, tag_path(tag) %></td>
+          <td>
+            <%= link_to 'Edit', edit_tag_path(tag), class: 'btn btn-primary btn-sm me-2' %>
+            <%= link_to 'Delete', tag_path(tag), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure you want to cut the bonds and set this free?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
