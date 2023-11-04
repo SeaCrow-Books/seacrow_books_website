@@ -35,8 +35,8 @@ class ImageResourcesController < ApplicationController
     @image_resource = ImageResource.new(image_resource_params)
     authorize @image_resource
 
-    # Add new tag if provided
-    add_new_tag_to_image_resource if params[:new_tag].present?
+    # Add new tags if provided
+    add_new_tags_to_image_resource if params[:new_tags].present?
 
     if @image_resource.save
       redirect_to @image_resource, notice: 'Image resource was successfully created.'
@@ -52,8 +52,8 @@ class ImageResourcesController < ApplicationController
   def update
     authorize @image_resource
 
-    # Add new tag if provided
-    add_new_tag_to_image_resource if params[:new_tag].present?
+    # Add new tags if provided
+    add_new_tags_to_image_resource if params[:new_tags].present?
 
     if @image_resource.update(image_resource_params)
       redirect_to @image_resource, notice: 'Image resource was successfully updated.'
@@ -83,7 +83,8 @@ class ImageResourcesController < ApplicationController
     params.require(:image_resource).permit(:alt_description, :image, :name, :notes, tag_list: [], category_ids: [])
   end
 
-  def add_new_tag_to_image_resource
-    @image_resource.tag_list.add(params[:new_tag])
+  def add_new_tags_to_image_resource
+    tag_names = params[:new_tags].split(',').map(&:strip)
+    @image_resource.tag_list.add(tag_names)
   end
 end

@@ -2,17 +2,6 @@ Rails.application.routes.draw do
 
   get 'dashboards/show'
 
-  # Chats
-  resources :chat_sessions do
-    resources :chats, only: [:create]
-  end  
-
-  resources :chat_custom_instructions
-  resources :ai_models
-  
-  # Devise
-  devise_for :users, controllers: { registrations: 'users/registrations' }
-
   # Resources
   Rails.application.routes.draw do
     resources :books, except: [:index]
@@ -21,7 +10,18 @@ Rails.application.routes.draw do
     resources :users
     resources :authors, except: [:index]
     resources :image_resources
+    resources :chat_custom_instructions
+    resources :ai_models
+    resources :tags  
   end  
+
+  # Chats
+  resources :chat_sessions do
+    resources :chats, only: [:create]
+  end  
+
+  # Devise
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Personas
   resources :personas do
