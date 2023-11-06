@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
     def index
-      @tags = ActsAsTaggableOn::Tag.all
+      @tags = ActsAsTaggableOn::Tag.order(:name)
       authorize @tags, policy_class: TagPolicy
     end
     
