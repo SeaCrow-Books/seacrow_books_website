@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   Rails.application.routes.draw do
     resources :books, except: [:index]
     resources :genres
-    resources :categories, except: [:index]
     resources :users
     resources :authors, except: [:index]
     resources :image_resources
@@ -17,6 +16,11 @@ Rails.application.routes.draw do
     resources :ai_models
     resources :tags  
   end  
+
+  # Categories
+  resources :categories do
+    get 'child_categories', on: :member
+  end
 
   # Chats
   resources :chat_sessions do
