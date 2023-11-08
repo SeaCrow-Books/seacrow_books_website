@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_08_101430) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_08_110141) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -170,6 +170,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_101430) do
     t.bigint "chat_custom_instruction_id"
     t.bigint "user_id"
     t.bigint "ai_model_id"
+    t.integer "status", default: 0
     t.index ["ai_model_id"], name: "index_chat_sessions_on_ai_model_id"
     t.index ["chat_custom_instruction_id"], name: "index_chat_sessions_on_chat_custom_instruction_id"
     t.index ["user_id"], name: "index_chat_sessions_on_user_id"
