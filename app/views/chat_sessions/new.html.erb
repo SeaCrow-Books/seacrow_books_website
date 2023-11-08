@@ -13,7 +13,7 @@
             <!-- Dropdown for selecting a ChatCustomInstruction -->
             <div class="mb-3">
               <%= f.label :chat_custom_instruction_id, 'Select Custom Instruction', class: 'form-label' %>
-              <%= f.collection_select :chat_custom_instruction_id, @chat_custom_instructions, :id, :name, { prompt: 'Choose a custom instruction' }, { class: 'form-select', required: true } %>
+              <%= f.collection_select :chat_custom_instruction_id, @filtered_instructions, :id, :name, { prompt: 'Choose a custom instruction' }, { class: 'form-select', required: true } %>
             </div>
 
             <!-- Model -->

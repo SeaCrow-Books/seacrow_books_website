@@ -9,7 +9,7 @@ class ChatSessionsController < ApplicationController
   
     def new
       @chat_session = ChatSession.new
-      @chat_custom_instructions = ChatCustomInstruction.all
+      @filtered_instructions = ChatCustomInstruction.public_or_owned_by(current_user)
       authorize @chat_session
     end
   
