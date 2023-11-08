@@ -1,47 +1,58 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="chat-session">
-        <h1 class="text-center my-3">
-          Chat Session: 
-          <% if @chat_session.session_name.present? %>
-            <%= @chat_session.session_name.titleize %>
-          <% else %>
-            <%= @chat_session.id %>
-          <% end %>
-        </h1>
-
-        <div data-controller="autoscroll" class="chats" style="overflow-y: auto; height: 600px;">
-          <% @chats.each do |chat| %>
-            <% if chat.role == 'assistant' %>
-              <div class="alert alert-primary" role="alert">
-                <%= MarkdownRenderer.render(chat.content) %>
-              </div>
+      <div class="card shadow">
+        <div class="card-body">
+          <h1 class="card-title text-center">
+            Chat Session: 
+            <% if @chat_session.session_name.present? %>
+              <%= @chat_session.session_name.titleize %>
             <% else %>
-              <div class="<%= chat.role %> alert alert-light my-1" role="alert">
-                <%= MarkdownRenderer.render(chat.content) %>
+              <%= @chat_session.id %>
+            <% end %>
+          </h1>
+
+          <div data-controller="autoscroll" class="chats" style="overflow-y: auto; height: 600px;">
+            <% @chats.each do |chat| %>
+              <% if chat.role == 'assistant' %>
+                <div class="alert alert-primary" role="alert">
+                  <%= MarkdownRenderer.render(chat.content) %>
+                </div>
+              <% else %>
+                <div class="<%= chat.role %> alert alert-light my-1" role="alert">
+                  <%= MarkdownRenderer.render(chat.content) %>
+                </div>
+              <% end %>
+            <% end %>
+            <div id="chat-bottom"></div>
+          </div>
+
+          <div class="mt-3">
+            <%= form_with(model: [ @chat_session, @chat ], local: true) do |form| %>
+              <div class="mb-2">
+                <%= form.text_area :content, class: 'form-control', aria: { label: 'Type your message here' }, placeholder: 'Type your message here' %>
+              </div>
+              <div class="my-4">
+                <%= form.submit "Send", class: 'btn btn-lg btn-outline-primary d-block w-100' %>
               </div>
             <% end %>
-          <% end %>
-          <div id="chat-bottom"></div>
-        </div>
-        <div class="sticky-bottom bg-body-tertiary mt-5">
-          <%= form_with(model: [ @chat_session, @chat ], local: true) do |form| %>
-            <div class="d-grid gap-2">
-              <%= form.text_area :content, class: 'form-control', aria: { label: 'Type your message here' }, placeholder: 'Type your message here' %>
-              <%= form.submit "Send", class: 'btn btn-outline-secondary' %>
-            </div>
-          <% end %>
-          <div class="mt-3 text-small">
-            <%= link_to chat_sessions_path, class: 'text-muted' do %>
-              <i class="bi bi-arrow-bar-left"></i> All Chats
-            <% end %>
-            | Model: <%= @chat_session.ai_model.name %>
-            | Instructions: <%= @chat_session.chat_custom_instruction.name.titleize %>
-            | Created by: <%= @chat_session.user.full_name.titleize %>
           </div>
+
         </div>
       </div>
+
+          <div class="mt-3 text-center">
+            <small class="text-muted">
+              <%= link_to chat_sessions_path, class: 'text-muted' do %>
+                <i class="bi bi-arrow-bar-left"></i> All Chats
+              <% end %>
+              | Model: <%= @chat_session.ai_model.name %>
+              | Instructions: <%= @chat_session.chat_custom_instruction.name.titleize %>
+              | Status: <%= @chat_session.status.titleize.presence || 'No status' %>
+              | Created by: <%= @chat_session.user.full_name.titleize %>
+            </small>
+          </div>
+
     </div>
   </div>
 </div>

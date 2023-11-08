@@ -3,7 +3,7 @@ class ChatSessionsController < ApplicationController
     before_action :set_chat_session, only: [:show, :destroy]
   
     def index
-      @chat_sessions = ChatSession.all
+      @chat_sessions = ChatSession.public_or_owned_by(current_user)
       authorize @chat_sessions
     end
   
@@ -52,7 +52,7 @@ class ChatSessionsController < ApplicationController
     end
   
     def chat_session_params
-      params.require(:chat_session).permit(:session_name, :chat_custom_instruction_id, :ai_model_id)
+      params.require(:chat_session).permit(:session_name, :chat_custom_instruction_id, :user_id, :ai_model_id, :status)
     end
   end
   
