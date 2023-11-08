@@ -4,7 +4,7 @@ class ChatCustomInstructionsController < ApplicationController
   before_action :authorize_chat_custom_instruction, only: %i[show edit update destroy]
 
   def index
-    @chat_custom_instructions = ChatCustomInstruction.all # <-- Note the singular model name
+    @chat_custom_instructions = ChatCustomInstruction.public_or_owned_by(current_user)
   end
 
   def show
@@ -54,6 +54,6 @@ class ChatCustomInstructionsController < ApplicationController
   end
 
   def chat_custom_instruction_params
-    params.require(:chat_custom_instruction).permit(:name, :instruction_text)
+    params.require(:chat_custom_instruction).permit(:name, :instruction_text, :status)
   end
 end

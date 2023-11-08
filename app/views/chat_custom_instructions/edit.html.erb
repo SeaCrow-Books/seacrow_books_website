@@ -1,5 +1,12 @@
-<h1>Edit Chat Custom Instruction</h1>
-
-<%= render 'form', chat_custom_instruction: @chat_custom_instruction %>
-
-<%= link_to 'Back', chat_custom_instructions_path %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h1 class="card-title text-center mb-4">Edit <%= @chat_custom_instruction.name %></h1>
+            <%= render 'form', chat_custom_instruction: @chat_custom_instruction %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
