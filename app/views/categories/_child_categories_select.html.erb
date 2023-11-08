@@ -1,0 +1,7 @@
+<div class="form-group">
+  <%= form.label :child_category_id, "Child Category", class: 'form-label' %>
+  <%= form.collection_select :child_category_id, @child_categories, :id, :name, 
+      include_blank: 'Please select...', 
+      class: 'form-control' 
+  %>
+</div>

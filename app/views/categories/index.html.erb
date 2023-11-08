@@ -1,18 +1,10 @@
 <div class="row justify-content-center">
   <div class="col-lg-6 col-md-8">
-    <section>
+    <div class="container mt-3">
+      <h1 class="mb-4">Categories</h1>
+      <%= category_hierarchy(@categories) %>
+    </div>
 
-      <h1 class="blog-page-header">Categories</h1>
-
-      <ul>
-        <% @categories.each do |category| %>
-          <li>
-            <%= link_to category.name.titleize, category %>
-          </li>
-        <% end %>
-      </ul>
-
-    </section>
   </div>
 </div>
 
