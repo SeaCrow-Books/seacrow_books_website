@@ -1,7 +1,7 @@
 class CategoryPolicy < ApplicationPolicy
 
     def index?
-      true
+      user&.admin?
     end
   
     def show?

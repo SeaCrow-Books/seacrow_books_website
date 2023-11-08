@@ -52,18 +52,25 @@
     <%= f.text_field :description, placeholder: "Describe the post for the reader...", class: 'form-control post_form__input' %>
   </div>
 
-  <!-- Category -->
-  <div class="form-group">
-    <%= f.label :category_ids, "Category", class: 'form-label post-form__input-label mb-2' %> <!-- Added a margin-bottom for spacing between label and checkboxes -->
-    <p class="post_form__input-description">Select one or more categories.<p>
-    <!-- For better organization and spacing, loop through the categories and render each checkbox individually -->
-    <% Category.all.each do |category| %>
-      <div class="form-check mb-1"> <!-- Added a margin-bottom for spacing between individual checkboxes -->
-        <%= f.check_box :category_ids, { multiple: true, class: 'form-check-input' }, category.id, nil %> <!-- Note the change here, using f.check_box instead -->
-        <%= f.label :category_ids, category.name, class: 'form-check-label', value: category.id %> <!-- Note the value attribute and the change to use category.name -->
-      </div>
-    <% end %>
-  </div>
+<!-- Category -->
+<!-- Top Tier Category -->
+<div class="form-group">
+  <%= f.label :category_id, "Top Tier Category", class: 'form-label post-form__input-label' %>
+  <%= f.collection_select :category_id, Category.top_tier, :id, :name, 
+      { include_blank: 'Please select...' }, 
+      { class: 'form-control', 
+        data: { 
+          category_select_target: "select",
+          action: "change->category-select#loadChildren" 
+        } 
+      } 
+  %>
+</div>
+
+<!-- Placeholder for child categories, to be populated by Turbo Frame -->
+<turbo-frame id="child_categories_frame">
+  <!-- Initially empty, will be populated by Stimulus action -->text
+</turbo-frame>
 
   <!-- Main Image -->
   <div class="form-group">
