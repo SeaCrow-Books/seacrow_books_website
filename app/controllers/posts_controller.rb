@@ -5,7 +5,7 @@ class PostsController < ApplicationController
       @posts = Post.all
       @published_posts = Post.published
 
-      @featured_post = @published_posts.order(created_at: :desc).first
+      @featured_post = @published_posts.order(created_at: :asc).first
       @featured_posts = @published_posts.order(created_at: :desc).offset(1).limit(3)
       
       if @featured_post
