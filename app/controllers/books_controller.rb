@@ -12,7 +12,7 @@ class BooksController < ApplicationController
       @page_title = "#{@book.title.titleize} by #{@book.author.name.titleize}"
       genre = @book.genres.first
       # Exclude the current book and retrieve the top 3 most viewed books from the same genre
-      @related_books = genre.books.where.not(id: @book.id).most_viewed(3)
+      @related_books = genre.books.where.not(id: @book.id)
       
       authorize @book
 

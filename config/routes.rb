@@ -51,6 +51,6 @@ Rails.application.routes.draw do
   get '/image_resources/:id/permanent_image', to: 'image_resources#permanent_image', as: 'permanent_image'
 
   # Defines the root path route ("/")
-  root "posts#index"
+  root "pages#home"
 
 end
