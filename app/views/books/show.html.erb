@@ -57,7 +57,7 @@
             <div class="col-lg-9">
                 <h1 class="book-show__book-title"><%= @book.title %></h1>
                 <p class="book-show__book-author"><%= link_to @book.author.name, author_path(@book.author) %></p>
-                <div class="book-show__book-description"><%= raw @book.description %></div>
+                <div class="book-show__book-description"><%= markdown_to_html(@book.description) %></div>
                 <% if policy(@book).edit? %>
                     <%= link_to 'Edit', edit_book_path(@book) %>
                 <% end %>
