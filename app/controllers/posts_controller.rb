@@ -14,6 +14,8 @@ class PostsController < ApplicationController
         @latest_posts = @published_posts.order(created_at: :desc).limit(10)
       end
     
+      @recent_books = Book.order(publication_date: :desc).limit(3)
+
       authorize @posts
       @page_title = 'Articles'
       @page_description = 'Articles all about erotic fiction.'
