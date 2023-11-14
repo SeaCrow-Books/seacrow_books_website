@@ -43,6 +43,7 @@ class Post < ApplicationRecord
   
   # Scopes
   scope :published, -> { where(published: true) }
+  scope :latest_published, -> { published.order(created_at: :desc) }
 
   private
 
