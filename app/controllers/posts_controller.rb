@@ -7,13 +7,9 @@ class PostsController < ApplicationController
 
       @featured_post = @published_posts.order(created_at: :asc).first
       @featured_posts = @published_posts.order(created_at: :desc).offset(1).limit(3)
-      
-      if @featured_post
-        @latest_posts = @published_posts.where.not(id: [@featured_post.id, @featured_posts.map(&:id)].flatten).order(created_at: :desc).limit(10)
-      else
-        @latest_posts = @published_posts.order(created_at: :desc).limit(10)
-      end
-    
+      @latest_posts = Post.latest_published
+  
+      @most_recent_book = Book.order(publication_date: :desc).first
       @recent_books = Book.order(publication_date: :desc).limit(3)
 
       authorize @posts
