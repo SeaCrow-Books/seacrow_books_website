@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div class="col-lg-6 col-md-8">
+  <div class="col-lg-8 col-md-10">
     <section>
 
       <!-- Display the parent category if it exists -->
@@ -14,10 +14,7 @@
       <p class="category-show__description"><%= @category.description %></p>
 
       <!-- Display the articles/posts for this category -->
-      <% @published_category_posts.each do |post| %>
-        <!-- Render the tile posts -->
-        <%= render partial: 'shared/tile_post', locals: { post: post } %>
-      <% end %>
+      <%= render partial: 'shared/latest_posts', locals: { posts: @published_category_posts }%>
 
       <!-- Display child categories if they exist -->
       <% if @category.child_categories.any? %>
