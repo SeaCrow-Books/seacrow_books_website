@@ -25,19 +25,13 @@
         <div class="row">
 
             <!-- Left column: Latest Posts -->
-            <div class="col-lg-8 col-md-12">
+
                 <h1 class="home-page__sub-title">Latest Articles</h1>
 
-                <% @latest_posts.each do |post| %>
-                    <!-- Render the tile posts -->
-                    <%= render partial: 'shared/tile_post', locals: { post: post }%>        
-                <% end %>
-            </div>
+                <!-- Row for Latest Posts Cards -->
+                <%= render partial: 'shared/latest_posts', locals: { posts: @latest_posts }%>
 
-            <!-- Right column: Currently blank -->
-            <div class="col-lg-4 col-md-12">
-                <!-- Placeholder for future content -->
-            </div>
+
 
         </div>
 

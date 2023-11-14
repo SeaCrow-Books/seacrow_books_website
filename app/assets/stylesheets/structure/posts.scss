@@ -102,6 +102,7 @@
 
 .post-show__metadata {
     // Styles the metadata 
+    @include gray-link-formatting;
     margin-bottom: 0.5rem;
 }
 
@@ -117,11 +118,6 @@
     color: inherit;
 }
 
-.post-show__categories {
-    // Styles the categories
-    @include gray-link-formatting;
-    margin-bottom: 1rem; 
-}
 
 .post-show__alert {
     // Styles the alerts in a post
