@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   # Resources
   Rails.application.routes.draw do
-    resources :books, except: [:index]
     resources :genres
     resources :users
     resources :authors, except: [:index]
@@ -16,6 +15,12 @@ Rails.application.routes.draw do
     resources :ai_models
     resources :tags  
   end  
+
+  # Books
+  resources :books, except: [:index] do
+    resources :book_sections
+  end
+  
 
   # Categories
   resources :categories do

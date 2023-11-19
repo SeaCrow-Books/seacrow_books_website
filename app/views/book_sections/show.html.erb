@@ -1,0 +1,22 @@
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow">
+        <div class="card-body">
+          <h1 class="card-title"><%= @book_section.title %></h1>
+          <div class="markdown-content">
+            <%= MarkdownRenderer.render(@book_section.content) %>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Position: <%= @book_section.position %></small>
+          <%= link_to 'Edit', edit_book_book_section_path(@book, @book_section), class: 'btn btn-primary btn-sm'  %>
+          <%= link_to 'Delete', book_book_section_path(@book, @book_section), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to 'Back to Book Sections', book_book_sections_path(@book), class: 'btn btn-secondary btn-sm' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

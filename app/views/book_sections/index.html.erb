@@ -1,0 +1,38 @@
+<% # app/views/book_sections/index.html.erb %>
+<div class="mt-5 container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+
+      <div class="text-end mb-3">
+        <%= link_to 'New Section', new_book_book_section_path(@book), class: 'btn btn-success btn-lg', role: 'button' %>
+      </div>
+
+      <table class="table table-hover shadow-sm">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Position</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @book_sections.each do |section| %>
+            <tr class="align-middle">
+              <td><%= link_to section.title.titleize, book_book_section_path(@book, section) %></td>
+              <td><%= truncate(section.content, length: 100) %></td>
+              <td><%= section.position %></td>
+              <td>
+                <%= link_to 'Edit', edit_book_book_section_path(@book, section), class: 'btn btn-primary btn-sm' %>
+                <%= link_to 'Delete', book_book_section_path(@book, section), 
+                    method: :delete, 
+                    data: { confirm: 'Are you sure?' }, 
+                    class: 'btn btn-danger btn-sm' %> 
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

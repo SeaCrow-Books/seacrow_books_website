@@ -1,0 +1,31 @@
+
+<%= form_with(model: [book_section.book, book_section], local: true) do |form| %>
+  <% if book_section.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book_section.errors.count, "error") %> prohibited this book_section from being saved:</h2>
+      <ul>
+        <% book_section.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :content, 'Content (Markdown is supported here)' %>
+    <%= form.text_area :content, class: 'form-control', rows: 10, placeholder: "Use Markdown to format your text..." %>
+  </div>
+
+    <div class="mb-3">
+    <%= form.select :epub_type, options_for_select(BookSection.epub_types.keys.sort.map { |type| [type.humanize, type] }, book_section.epub_type), { prompt: 'Select type...' }, class: 'form-select' %>
+    </div>
+
+  <div class="mb-3 text-end">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
