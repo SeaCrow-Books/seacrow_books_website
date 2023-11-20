@@ -1,4 +1,7 @@
 class BookSection < ApplicationRecord
+
+  acts_as_list
+
   # FriendlyId
   extend FriendlyId
   friendly_id :title, use: :slugged

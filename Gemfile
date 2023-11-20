@@ -74,6 +74,7 @@ group :test do
   gem "webdrivers"
 end
 
+gem 'acts_as_list'
 gem 'acts-as-taggable-on'
 gem 'ahoy_matey'
 gem "bootstrap"

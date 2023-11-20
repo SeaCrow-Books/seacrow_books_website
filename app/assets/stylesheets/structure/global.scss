@@ -13,3 +13,15 @@
         }
     }
 }
+
+// Shows a row can be dragged and dropped
+.draggable-row:hover {
+    cursor: grab; /* or 'cursor: move;' depending on your preference */
+}
+
+// Makes button_to an inline element
+.button_to,
+.button_to div {
+  display: inline;
+}
+

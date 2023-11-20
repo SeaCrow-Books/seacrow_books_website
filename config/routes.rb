@@ -17,10 +17,14 @@ Rails.application.routes.draw do
   end  
 
   # Books
-  resources :books, except: [:index] do
-    resources :book_sections
+  resources :books do
+    resources :book_sections do
+      patch :update_position, on: :member
+    end
   end
   
+  
+
 
   # Categories
   resources :categories do

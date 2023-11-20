@@ -30,7 +30,7 @@ class BookSectionsController < ApplicationController
       authorize @book_section
   
       if @book_section.save
-        redirect_to [@book, @book_section], notice: "Book section was successfully created."
+        redirect_to  book_book_sections_path(@book), notice: "Book section was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -39,7 +39,7 @@ class BookSectionsController < ApplicationController
     # PATCH/PUT /books/:book_id/book_sections/:id
     def update
       if @book_section.update(book_section_params)
-        redirect_to [@book, @book_section], notice: "Book section was successfully updated."
+        redirect_to book_book_sections_path(@book), notice: "Book section was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -48,14 +48,21 @@ class BookSectionsController < ApplicationController
     # DELETE /books/:book_id/book_sections/:id
     def destroy
       @book_section.destroy
-      redirect_to book_book_sections_url(@book), notice: "Book section was successfully destroyed."
+      redirect_to  book_book_sections_path(@book), notice: "Book section was successfully destroyed."
+    end
+
+    def update_position
+      @book = Book.friendly.find(params[:book_id])
+      @book_section = @book.book_sections.friendly.find(params[:id])
+      @book_section.insert_at(book_section_params[:position].to_i)
+      head :ok
     end
   
     private
   
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-        @book = Book.friendly.find(params[:book_id])
+      @book = Book.friendly.find(params[:book_id])
     end
   
     def set_book_section
