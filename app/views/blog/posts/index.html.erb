@@ -1,0 +1,44 @@
+<div class="mt-5 row justify-content-center">
+    <div class="col-lg-10">
+
+      <!-- Row for Featured Post and Most Recent Book -->
+      <div class="row mb-4"> 
+
+        <!-- Featured Post -->
+        <div class="col-lg-6 d-flex">
+          <div class="card shadow-sm w-100">
+            <%= link_to blog_post_path(@featured_post) do %>
+              <%= image_tag @featured_post.main_image, alt: @featured_post.main_image_alt_text, class: "card-img-top" %> 
+            <% end %>
+
+            <div class="card-body d-flex flex-column justify-content-between">
+              <h2 class="card-title"><%= link_to @featured_post.title.titleize, post_path(@featured_post) %></h2>
+              <p class="featured-post__description"><%= @featured_post.description %></p>
+              <div class="card-reading-time d-flex align-items-center">
+                  <i class="bi bi-stopwatch-fill"></i> <%= read_time(@featured_post.content) %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Most Recent Book -->
+        <div class="col-lg-6 d-flex justify-content-center align-items-center">
+          <div class="my-3">
+            <%= link_to book_path(@most_recent_book) do %>
+              <%= image_tag @most_recent_book.cover, alt: "#{@most_recent_book.title} cover", class: "img-fluid", style: "max-width: 300px; height: auto;" %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sub Title for Latest Posts -->
+      <div class="row">
+        <h2 class="tile-post__sub-title w-100">Latest Posts</h2>
+      </div>
+
+      <!-- Row for Latest Posts Cards -->
+      <%= render partial: 'shared/latest_posts', locals: { posts: @latest_posts }%>
+
+    </div>
+</div>

@@ -5,7 +5,7 @@
         <div class="row">
             <% @featured_books.each do |book| %>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-3">
-                    <%= link_to book_path(book) do %>
+                    <%= link_to publishing_book_path(book) do %>
                         <div class="image-link">
                             <%= image_tag book.cover, alt: "#{book.title} cover", class: "img-fluid clickable-image" %>
                         </div>
@@ -30,8 +30,6 @@
 
                 <!-- Row for Latest Posts Cards -->
                 <%= render partial: 'shared/latest_posts', locals: { posts: @latest_posts }%>
-
-
 
         </div>
 
