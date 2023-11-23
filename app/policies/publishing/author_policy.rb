@@ -2,7 +2,7 @@ module Publishing
   class AuthorPolicy < ApplicationPolicy
 
     def index?
-      true
+      user&.admin?
     end
   
     def show?

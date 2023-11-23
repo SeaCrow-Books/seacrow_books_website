@@ -1,4 +1,4 @@
-module Blog
+module Publishing
   class AuthorsController < BasePublishingController
     before_action :authenticate_user!, only: %i[index edit update destroy]
     before_action :set_author, only: %i[show edit update destroy]
@@ -45,7 +45,7 @@ module Blog
     def destroy
       authorize @author
       @author.destroy
-      redirect_to authors_path, notice: 'Author was successfully destroyed.'
+      redirect_to publishing_authors_path, notice: 'Author was successfully destroyed.'
     end
 
     private
@@ -55,7 +55,7 @@ module Blog
     end
 
     def author_params
-      params.require(:author).permit(:name)
+      params.require(:publishing_author).permit(:name)
     end
   end
 end

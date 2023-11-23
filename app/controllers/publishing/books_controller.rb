@@ -62,7 +62,17 @@ module Publishing
     end
   
     def book_params
-      params.require(:book).permit(:title, :description, :cover, :author_id, :publication_date, genre_ids: [])
+      params.require(:publishing_book).permit(
+        :title,
+        :description,
+        :cover,
+        :book_collection_id,
+        :author_id,
+        :publication_date,
+        :title_tag_line,   
+        :series_number,   
+        genre_ids: []
+      )
     end
   end
 end

@@ -1,4 +1,4 @@
-module Blog
+module Publishing
   class BookSectionsController < BasePublishingController
     before_action :authenticate_user!
     before_action :set_book
