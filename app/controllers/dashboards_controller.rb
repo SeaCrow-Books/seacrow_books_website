@@ -5,6 +5,8 @@ class DashboardsController < ApplicationController
     @page_title = "Dashboard"
     @books = Publishing::Book.all
     @genres = Publishing::Genre.all
+    @authors = Publishing::Author.all
+    @book_collections = Publishing::BookCollection.all
     @categories = Blog::Category.all
     @posts = Blog::Post.all
     @users = User.all

@@ -3,9 +3,11 @@ module Publishing
 
         # Relationships
         has_many :books
+        has_many :series
 
         # Validations
         validates :name, presence: true
+        validates :author, presence: true
 
         # Friendly ID
         extend FriendlyId

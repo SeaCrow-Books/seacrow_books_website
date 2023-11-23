@@ -56,6 +56,7 @@
             <!-- Right column  for the book details -->
             <div class="col-lg-9">
                 <h1 class="book-show__book-title"><%= @book.title %></h1>
+                <h2 class="book-show__book-sub-title"><%= @book.title_tag_line %> (<%= @book.book_collection.name.titleize %> Book  <%= @book.series_number %>) </h2>
                 <p class="book-show__book-author"><%= link_to @book.author.name, publishing_author_path(@book.author) %></p>
                 <div class="book-show__book-description"><%= markdown_to_html(@book.description) %></div>
                 <%= link_to_if_authorized('Edit', @book, :edit) %>

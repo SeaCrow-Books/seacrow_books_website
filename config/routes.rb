@@ -33,7 +33,8 @@ Rails.application.routes.draw do
       end
     end
     resources :genres
-    resources :authors, except: [:index]
+    resources :authors
+    resources :book_collections
   end
 
   # Chats

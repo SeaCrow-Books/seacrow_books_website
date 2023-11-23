@@ -45,7 +45,7 @@ module Publishing
       def destroy
         authorize @genre
         @genre.destroy
-        redirect_to genres_url, notice: 'Genre was successfully destroyed.'
+        redirect_to publishing_genres_url, notice: 'Genre was successfully destroyed.'
       end
     
       private
@@ -55,7 +55,7 @@ module Publishing
       end
     
       def genre_params
-        params.require(:genre).permit(:name)
+        params.require(:publishing_genre).permit(:name)
       end
 
   end

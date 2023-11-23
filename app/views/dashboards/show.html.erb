@@ -2,8 +2,7 @@
   <div class="col-lg-10">
 
  <div class="row mt-5">
-      <div class="col-lg-4">
-          <!-- Card for first column -->
+      <div class="col-lg-3">
           <div class="card h-100">
               <div class="card-body">
                   <h2 class="card-title">Books</h2>
@@ -20,8 +19,7 @@
               </div>
           </div>
       </div>
-      <div class="col-lg-4">
-          <!-- Card for second column -->
+      <div class="col-lg-3">
           <div class="card h-100">
               <div class="card-body">
                   <h2 class="card-title">Authors</h2>
@@ -38,8 +36,7 @@
               </div>
           </div>
       </div>
-      <div class="col-lg-4">
-          <!-- Card for third column -->
+      <div class="col-lg-3">
           <div class="card h-100">
               <div class="card-body">
                   <h2 class="card-title">Genres</h2>
@@ -56,6 +53,28 @@
               </div>
           </div>
       </div>
+      <div class="col-lg-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Series</h2>
+            <ul>
+              <% @book_collections.each do |series| %>
+                <li class="card-text">
+                  <%= link_to series.name, publishing_book_collection_path(series) %>
+                  <% if policy(series).update? %>
+                    | <%= link_to 'Edit', edit_publishing_book_collection_path(series) %>
+                  <% end %>
+                  <% if policy(series).destroy? %>
+                    | <%= link_to 'Delete', publishing_book_collection_path(series), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+            <%= link_to 'New Series', new_publishing_book_collection_path(@author), class: 'btn btn-sm btn-outline-primary' %>
+          </div>
+        </div>
+      </div>
+
     </div>
 
 
