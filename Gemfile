@@ -67,6 +67,11 @@ group :development do
   gem 'binding_of_caller'
 end
 
+group :staging do
+  
+
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
