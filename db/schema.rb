@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_18_080737) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_150846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,6 +121,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_080737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_book_sections_on_book_id"
+    t.index ["slug"], name: "index_book_sections_on_slug", unique: true
   end
 
   create_table "books", force: :cascade do |t|
@@ -228,28 +229,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_080737) do
     t.index ["slug"], name: "index_image_resources_on_slug", unique: true
   end
 
-  create_table "persona_versions", force: :cascade do |t|
-    t.decimal "number", precision: 3, scale: 1, default: "1.0"
-    t.bigint "persona_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "prompt"
-    t.string "document_link"
-    t.index ["persona_id"], name: "index_persona_versions_on_persona_id"
-  end
-
-  create_table "personas", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "content_type"
-    t.string "slug"
-    t.string "version", default: "1.0"
-    t.text "description"
-    t.string "ai_version"
-    t.index ["slug"], name: "index_personas_on_slug", unique: true
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -264,8 +243,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_080737) do
     t.boolean "published", default: false
     t.string "main_image_alt_text"
     t.string "description"
-    t.bigint "persona_id"
-    t.index ["persona_id"], name: "index_posts_on_persona_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -342,7 +319,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_080737) do
   add_foreign_key "chat_sessions", "chat_custom_instructions"
   add_foreign_key "chat_sessions", "users"
   add_foreign_key "chats", "chat_sessions"
-  add_foreign_key "persona_versions", "personas"
-  add_foreign_key "posts", "personas"
   add_foreign_key "taggings", "tags"
 end

@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
 
     # Sets variables for navbar
     def set_variables_for_navbar
-      @all_books = Book.all
-      @all_authors = Author.all
+      @all_books = Publishing::Book.all
+      @all_authors = Publishing::Author.all
     end
 
     protected

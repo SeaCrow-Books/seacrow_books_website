@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item"><%= link_to 'About', about_path, class: 'nav-link' %></li>
-        <li class="nav-item"><%= link_to 'Blog', posts_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'Blog', blog_posts_path, class: 'nav-link' %></li>
         <!-- Authors dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="booksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -15,7 +15,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="booksDropdown">
             <% @all_authors.each do |author| %>
-              <li><a class="dropdown-item" href="<%= author_path(author) %>"><%= author.name.titleize %></a></li>
+              <li><a class="dropdown-item" href="<%= publishing_author_path(author) %>"><%= author.name.titleize %></a></li>
             <% end %>
           </ul>
         </li>
@@ -26,7 +26,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="booksDropdown">
             <% @all_books.each do |book| %>
-              <li><a class="dropdown-item" href="<%= book_path(book.slug) %>"><%= book.title %></a></li>
+              <li><a class="dropdown-item" href="<%= publishing_book_path(book.slug) %>"><%= book.title %></a></li>
             <% end %>
           </ul>
         </li>
@@ -61,7 +61,7 @@
                 <% end %>  
               </li>
               <li>
-                <%= link_to image_resources_path, class: 'dropdown-item' do %>
+                <%= link_to blog_image_resources_path, class: 'dropdown-item' do %>
                   <i class="bi bi-image"></i> Images
                 <% end %>  
               </li>
