@@ -87,7 +87,7 @@ GEM
       safely_block (>= 0.4)
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
-    base64 (0.1.0)
+    base64 (0.1.1)
     bcrypt (3.1.20)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -320,7 +320,7 @@ DEPENDENCIES
   acts-as-taggable-on
   acts_as_list
   ahoy_matey
-  base64 (= 0.1.0)
+  base64 (= 0.1.1)
   better_errors
   binding_of_caller
   bootsnap
