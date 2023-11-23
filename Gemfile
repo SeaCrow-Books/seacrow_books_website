@@ -87,4 +87,5 @@ gem 'pundit'
 gem 'redcarpet'
 gem 'rest-client'
 
+gem 'base64', '0.2.0' #this is a system gema nd can probly be removed
 

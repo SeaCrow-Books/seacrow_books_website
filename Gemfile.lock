@@ -320,6 +320,7 @@ DEPENDENCIES
   acts-as-taggable-on
   acts_as_list
   ahoy_matey
+  base64 (= 0.2.0)
   better_errors
   binding_of_caller
   bootsnap
