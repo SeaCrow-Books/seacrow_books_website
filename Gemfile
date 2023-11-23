@@ -87,5 +87,5 @@ gem 'pundit'
 gem 'redcarpet'
 gem 'rest-client'
 
-gem 'base64', '0.2.0' #this is a system gema nd can probly be removed
+gem 'base64', '0.1.0' # This was causing problems, had to bring it downm from 0.2.0
 
