@@ -1,4 +1,4 @@
-module Blog  
+
   module CategoriesHelper
     def category_hierarchy(categories, parent_id = nil, &block)
       categories.select { |c| c.parent_id == parent_id }.map do |category|
@@ -17,4 +17,4 @@ module Blog
       end
     end
   end
-end 
+ 

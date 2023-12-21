@@ -2,14 +2,6 @@
   <div class="col-lg-8 col-md-10">
     <section>
 
-      <!-- Display the parent category if it exists -->
-      <% if @category.parent_category.present? %>
-        <div class="category-show__parent">
-          <h2>Parent Category:</h2>
-          <p><%= link_to @category.parent_category.name, category_path(@category.parent_category) %></p>
-        </div>
-      <% end %>
-
       <h1 class="category-show__title"><%= @category.name %> Articles</h1>
       <p class="category-show__description"><%= @category.description %></p>
 
@@ -22,7 +14,7 @@
           <h3>Subcategories:</h3>
           <ul>
             <% @category.child_categories.each do |child| %>
-              <li><%= link_to child.name, category_path(child) %></li>
+              <li><%= link_to child.name, blog_category_path(child) %></li>
             <% end %>
           </ul>
         </div>
