@@ -37,16 +37,19 @@
 
         </div>
 
-        <div class="post-show__categories">
-          <% @post.categories.each_with_index do |category, index| %>
-            <%= link_to category.name, blog_category_path(category), class: "post-show__categories-link" %>
-            <% unless index == @post.categories.size - 1 %>
-              |
+        <!-- Categories -->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <% @post.categories.each_with_index do |category, index| %>
+              <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <%= link_to blog_category_path(category), itemprop: "item" do %>
+                  <span itemprop="name"><%= category.name %></span>
+                <% end %>
+                <meta itemprop="position" content="<%= index + 1 %>" />
+              </li>
             <% end %>
-          <% end %>
-        </div>
-
-
+          </ol>
+        </nav>
 
   </div>      
 </div>

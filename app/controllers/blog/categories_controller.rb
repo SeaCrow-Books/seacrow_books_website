@@ -1,5 +1,5 @@
 module Blog
-  class CategoriesController < BaseBlogController
+  class CategoriesController < ApplicationController
     before_action :authenticate_user!, only: %i[index edit update destroy child_categories]
     before_action :set_category, only: %i[show edit update destroy child_categories]
 

@@ -2,12 +2,12 @@
     <div class="col-lg-10 col-md-8">
 
     <!-- Search form -->
-    <%= form_with(url: image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
+    <%= form_with(url: blog_image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
       <%= select_tag :filter, 
           options_for_select(
             [['All', nil]] +
             [['Categories', {disabled: true}]] + 
-            Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
+            Blog::Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
             [['Tags', {disabled: true}]] +
             ActsAsTaggableOn::Tag.order(:name).map { |t| ["#{t.name}", "tag_#{t.id}"] },
             params[:filter]
