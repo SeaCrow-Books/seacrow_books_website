@@ -1,4 +1,4 @@
-module Publishing    
+ 
   module BooksHelper
     def link_to_if_authorized(text, book, action)
       policy_check = case action
@@ -27,4 +27,3 @@ module Publishing
       end
     end
   end
-end

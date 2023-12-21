@@ -99,24 +99,36 @@
               </div>
           </div>
       </div>
-      <div class="col-lg-4">
-          <!-- Card for Categories -->
-          <div class="card h-100">
-              <div class="card-body">
-                  <h2 class="card-title">Categories</h2>
-                  <ul>
-                    <% @categories.each do |category| %>
-                      <li>
-                        <%= link_to category.name, blog_category_path(category) %> | 
-                        <%= link_to 'Edit', edit_blog_category_path(category) if policy(category).update? %> |
-                        <%= link_to 'Delete', blog_category_path(category), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(category).destroy? %>
-                      </li>
-                    <% end %>
-                  </ul>
-                  <%= link_to 'New Category', new_blog_category_path, class: 'btn btn-sm btn-outline-primary' %>
-              </div>
-          </div>
+    <div class="col-lg-4">
+      <!-- Card for Categories -->
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title">Categories</h2>
+          <ul>
+            <% @categories.each do |category| %>
+              <!-- Display only parent categories initially -->
+              <% if category.parent_category.nil? %>
+                <li>
+                  <%= link_to category.name, blog_category_path(category) %> | 
+                  <%= link_to 'Edit', edit_blog_category_path(category) if policy(category).update? %> |
+                  <%= link_to 'Delete', blog_category_path(category), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(category).destroy? %>
+                </li>
+                <!-- Display child categories of the current parent category -->
+                <% category.child_categories.each do |child_category| %>
+                  <li style="margin-left: 20px;"> <!-- Indent child categories for better visual hierarchy -->
+                    <%= link_to child_category.name, blog_category_path(child_category) %> | 
+                    <%= link_to 'Edit', edit_blog_category_path(child_category) if policy(child_category).update? %> |
+                    <%= link_to 'Delete', blog_category_path(child_category), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(child_category).destroy? %>
+                  </li>
+                <% end %>
+              <% end %>
+            <% end %>
+          </ul>
+          <%= link_to 'New Category', new_blog_category_path, class: 'btn btn-sm btn-outline-primary' %>
+        </div>
       </div>
+    </div>
+
 
     </div>
 
@@ -153,7 +165,6 @@
                     <% if current_user.admin? %>
                       <%= button_to (config.allow_new_accounts ? "Turn off account creation" : "Turn on account creation"), update_account_creation_permission_path, method: :patch, class: 'btn btn-sm btn-outline-danger' %>
                     <% end %>
-
 
                 </div>
             </div>

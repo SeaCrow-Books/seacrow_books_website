@@ -16,8 +16,9 @@ module Blog
     end
 
     def new
-      @category = Category.new
+      @category = Blog::Category.new
       authorize @category
+      @page_title = 'New Category'
     end
 
     def create
@@ -32,6 +33,7 @@ module Blog
 
     def edit
       authorize @category
+      @page_title = 'Edit Category'
     end
 
     def update
@@ -66,7 +68,7 @@ module Blog
     end
 
     def category_params
-      params.require(:category).permit(:name, :description, :parent_id) # Include :parent_id to allow assigning parent categories
+      params.require(:blog_category).permit(:name, :description, :parent_id) # Include :parent_id to allow assigning parent categories
     end
   end
 end

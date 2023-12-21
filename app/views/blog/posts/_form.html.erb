@@ -52,25 +52,23 @@
     <%= f.text_field :description, placeholder: "Describe the post for the reader...", class: 'form-control post_form__input' %>
   </div>
 
-<!-- Category -->
-<!-- Top Tier Category -->
+<!-- Category Checkboxes -->
 <div class="form-group">
-  <%= f.label :category_id, "Top Tier Category", class: 'form-label post-form__input-label' %>
-  <%= f.collection_select :category_id, Category.top_tier, :id, :name, 
-      { include_blank: 'Please select...' }, 
-      { class: 'form-control', 
-        data: { 
-          category_select_target: "select",
-          action: "change->category-select#loadChildren" 
-        } 
-      } 
-  %>
+  <%= f.label :category_ids, "Categories", class: 'form-label post-form__input-label' %>
+  <% @categories.each do |category| %>
+    <div class="form-check">
+      <%= f.check_box :category_ids, { multiple: true, id: "category_#{category.id}" }, category.id, nil %>
+      <%= label_tag "category_#{category.id}", category.name, class: 'form-check-label' %>
+    </div>
+    <% category.child_categories.each do |child| %>
+      <div class="form-check" style="margin-left: 20px;">
+        <%= f.check_box :category_ids, { multiple: true, id: "category_#{child.id}" }, child.id, nil %>
+        <%= label_tag "category_#{child.id}", child.name, class: 'form-check-label' %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
-<!-- Placeholder for child categories, to be populated by Turbo Frame -->
-<turbo-frame id="child_categories_frame">
-  <!-- Initially empty, will be populated by Stimulus action -->text
-</turbo-frame>
 
   <!-- Main Image -->
   <div class="form-group">
@@ -95,19 +93,11 @@
     <%= f.text_field :main_image_alt_text, class: 'form-control' %>
   </div>
 
-  <!-- Persona -->
-  <div class="form-group">
-    <%= f.label :persona_id, "Persona", class: 'form-label post-form__input-label' %>
-    <p class="post_form__input-description">Select the persona associated with this post.<p>
-    <%= f.collection_select :persona_id, @personas, :id, :name, {}, { class: 'form-control post_form__input' } %>
-  </div>
-
   <!-- Content -->
   <div class="form-group">
     <%= f.label :content, class: 'form-label post-form__input-label' %>
     <p class="post_form__input-description">This is the post input, ensure that you are using HTML tags. Use this <a href="https://docs.google.com/document/d/1lOAOAF--VS2B4hFeL-YNM0Qf0j8mRPpUCS6k0YChDRc/edit?usp=sharing" target="_blank">Google Doc for HTML formating guidelines</a>.<p>
     <%= f.text_area :content, class: 'form-control', data: { controller: "textarea", action: "input->textarea#resizeOnInput" } %>
-
   </div>
   
   <!-- Published -->
