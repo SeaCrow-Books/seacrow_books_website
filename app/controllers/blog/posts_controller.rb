@@ -1,5 +1,5 @@
 module Blog
-  class PostsController < BaseBlogController
+  class PostsController < ApplicationController
     before_action :authenticate_user!, only: %i[edit update destroy]
     before_action :set_post, only: %i[show edit update destroy]
   
@@ -50,12 +50,19 @@ module Blog
   
     def update
       authorize @post
+    
+      if params[:blog_post][:main_image].present?
+        @post.main_image.attach(params[:blog_post][:main_image])
+      end
+    
+      # Other update logic
       if @post.update(post_params)
         redirect_to @post, notice: 'Post was successfully updated.'
       else
         render :edit, status: :unprocessable_entity
       end
     end
+    
   
     def destroy
       authorize @post

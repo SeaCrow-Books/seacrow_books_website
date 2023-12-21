@@ -1,5 +1,5 @@
 module Blog
-  class ImageResourcesController < BaseBlogController
+  class ImageResourcesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_image_resource, only: %i[show edit update destroy]
 
