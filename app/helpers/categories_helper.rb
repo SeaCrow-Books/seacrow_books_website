@@ -1,4 +1,5 @@
-module CategoriesHelper
+
+  module CategoriesHelper
     def category_hierarchy(categories, parent_id = nil, &block)
       categories.select { |c| c.parent_id == parent_id }.map do |category|
         render_category(category, &block)
@@ -16,4 +17,4 @@ module CategoriesHelper
       end
     end
   end
-  
+ 

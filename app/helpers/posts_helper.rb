@@ -1,4 +1,5 @@
-module PostsHelper
+
+  module PostsHelper
 
     # Calculates read time for blog posts
     def read_time(post_content)
@@ -13,5 +14,19 @@ module PostsHelper
           image_tag(image.url, alt: image.alt_text)
         end
       end
+    end
 
-end
+    # Structuers category dropdown in post form
+    def structured_category_options(categories)
+      options = []
+      categories.each do |category|
+        # Add the parent category
+        options << [category.name, category.id]
+  
+        # Add its child categories, indented
+        category.child_categories.each do |child|
+          options << ["-- #{child.name}", child.id]
+        end
+      end
+      options
+    end

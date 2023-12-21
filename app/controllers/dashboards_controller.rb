@@ -3,13 +3,14 @@ class DashboardsController < ApplicationController
 
   def show
     @page_title = "Dashboard"
-    @books = Book.all
-    @genres = Genre.all
-    @categories = Category.all
-    @posts = Post.all
+    @books = Publishing::Book.all
+    @genres = Publishing::Genre.all
+    @authors = Publishing::Author.all
+    @book_collections = Publishing::BookCollection.all
+    @categories = Blog::Category.all
+    @posts = Blog::Post.all
     @users = User.all
-    @authors = Author.all
-    @personas = Persona.all
+    @authors = Publishing::Author.all
   end
   
 end

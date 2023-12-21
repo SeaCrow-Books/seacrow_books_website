@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_08_110141) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_22_175408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -111,6 +111,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_110141) do
     t.index ["slug"], name: "index_authors_on_slug", unique: true
   end
 
+  create_table "book_collections", force: :cascade do |t|
+    t.string "name"
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["author_id"], name: "index_book_collections_on_author_id"
+    t.index ["slug"], name: "index_book_collections_on_slug", unique: true
+  end
+
+  create_table "book_sections", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "position"
+    t.string "epub_type"
+    t.bigint "book_id", null: false
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_book_sections_on_book_id"
+    t.index ["slug"], name: "index_book_sections_on_slug", unique: true
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -119,7 +142,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_110141) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.bigint "author_id", null: false
+    t.bigint "book_collection_id"
+    t.string "title_tag_line"
+    t.integer "series_number"
     t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["book_collection_id"], name: "index_books_on_book_collection_id"
     t.index ["slug"], name: "index_books_on_slug", unique: true
   end
 
@@ -216,28 +243,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_110141) do
     t.index ["slug"], name: "index_image_resources_on_slug", unique: true
   end
 
-  create_table "persona_versions", force: :cascade do |t|
-    t.decimal "number", precision: 3, scale: 1, default: "1.0"
-    t.bigint "persona_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "prompt"
-    t.string "document_link"
-    t.index ["persona_id"], name: "index_persona_versions_on_persona_id"
-  end
-
-  create_table "personas", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "content_type"
-    t.string "slug"
-    t.string "version", default: "1.0"
-    t.text "description"
-    t.string "ai_version"
-    t.index ["slug"], name: "index_personas_on_slug", unique: true
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -252,8 +257,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_110141) do
     t.boolean "published", default: false
     t.string "main_image_alt_text"
     t.string "description"
-    t.bigint "persona_id"
-    t.index ["persona_id"], name: "index_posts_on_persona_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -309,19 +312,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_110141) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "versions", force: :cascade do |t|
-    t.string "item_type", null: false
-    t.bigint "item_id", null: false
-    t.string "event", null: false
-    t.string "whodunnit"
-    t.text "object"
-    t.datetime "created_at"
-    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "book_collections", "authors"
+  add_foreign_key "book_sections", "books"
   add_foreign_key "books", "authors"
+  add_foreign_key "books", "book_collections"
   add_foreign_key "categories_posts", "categories"
   add_foreign_key "categories_posts", "posts"
   add_foreign_key "chat_custom_instructions", "users"
@@ -329,7 +325,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_110141) do
   add_foreign_key "chat_sessions", "chat_custom_instructions"
   add_foreign_key "chat_sessions", "users"
   add_foreign_key "chats", "chat_sessions"
-  add_foreign_key "persona_versions", "personas"
-  add_foreign_key "posts", "personas"
   add_foreign_key "taggings", "tags"
 end

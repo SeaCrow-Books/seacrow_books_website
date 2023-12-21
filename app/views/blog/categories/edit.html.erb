@@ -1,0 +1,21 @@
+<!-- New Category Page -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <!-- Page Title -->
+          <h1 class="card-title text-center mb-4">Edit Category</h1>
+
+          <!-- Category Form -->
+          <%= render 'form', category: @category %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Back Link -->
+<div class="text-center mt-3">
+  <%= link_to 'Back', blog_categories_path, class: 'btn btn-secondary' %>
+</div>

@@ -1,0 +1,69 @@
+<div class="mt-5 row justify-content-center">
+    <div class="col-lg-10">
+        <div class="row">
+
+            <!-- Left column for the book cover and related titles -->
+            <div class="col-lg-3">
+              
+              <!-- Book Cover -->
+              <% if @book.cover.attached? %>
+                  <%= image_tag @book.cover, alt: @book.title, class: "book-cover img-fluid book-show__cover-image" %>
+              <% else %>
+                  <p>No Cover</p>
+              <% end %>
+              
+              <!-- Book Details -->
+                <h3 class="book-show__book-details">Book Details</h3>
+                <table class="table book-show__book-details-table">
+                    <tbody>
+                        <tr style="border-top: 1px solid #dee2e6;">
+                            <td>Published:</td>
+                            <td><%= @book.publication_date.strftime("%B %d, %Y") %></td>
+                        </tr>
+                        <tr>
+                            <td>Genre:</td>
+                            <td>
+                                <% @book.genres.each do |genre| %>
+                                    <span class="book-show__book-details-table-link"><%= link_to genre.name, publishing_genre_path(genre) %></span>
+                                <% end %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Format:</td>
+                            <td>Digital</td>
+                        </tr>
+                    </tbody>
+                </table>
+     
+
+                <!-- Other titles within the left column -->
+                <div class="book-show__other-titles custom-gray-bg">
+                    <h3 class="book-show_other-titles-title">Other titles you might like</h3>
+                    <div class="row">
+                        <% @related_books.each do |related_book| %>
+                            <div class="col-4">
+                                <%= link_to book_path(related_book) do %>
+                                    <%= image_tag related_book.cover, alt: related_book.title, class: "book-cover img-fluid mb-4 clickable-image" %>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Right column  for the book details -->
+            <div class="col-lg-9">
+                <h1 class="book-show__book-title"><%= @book.title %></h1>
+                <h2 class="book-show__book-sub-title"><%= @book.title_tag_line %> (<%= @book.book_collection.name.titleize %> Book  <%= @book.series_number %>) </h2>
+                <p class="book-show__book-author"><%= link_to @book.author.name, publishing_author_path(@book.author) %></p>
+                <div class="book-show__book-description"><%= markdown_to_html(@book.description) %></div>
+                <%= link_to_if_authorized('Edit', @book, :edit) %>
+                <%= link_to_if_authorized('Delete', @book, :destroy) %>
+                <%= link_to_if_authorized('View Sections', @book, :book_sections) %>
+            </div>
+
+        </div> <!-- end of inner row -->
+    </div> <!-- end of col-lg-10 -->
+</div> <!-- end of outer row -->

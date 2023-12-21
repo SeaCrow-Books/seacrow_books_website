@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="row">
+    <% @book_collections.each do |series| %>
+      <div class="col-md-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= series.name %></h5>
+            <%= link_to 'Show', publishing_book_collection_path(series), class: 'btn btn-primary' %>
+            <%= link_to 'Edit', edit_publishing_book_collection_path(series), class: 'btn btn-outline-secondary' %>
+            <%= button_to 'Delete', publishing_book_collection_path(series), 
+                method: :delete, 
+                form: { 
+                  data: { turbo_confirm: "Are you sure you want to delete this series?" }
+                }, 
+                class: 'btn btn-outline-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

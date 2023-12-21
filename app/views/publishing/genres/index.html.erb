@@ -1,0 +1,28 @@
+<h1>Genres</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @genres.each do |genre| %>
+      <tr>
+        <td><%= genre.name %></td>
+        <td><%= link_to 'Show', genre %></td>
+        <td><%= link_to 'Edit', edit_publishing_genre_path(genre) %></td>
+        <td>
+          <%= button_to 'Destroy', genre, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this genre?" }}, class: 'btn btn-outline-danger' %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Genre', new_publishing_genre_path %>
