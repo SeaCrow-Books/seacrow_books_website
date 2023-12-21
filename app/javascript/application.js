@@ -1,4 +1,3 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
 import "popper"
@@ -7,8 +6,7 @@ import "chartkick"
 import "Chart.bundle"
 
 // Custom
-import "custom/bootstrap_extensions";
-
+import "custom/bootstrap_extensions"
 
 import "trix"
 import "@rails/actiontext"
