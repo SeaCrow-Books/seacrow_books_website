@@ -15,12 +15,12 @@ Rails.application.routes.draw do
 
   # Blog
   namespace :blog do
-    resources :posts, path: '/'
+
     resources :categories do
       get 'child_categories', on: :member
     end
     resources :image_resources
-
+    resources :posts, path: '/'
     # Adding the new route within the blog namespace
     get '/image_resources/:id/permanent_image', to: 'image_resources#permanent_image', as: 'permanent_image'
   end
