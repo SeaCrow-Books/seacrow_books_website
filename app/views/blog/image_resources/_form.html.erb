@@ -36,7 +36,7 @@
 
   <div class="col-12">
   <p>Categories</p>
-    <% Category.all.each do |category| %>
+    <% Blog::Category.all.each do |category| %>
       <div class="form-check">
         <%= form.check_box :category_ids, { multiple: true, checked: image_resource.categories.include?(category) }, category.id, nil %>
         <%= form.label "category_#{category.id}", class: 'form-check-label' do %>
@@ -51,8 +51,12 @@
   <div class="mb-3">
     <label for="image_resource_tag_list">Tags</label><br>
     <div class="row">
-      <% sorted_tags = ActsAsTaggableOn::Tag.pluck(:name).sort { |a, b| a.casecmp(b) } %>
-      <% tags_per_column = (sorted_tags.size / 4.0).ceil %>
+    <% sorted_tags = ActsAsTaggableOn::Tag.pluck(:name).sort { |a, b| a.casecmp(b) } %>
+    <% if sorted_tags.empty? %>
+      <!-- Handle the case when there are no tags. Maybe show a message or don't render this part. -->
+      <p>No tags available.</p>
+    <% else %>
+      <% tags_per_column = [1, (sorted_tags.size / 4.0).ceil].max %>
       <% sorted_tags.in_groups_of(tags_per_column, false) do |column_tags| %>
         <div class="col-md-3">
           <% column_tags.each do |tag_name| %>
@@ -63,6 +67,8 @@
           <% end %>
         </div>
       <% end %>
+    <% end %>
+
     </div>
   </div>
   

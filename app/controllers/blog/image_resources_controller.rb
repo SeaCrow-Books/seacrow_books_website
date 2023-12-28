@@ -81,7 +81,7 @@ module Blog
     end
 
     def image_resource_params
-      params.require(:image_resource).permit(:alt_description, :image, :name, :notes, tag_list: [], category_ids: [])
+      params.require(:blog_image_resource).permit(:alt_description, :image, :name, :notes, tag_list: [], category_ids: [])
     end
 
     def add_new_tags_to_image_resource
