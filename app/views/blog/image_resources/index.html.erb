@@ -35,17 +35,17 @@
               <td><%= image_resource.categories.map(&:name).join(', ') %></td>
 
               <td><%= image_resource.tags.join(', ') %></td>
-<td>
-  <% if image_resource.image.attached? %>
-    <%= image_tag image_resource.image, class: "image-resource__resize_to_smaller_image" %>
-  <% else %>
-    No Image
-  <% end %>
-</td>
               <td>
-                <%= link_to 'Show', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
-                <%= link_to 'Edit', edit_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
-                <%= link_to 'Delete', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm', method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(image_resource).destroy? %>
+                <% if image_resource.image.attached? %>
+                  <%= image_tag image_resource.image, class: "image-resource__resize_to_smaller_image" %>
+                <% else %>
+                  No Image
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Show', blog_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
+                <%= link_to 'Edit', edit_blog_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
+                <%= link_to 'Delete', blog_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm', method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(image_resource).destroy? %>
               </td>
             </tr>
           <% end %>
