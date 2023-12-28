@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <h1><%= @image_resource.name.titleize %></h1>
       <% if policy(@image_resource).update? %>
-        <%= link_to 'Edit Image', edit_image_resource_path(@image_resource), class: 'btn btn-outline-primary' %>
+        <%= link_to 'Edit Image', edit_blog_image_resource_path(@image_resource), class: 'btn btn-outline-primary' %>
       <% end %>
     </div>
 
@@ -60,9 +60,9 @@
             Permanent URL
           </div>
           <div class="card-body">
-            <p class="card-text"><%= permanent_image_url(@image_resource) %></p>
+            <p class="card-text"><%= blog_permanent_image_url(@image_resource) %></p>
             <p class="card-text">
-              <%= h "<img src=\"#{permanent_image_url(@image_resource)}\" alt=\"#{@image_resource.alt_description}\" width=\"\"\ height=\"\"\ class=\"img-fluid post-show__media rounded mx-auto d-block\">" %>
+              <%= h "<img src=\"#{blog_permanent_image_url(@image_resource)}\" alt=\"#{@image_resource.alt_description}\" width=\"\"\ height=\"\"\ class=\"img-fluid post-show__media rounded mx-auto d-block\">" %>
             </p>
           </div>
         </div>
