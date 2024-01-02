@@ -2,6 +2,7 @@ module Blog
   class ImageResourcesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_image_resource, only: %i[show edit update destroy]
+    layout :set_layout
 
     def index
       @page_title = "Image Resources"
@@ -88,5 +89,22 @@ module Blog
       tag_names = params[:new_tags].split(',').map(&:strip)
       @image_resource.tag_list.add(tag_names)
     end
+
+    def set_layout
+      case action_name
+      when 
+        'page_templates/tiny_page'
+      when
+        'page_templates/small_page'
+      when 'show', 'new', 'edit'
+        'page_templates/medium_page'
+      when 'index'
+        'page_templates/large_page'
+      else
+        'application'
+      end
+    end
+
+
   end
 end
