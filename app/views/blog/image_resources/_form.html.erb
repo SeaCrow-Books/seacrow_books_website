@@ -1,93 +1,88 @@
-<!-- app/views/image_resources/_form.html.erb -->
-<%= form_with(model: image_resource, local: true, class: 'row g-3') do |form| %>
-  <!-- Show errors if any -->
-  <% if image_resource.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <h4 class="alert-heading"><%= pluralize(image_resource.errors.count, "error") %> prohibited this image resource from being saved:</h4>
-      <ul>
-        <% image_resource.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<div class="card form__container">
+  <div class="card-body form__base">
+    <%= form_with(model: image_resource, local: true, class: 'row g-3') do |form| %>
+      <% if image_resource.errors.any? %>
+        <div class="alert alert-danger form__group" role="alert">
+          <h4 class="alert-heading"><%= pluralize(image_resource.errors.count, "error") %> prohibited this image resource from being saved:</h4>
+          <ul>
+            <% image_resource.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if image_resource.image.attached? %>
+        <div class="col-12 mb-3 form__group">
+          <%= image_tag image_resource.image, alt: image_resource.alt_description, class: "img-fluid rounded" %>
+        </div>
+      <% end %>
+
+      <div class="col-12 form__group">
+        <%= form.label :name, class: 'form-label form__label' %>
+        <%= form.text_field :name, class: 'form-control form__input' %>
+      </div>
+
+      <div class="col-md-6 form__group">
+        <%= form.label :image, class: 'form-label form__label' %>
+        <%= form.file_field :image, class: 'form-control form__input' %>
+      </div>
+
+      <div class="col-md-6 form__group">
+        <%= form.label :alt_description, class: 'form-label form__label' %>
+        <%= form.text_field :alt_description, class: 'form-control form__input' %>
+      </div>
+
+      <div class="col-12 form__group">
+        <p class="form__label">Categories</p>
+        <% Blog::Category.all.each do |category| %>
+          <div class="form-check">
+            <%= form.check_box :category_ids, { multiple: true, checked: image_resource.categories.include?(category) }, category.id, nil %>
+            <%= form.label "category_#{category.id}", class: 'form-check-label' do %>
+              <%= category.name %>
+            <% end %>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+      </div>
 
-  <!-- Preview existing image if available -->
-  <% if image_resource.image.attached? %>
-    <div class="col-12 mb-3">
-      <%= image_tag image_resource.image, alt: image_resource.alt_description, class: "img-fluid rounded" %>
-    </div>
-  <% end %>
+      <div class="col-12 form__group">
+        <div class="mb-3">
+          <label for="image_resource_tag_list" class="form-label form__label">Tags</label><br>
+          <div class="row">
+            <% sorted_tags = ActsAsTaggableOn::Tag.pluck(:name).sort { |a, b| a.casecmp(b) } %>
+            <% if sorted_tags.empty? %>
+              <p>No tags available.</p>
+            <% else %>
+              <% tags_per_column = [1, (sorted_tags.size / 4.0).ceil].max %>
+              <% sorted_tags.in_groups_of(tags_per_column, false) do |column_tags| %>
+                <div class="col-md-3 form__group">
+                  <% column_tags.each do |tag_name| %>
+                    <div class="form-check">
+                      <%= check_box_tag 'image_resource[tag_list][]', tag_name, @image_resource.tag_list.include?(tag_name), class: 'form-check-input form__input' %>
+                      <%= label_tag "image_resource_tag_list_#{tag_name}", tag_name.titleize, class: 'form-check-label form__label' %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
 
-  <div class="col-12">
-    <%= form.label :name, class: 'form-label' %>
-    <%= form.text_field :name, class: 'form-control' %>
-  </div>
+        <div class="mb-3 form__group">
+          <%= form.label :new_tag, "New Tag", class: 'form__label' %>
+          <%= text_field_tag :new_tags, nil, class: "form-control form__input", placeholder: "Enter tags separated by commas" %>
+          <small class="form-text text-muted form__explainer-text">Enter a new tag here. This will be added to the list of tags.</small>
+        </div>
+      </div>
 
-  <div class="col-md-6">
-    <%= form.label :image, class: 'form-label' %>
-    <%= form.file_field :image, class: 'form-control' %>
-  </div>
+      <div class="col-12 form__group">
+        <%= form.label :notes, class: 'form-label form__label' %>
+        <%= form.rich_text_area :notes, class: 'form-control form__input' %>
+      </div>
 
-  <div class="col-md-6">
-    <%= form.label :alt_description, class: 'form-label' %>
-    <%= form.text_field :alt_description, class: 'form-control' %>
-  </div>
-
-  <div class="col-12">
-  <p>Categories</p>
-    <% Blog::Category.all.each do |category| %>
-      <div class="form-check">
-        <%= form.check_box :category_ids, { multiple: true, checked: image_resource.categories.include?(category) }, category.id, nil %>
-        <%= form.label "category_#{category.id}", class: 'form-check-label' do %>
-          <%= category.name %>
-        <% end %>
+      <div class="col-12 form__group">
+        <%= form.submit 'Save', class: 'btn btn-primary form__submit' %>
       </div>
     <% end %>
   </div>
-
-<!-- Tags -->
-<div class="col-12">
-  <div class="mb-3">
-    <label for="image_resource_tag_list">Tags</label><br>
-    <div class="row">
-    <% sorted_tags = ActsAsTaggableOn::Tag.pluck(:name).sort { |a, b| a.casecmp(b) } %>
-    <% if sorted_tags.empty? %>
-      <!-- Handle the case when there are no tags. Maybe show a message or don't render this part. -->
-      <p>No tags available.</p>
-    <% else %>
-      <% tags_per_column = [1, (sorted_tags.size / 4.0).ceil].max %>
-      <% sorted_tags.in_groups_of(tags_per_column, false) do |column_tags| %>
-        <div class="col-md-3">
-          <% column_tags.each do |tag_name| %>
-            <div class="form-check">
-              <%= check_box_tag 'image_resource[tag_list][]', tag_name, @image_resource.tag_list.include?(tag_name), class: 'form-check-input' %>
-              <%= label_tag "image_resource_tag_list_#{tag_name}", tag_name.titleize, class: 'form-check-label' %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-
-    </div>
-  </div>
-  
-  <div class="mb-3">
-    <%= form.label :new_tag, "New Tag" %>
-    <%= text_field_tag :new_tags, nil, class: "form-control", placeholder: "Enter tags separated by commas" %>
-    <small class="form-text text-muted">Enter a new tag here. This will be added to the list of tags.</small>
-  </div>
 </div>
-
-
-
-
-  <div class="col-12">
-    <%= form.label :notes, class: 'form-label' %>
-    <%= form.rich_text_area :notes, class: 'form-control' %>
-  </div>
-
-  <div class="col-12">
-    <%= form.submit 'Save', class: 'btn btn-primary' %>
-  </div>
-<% end %>
