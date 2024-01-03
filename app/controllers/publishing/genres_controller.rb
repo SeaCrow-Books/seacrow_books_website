@@ -1,5 +1,5 @@
 module Publishing
-  class GenresController < BasePublishingController
+  class GenresController < ApplicationController
     before_action :authenticate_user!
       before_action :set_genre, only: %i[show edit update destroy]
     
@@ -45,7 +45,7 @@ module Publishing
       def destroy
         authorize @genre
         @genre.destroy
-        redirect_to publishing_genres_url, notice: 'Genre was successfully destroyed.'
+        redirect_to dashboard_path, notice: 'Genre was successfully destroyed.'
       end
     
       private

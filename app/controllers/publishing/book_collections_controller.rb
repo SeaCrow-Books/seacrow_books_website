@@ -52,7 +52,7 @@ module Publishing
     def destroy
       authorize @book_collection
       @book_collection.destroy
-      redirect_to publishing_book_collections_path,
+      redirect_to dashboard_path,
                   notice: 'Series was successfully destroyed.'
     end
 

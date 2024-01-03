@@ -1,5 +1,5 @@
 module Publishing
-  class BookSectionsController < BasePublishingController
+  class BookSectionsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_book
     before_action :set_book_section, only: %i[show edit update destroy]
@@ -49,7 +49,7 @@ module Publishing
     # DELETE /books/:book_id/book_sections/:id
     def destroy
       @book_section.destroy
-      redirect_to  book_book_sections_path(@book), notice: "Book section was successfully destroyed."
+      redirect_to dashboard_path, notice: "Book section was successfully destroyed."
     end
 
     def update_position
