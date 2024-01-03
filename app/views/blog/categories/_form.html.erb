@@ -18,7 +18,7 @@
 
     <div class="form__group">
       <%= form.label :description, class: 'form-label form__label' %>
-      <%= form.text_area :description, class: 'form-control form__input', placeholder: "Write in markdown" %>
+      <%= form.text_area :description, class: 'form-control form__input', data: { controller: "textarea", action: "input->textarea#resizeOnInput" }, placeholder: "Write in markdown" %>
     </div>
 
     <div class="form__group">
