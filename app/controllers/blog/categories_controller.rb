@@ -2,6 +2,7 @@ module Blog
   class CategoriesController < ApplicationController
     before_action :authenticate_user!, only: %i[index edit update destroy child_categories]
     before_action :set_category, only: %i[show edit update destroy child_categories]
+    layout :set_layout
 
     def index
       @categories = Category.all
@@ -70,5 +71,21 @@ module Blog
     def category_params
       params.require(:blog_category).permit(:name, :description, :parent_id) # Include :parent_id to allow assigning parent categories
     end
+
+    def set_layout
+      case action_name
+      when 
+        'page_templates/tiny_page'
+      when 'new', 'edit'
+        'page_templates/small_page'
+      when 'show'
+        'page_templates/medium_page'
+      when 'index'
+        'page_templates/large_page'
+      else
+        'application'
+      end
+    end
+
   end
 end

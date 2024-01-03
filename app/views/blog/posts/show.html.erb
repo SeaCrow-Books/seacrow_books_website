@@ -1,6 +1,6 @@
 <!-- Main Image -->
-<div class="row justify-content-center">
-  <div class="col-lg-10">
+<div class="row">
+  <div class="col-12">
     <div class="post-show__main-image">
       <% if @post.main_image.attached? %>
         <%= image_tag @post.main_image, alt: @post.main_image_alt_text, class: "img-fluid mx-auto d-block rounded" %>
@@ -10,59 +10,54 @@
 </div>
 
 <!-- Article -->
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8">
-      <article>
+<div class="row justify-content-center">
+  <div class="col-10">
+    <article>
+      <!-- Metadata -->
+      <div class="card mb-4">      
+        <div class="card-body">
+          <h1 class="post-show__title"><%= @post.title.titleize %></h1>
+          <hr>
+          <div class="post-show__metadata">
+            <%= @post.writer %> on <%= @post.updated_at.strftime('%B %d, %Y') %> | 
+            <i class="bi bi-stopwatch-fill"></i> <%= read_time(@post.content) %>
 
-<div class="card mb-4">      
-  <div class="card-body">
-      <h1 class="post-show__title"><%= @post.title.titleize %></h1>
-        <hr>
-        <div class="post-show__metadata">
-
-          <%= @post.writer %> on <%= @post.updated_at.strftime('%B %d, %Y') %> | 
-      
-          <i class="bi bi-stopwatch-fill"></i> <%= read_time(@post.content) %>
-          
-          <% if policy(@post).edit? %>
-       
-            <%= link_to edit_blog_post_path(@post), 
-              class: "post-show__metadata-edit-link", 
-              data: { toggle: "tooltip", placement: "top" }, 
-              title: "Edit post" do %>
-              | <i class="bi bi-gear-wide-connected"></i>
+            <% if policy(@post).edit? %>
+              <%= link_to edit_blog_post_path(@post), 
+                class: "post-show__metadata-edit-link", 
+                data: { toggle: "tooltip", placement: "top" }, 
+                title: "Edit post" do %>
+                | <i class="bi bi-gear-wide-connected"></i>
+              <% end %>
             <% end %>
+          </div>
 
-          <% end %>
+          <!-- Categories -->
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+              <% @post.categories.each_with_index do |category, index| %>
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <%= link_to blog_category_path(category), itemprop: "item" do %>
+                    <span itemprop="name"><%= category.name %></span>
+                  <% end %>
+                  <meta itemprop="position" content="<%= index + 1 %>" />
+                </li>
+              <% end %>
+            </ol>
+          </nav>
+        </div>      
+      </div>
 
-        </div>
-
-        <!-- Categories -->
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-            <% @post.categories.each_with_index do |category, index| %>
-              <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <%= link_to blog_category_path(category), itemprop: "item" do %>
-                  <span itemprop="name"><%= category.name %></span>
-                <% end %>
-                <meta itemprop="position" content="<%= index + 1 %>" />
-              </li>
-            <% end %>
-          </ol>
-        </nav>
-
-  </div>      
+      <!-- Main Content -->
+      <div class="post-show__article">
+        <div data-spy="scroll" data-target="#toc" data-offset="0">
+          <%= raw @post.content %>      
+        </div> 
+      </div>
+    </article>
+  </div>
 </div>
 
-        <div class="post-show__article">
-          <div data-spy="scroll" data-target="#toc" data-offset="0">
-            <%= raw @post.content %>      
-          </div> 
-        </div>
-
-      </article>        
-    </div>
-  </div>
 
 
 
