@@ -2,6 +2,7 @@ module Blog
   class PostsController < ApplicationController
     before_action :authenticate_user!, only: %i[edit update destroy]
     before_action :set_post, only: %i[show edit update destroy]
+    layout :set_layout
   
     def index
       @posts = Post.all
@@ -78,6 +79,21 @@ module Blog
   
     def post_params
       params.require(:blog_post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, category_ids: [])
+    end
+
+    def set_layout
+      case action_name
+      when 
+        'page_templates/tiny_page'
+      when 
+        'page_templates/small_page'
+      when 'show', 'new', 'edit'
+        'page_templates/medium_page'
+      when 'index', 'show'
+        'page_templates/large_page'
+      else
+        'application'
+      end
     end
 
   end

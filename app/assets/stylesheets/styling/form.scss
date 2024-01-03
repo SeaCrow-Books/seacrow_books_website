@@ -18,11 +18,12 @@
   
   .form__group {
     /* Styles for form groups, typically used for form input and its label */
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   
   .form__label {
     /* Styles for form labels */
+    font-size: 1.25rem;
   }
   
   .form__explainer-text {
@@ -30,6 +31,7 @@
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
+    color: gray;
   }
 
   .form__input {

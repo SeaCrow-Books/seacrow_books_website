@@ -87,6 +87,5 @@ module Blog
       end
     end
 
-
   end
 end
