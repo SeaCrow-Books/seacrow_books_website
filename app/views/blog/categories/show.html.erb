@@ -1,9 +1,8 @@
-<div class="row justify-content-center">
-  <div class="col-lg-8 col-md-10">
+
     <section>
 
       <h1 class="category-show__title"><%= @category.name %> Articles</h1>
-      <p class="category-show__description"><%= @category.description %></p>
+      <p class="category-show__description"><%= MarkdownRenderer.render(@category.description) %></p>
 
       <!-- Display the articles/posts for this category -->
       <%= render partial: 'shared/latest_posts', locals: { posts: @published_category_posts }%>
@@ -21,5 +20,3 @@
       <% end %>
 
     </section>
-  </div>
-</div>
