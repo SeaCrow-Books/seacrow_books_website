@@ -7,7 +7,6 @@ module Publishing
 
         # Validations
         validates :name, presence: true
-        validates :author, presence: true
 
         # Friendly ID
         extend FriendlyId

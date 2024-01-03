@@ -1,7 +1,8 @@
 module Publishing
-  class AuthorsController < BasePublishingController
+  class AuthorsController < ApplicationController
     before_action :authenticate_user!, only: %i[index edit update destroy]
     before_action :set_author, only: %i[show edit update destroy]
+    layout :set_layout
 
     def index
       @page_title = "Authors"
@@ -45,7 +46,7 @@ module Publishing
     def destroy
       authorize @author
       @author.destroy
-      redirect_to publishing_authors_path, notice: 'Author was successfully destroyed.'
+      redirect_to dashboard_pathh, notice: 'Author was successfully destroyed.'
     end
 
     private
@@ -57,5 +58,21 @@ module Publishing
     def author_params
       params.require(:publishing_author).permit(:name)
     end
+
+    def set_layout
+      case action_name
+      when 
+        'page_templates/tiny_page'
+      when 'new', 'edit'
+        'page_templates/small_page'
+      when 'show'
+        'page_templates/medium_page'
+      when 'index', 'show'
+        'page_templates/large_page'
+      else
+        'application'
+      end
+    end
+
   end
 end
