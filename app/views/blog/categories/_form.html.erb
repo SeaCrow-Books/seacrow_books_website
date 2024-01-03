@@ -18,6 +18,7 @@
 
     <div class="form__group">
       <%= form.label :description, class: 'form-label form__label' %>
+      <p class="form__explainer-text">You can write in Markdown</p>
       <%= form.text_area :description, class: 'form-control form__input', data: { controller: "textarea", action: "input->textarea#resizeOnInput" }, placeholder: "Write in markdown" %>
     </div>
 
