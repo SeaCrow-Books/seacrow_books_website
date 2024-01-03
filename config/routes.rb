@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   # Blog
   namespace :blog do
-
     resources :categories do
       get 'child_categories', on: :member
     end

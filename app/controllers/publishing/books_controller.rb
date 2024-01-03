@@ -1,5 +1,5 @@
 module Publishing
-  class BooksController < BasePublishingController
+  class BooksController < ApplicationController
     before_action :authenticate_user!, only: %i[index edit update destroy]
     before_action :set_book, only: %i[show edit update destroy]
     
@@ -10,7 +10,7 @@ module Publishing
     end
   
     def show
-      @page_title = "#{@book.title.titleize} by #{@book.author.name.titleize}"
+      @page_title = "#{@book.title.titleize} by #{@book.book_collection.author.name.titleize}"
       genre = @book.genres.first
       # Exclude the current book and retrieve the top 3 most viewed books from the same genre
       @related_books = genre.books.where.not(id: @book.id)

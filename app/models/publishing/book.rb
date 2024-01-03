@@ -2,7 +2,6 @@ module Publishing
   class Book < ApplicationRecord
 
     #Relationships
-    belongs_to :author
     belongs_to :book_collection
     has_and_belongs_to_many :genres, join_table: 'books_genres'
     has_many :book_sections, dependent: :destroy
@@ -17,7 +16,7 @@ module Publishing
     validates :publication_date, presence: true
     validates :title_tag_line, presence: true
     validates :series_number, presence: true
-  
+
     # validates :genre, presence: true
 
     # For ActiveStorage attachment validation:

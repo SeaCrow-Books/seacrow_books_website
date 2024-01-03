@@ -5,7 +5,7 @@
                      when :edit, :destroy
                        policy(book).public_send("#{action}?")
                      when :book_sections
-                        policy(BookSection).index? 
+                      policy(Publishing::BookSection).index?
                      else
                        false
                      end
