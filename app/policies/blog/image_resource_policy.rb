@@ -20,6 +20,10 @@ module Blog
     def update?
       user&.admin? || user&.staff?
     end
+
+    def permanent_image?
+      true
+    end
   
     class Scope < Scope
       def resolve
