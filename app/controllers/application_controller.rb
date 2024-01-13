@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller? # sets up params white list for user
     before_action :set_variables_for_navbar
 
+    after_action :verify_authorized, unless: :devise_controller?
+
     # Sets variables for navbar
     def set_variables_for_navbar
       @all_books = Publishing::Book.all

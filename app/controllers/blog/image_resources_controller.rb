@@ -1,7 +1,8 @@
 module Blog
   class ImageResourcesController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:permanent_image]
     before_action :set_image_resource, only: %i[show edit update destroy]
+    skip_after_action :verify_authorized, only: [:permanent_image]
     layout :set_layout
 
     def index
@@ -72,6 +73,7 @@ module Blog
 
     def permanent_image
       @image_resource = ImageResource.friendly.find(params[:id])
+      skip_authorization # or `authorize @image_resource, :permanent_image?` if you want to check policy
       redirect_to rails_blob_url(@image_resource.image)
     end
 
@@ -88,6 +90,10 @@ module Blog
     def add_new_tags_to_image_resource
       tag_names = params[:new_tags].split(',').map(&:strip)
       @image_resource.tag_list.add(tag_names)
+    end
+
+    def skip_pundit?
+      action_name == 'permanent_image'
     end
 
     def set_layout
