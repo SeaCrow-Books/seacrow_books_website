@@ -12,8 +12,8 @@ module Blog
       @featured_posts = @published_posts.order(created_at: :desc).offset(1).limit(3)
       @latest_posts = Post.latest_published
   
-      @most_recent_book = Book.order(publication_date: :desc).first
-      @recent_books = Book.order(publication_date: :desc).limit(3)
+      @most_recent_book = Publishing::Book.order(publication_date: :desc).first
+      @recent_books = Publishing::Book.order(publication_date: :desc).limit(3)
 
       authorize @posts
       @page_title = 'Articles'
