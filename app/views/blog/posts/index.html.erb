@@ -11,7 +11,7 @@
             <% end %>
 
             <div class="card-body d-flex flex-column justify-content-between">
-              <h2 class="card-title"><%= link_to @featured_post.title.titleize, post_path(@featured_post) %></h2>
+              <h2 class="card-title"><%= link_to @featured_post.title.titleize, blog_post_path(@featured_post) %></h2>
               <p class="featured-post__description"><%= MarkdownRenderer.render(@featured_post.description) %></p>
               <div class="card-reading-time d-flex align-items-center">
                   <i class="bi bi-stopwatch-fill"></i> <%= read_time(@featured_post.content) %>
@@ -23,7 +23,7 @@
         <!-- Most Recent Book -->
         <div class="col-lg-6 d-flex justify-content-center align-items-center">
           <div class="my-3">
-            <%= link_to book_path(@most_recent_book) do %>
+            <%= link_to publishing_book_path(@most_recent_book) do %>
               <%= image_tag @most_recent_book.cover, alt: "#{@most_recent_book.title} cover", class: "img-fluid", style: "max-width: 300px; height: auto;" %>
             <% end %>
           </div>
