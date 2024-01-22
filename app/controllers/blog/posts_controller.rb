@@ -89,7 +89,7 @@ module Blog
         'page_templates/small_page'
       when 'show', 'new', 'edit'
         'page_templates/medium_page'
-      when 'index', 'show'
+      when 'index'
         'page_templates/large_page'
       else
         'application'
