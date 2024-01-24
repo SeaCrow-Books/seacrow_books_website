@@ -37,7 +37,7 @@ module Blog
       @post = Post.new(post_params)
       authorize @post
       if @post.save
-        redirect_to @post, notice: 'Post was successfully created.'
+        redirect_to edit_blog_post_path(@post), notice: 'Post was successfully created.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -58,7 +58,7 @@ module Blog
     
       # Other update logic
       if @post.update(post_params)
-        redirect_to @post, notice: 'Post was successfully updated.'
+        redirect_to edit_blog_post_path(@post), notice: 'Post was successfully updated.'
       else
         render :edit, status: :unprocessable_entity
       end
