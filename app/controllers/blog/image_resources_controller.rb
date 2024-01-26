@@ -101,9 +101,9 @@ module Blog
         'page_templates/tiny_page'
       when
         'page_templates/small_page'
-      when 'show', 'new', 'edit'
+      when 'show'
         'page_templates/medium_page'
-      when 'index'
+      when 'index','new','edit'
         'page_templates/large_page'
       else
         'application'
