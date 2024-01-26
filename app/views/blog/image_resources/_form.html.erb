@@ -59,7 +59,7 @@
                   <% column_tags.each do |tag_name| %>
                     <div class="form-check">
                       <%= check_box_tag 'image_resource[tag_list][]', tag_name, @image_resource.tag_list.include?(tag_name), class: 'form-check-input form__input' %>
-                      <%= label_tag "image_resource_tag_list_#{tag_name}", tag_name.titleize, class: 'form-check-label form__label' %>
+                      <%= label_tag "image_resource_tag_list_#{tag_name}", tag_name.titleize, class: 'form-check-label' %>
                     </div>
                   <% end %>
                 </div>
