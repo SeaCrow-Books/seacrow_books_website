@@ -2,7 +2,11 @@
     <section>
 
       <h1 class="category-show__title"><%= @category.name %> Articles</h1>
-      <p class="category-show__description"><%= MarkdownRenderer.render(@category.description) %></p>
+      <div class="category-show__description">
+        <p class="category-show__description-text">
+          <%= MarkdownRenderer.render(@category.description) %>
+        </p>
+      </div>
 
       <!-- Display the articles/posts for this category -->
       <%= render partial: 'shared/latest_posts', locals: { posts: @published_category_posts }%>
