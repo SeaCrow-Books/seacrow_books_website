@@ -42,7 +42,7 @@
                     <div class="row">
                         <% @related_books.each do |related_book| %>
                             <div class="col-4">
-                                <%= link_to book_path(related_book) do %>
+                                <%= link_to publishing_book_path(related_book) do %>
                                     <%= image_tag related_book.cover, alt: related_book.title, class: "book-cover img-fluid mb-4 clickable-image" %>
                                 <% end %>
                             </div>
