@@ -30,6 +30,10 @@
     <%= f.number_field :series_number, class: 'form-control', placeholder: "This is the book number in the series." %>
   </div>
 
+  <div class="mb-3">
+    <%= f.label :amazon_asin, class: 'form-label' %>
+    <%= f.text_field :amazon_asin, class: 'form-control' %>
+  </div>
 
   <div class="mb-3">
     <%= f.label :publication_date, class: 'form-label' %>

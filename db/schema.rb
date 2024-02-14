@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_22_175408) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_14_163338) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -145,6 +145,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_22_175408) do
     t.bigint "book_collection_id"
     t.string "title_tag_line"
     t.integer "series_number"
+    t.string "amazon_asin"
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["book_collection_id"], name: "index_books_on_book_collection_id"
     t.index ["slug"], name: "index_books_on_slug", unique: true

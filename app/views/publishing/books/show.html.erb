@@ -35,7 +35,6 @@
                     </tbody>
                 </table>
      
-
                 <!-- Other titles within the left column -->
                 <div class="book-show__other-titles custom-gray-bg">
                     <h3 class="book-show_other-titles-title">Other titles you might like</h3>
@@ -62,6 +61,12 @@
                 <%= link_to_if_authorized('Edit', @book, :edit) %>
                 <%= link_to_if_authorized('Delete', @book, :destroy) %>
                 <%= link_to_if_authorized('View Sections', @book, :book_sections) %>
+
+                <% if @book.amazon_url %>
+                    <%= link_to @book.amazon_url, class: 'btn btn-primary', target: '_blank' do %>
+                        <i class="bi bi-amazon"></i> View on Amazon
+                    <% end %>
+                <% end %>
             </div>
 
         </div> <!-- end of inner row -->
