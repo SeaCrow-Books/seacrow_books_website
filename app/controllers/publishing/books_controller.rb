@@ -71,6 +71,7 @@ module Publishing
         :publication_date,
         :title_tag_line,   
         :series_number,   
+        :amazon_asin,
         genre_ids: []
       )
     end
