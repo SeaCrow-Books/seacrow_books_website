@@ -56,7 +56,7 @@
       </div>
 
       <!-- email capture -->
-      <div class="card">
+      <div class="card mt-5">
         <div class="card-body">
           <%= turbo_frame_tag 'writer_engagement_form' do %>
             <%= form_for WriterEngagement.new, url: blog_post_writer_engagements_path(@post), method: :post do |f| %>
