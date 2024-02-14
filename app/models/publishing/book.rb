@@ -42,5 +42,10 @@ module Publishing
       end
     end
 
+    # Creates the Amazon link
+    def amazon_url
+      "https://www.amazon.com/dp/#{amazon_asin}" if amazon_asin.present?
+    end
+
   end
 end
