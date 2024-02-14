@@ -11,6 +11,7 @@ class DashboardsController < ApplicationController
     @posts = Blog::Post.all
     @users = User.all
     @authors = Publishing::Author.all
+    @writer_engagements = WriterEngagement.all
   end
   
 end

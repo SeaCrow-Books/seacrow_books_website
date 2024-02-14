@@ -55,7 +55,7 @@
       </div>
       <div class="col-lg-3">
         <div class="card h-100">
-          <div class="card-body">
+          <div class="card-body"><%= @writer_engagements.count %>
             <h2 class="card-title">Series</h2>
             <ul>
               <% @book_collections.each do |series| %>
@@ -165,6 +165,8 @@
                     <% if current_user.admin? %>
                       <%= button_to (config.allow_new_accounts ? "Turn off account creation" : "Turn on account creation"), update_account_creation_permission_path, method: :patch, class: 'btn btn-sm btn-outline-danger' %>
                     <% end %>
+
+                    <p>Number of sign ups: <%= @writer_engagements.count %></p>
 
                 </div>
             </div>
