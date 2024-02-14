@@ -54,6 +54,24 @@
           <%= raw @post.content %>      
         </div> 
       </div>
+
+      <!-- email capture -->
+      <div class="card">
+        <div class="card-body">
+          <%= turbo_frame_tag 'writer_engagement_form' do %>
+            <%= form_for WriterEngagement.new, url: blog_post_writer_engagements_path(@post), method: :post do |f| %>
+              <div class="form-group">
+                <p class="lead">Join our community group of erotic fiction fans and get the hottest, most exciting stories and news sent right to your inbox. Our weekly newsletter is your key to discovering secret fantasies, hidden desires, and a world of stories that will thrill and excite you.</p>
+                <%= f.email_field :email, class: 'form-control mt-4', placeholder: "Add your email...", required: true %>
+              </div>
+              <div class="d-grid gap-2">
+                <%= f.submit "Subscribe", class: 'btn btn-outline-primary mt-4' %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
     </article>
   </div>
 </div>
