@@ -54,6 +54,7 @@ end
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
   get 'privacy-policy', to: 'pages#privacy_policy'
+  get 'trigger-support', to: 'pages#trigger_support'
 
   # Dashboard
   get 'dashboard', to: 'dashboards#show', as: 'dashboard'

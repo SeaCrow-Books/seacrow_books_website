@@ -22,5 +22,10 @@ class PagesController < ApplicationController
       @page_description = 'Discover our privacy policy'
     end
 
+    def trigger_support
+      @page_title = 'Trigger Support' 
+      @page_description = 'Support and Resources'
+    end
+
   end
   
