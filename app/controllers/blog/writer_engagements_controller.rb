@@ -1,6 +1,10 @@
 module Blog
     class WriterEngagementsController < ApplicationController
+      before_action :authenticate_user!
+      before_action :set_writer_engagement, only: [:destroy]
+
       def create
+      
         # Use friendly.find to accommodate finding the post by slug
         @post = Blog::Post.friendly.find(params[:post_id])
   
@@ -21,12 +25,26 @@ module Blog
           end
         end
       end
+
+      def index
+        @writer_engagements = WriterEngagement.includes(:post).all
+      end
+  
+      def destroy
+        @writer_engagement.destroy
+        redirect_to blog_writer_engagements_path, notice: 'Writer engagement was successfully destroyed.'
+      end
   
       private
+  
+      def set_writer_engagement
+        @writer_engagement = WriterEngagement.find(params[:id])
+      end
   
       def writer_engagement_params
         params.require(:writer_engagement).permit(:email)
       end
+
     end
   end
   

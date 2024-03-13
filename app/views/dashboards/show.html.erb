@@ -55,7 +55,7 @@
       </div>
       <div class="col-lg-3">
         <div class="card h-100">
-          <div class="card-body"><%= @writer_engagements.count %>
+          <div class="card-body">
             <h2 class="card-title">Series</h2>
             <ul>
               <% @book_collections.each do |series| %>
@@ -167,6 +167,12 @@
                     <% end %>
 
                     <p>Number of sign ups: <%= @writer_engagements.count %></p>
+
+                    <ul>
+                      <% @writer_engagements.each do |writer_engagement| %>
+                        <li><%= writer_engagement.email %></li>
+                      <% end %>
+                    </ul>
 
                 </div>
             </div>
