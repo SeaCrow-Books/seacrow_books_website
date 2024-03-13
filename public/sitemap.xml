@@ -1,49 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://seacrowbooks.com/</loc>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/about</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/blog</loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/blog/romance-fiction</loc>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/blog/period-piece-romance</loc>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/blog/speculative-romance</loc>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/blog/inclusive-romance</loc>
-        <priority>0.7</priority>
-    </url>
+    
+    <!-- Static Pages -->
+    <url><loc>https://seacrowbooks.com/</loc></url>
+    <url><loc>https://seacrowbooks.com/about</loc></url>
+    <url><loc>https://seacrowbooks.com/privacy-policy</loc></url>
+    <url><loc>https://seacrowbooks.com/trigger-support</loc></url>
 
-    <url>
-        <loc>https://seacrowbooks.com/blog/staple-genres-of-romance-fiction</loc>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/blog/age-based-romance</loc>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/blog/sensual-and-explicit-romance</loc>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://seacrowbooks.com/blog/thematic-romance</loc>
-        <priority>0.6</priority>
-    </url>
+    <!-- Books -->
+    <url><loc>https://seacrowbooks.com/publishing/authors/sarah-rosewood</loc></url>
+    <url><loc>https://seacrowbooks.com/publishing/books/the-heist</loc></url>
+    <url><loc>https://seacrowbooks.com/publishing/books/the-hideout</loc></url>
+
+    <!-- Blog -->
+    <url><loc>https://seacrowbooks.com/blog</loc></url>
+
+    <!-- Blog - Romance Fiction-->
+    <url><loc>https://seacrowbooks.com/blog/categories/romance-fiction</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/romance-fiction</loc></url>
+
+    <!-- Blog - Sensual and explicit -->
+    <url><loc>https://seacrowbooks.com/blog/categories/sensual-explicit-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/sensual-and-explicit-romance</loc></url>
+
+    <!-- Blog - Speculative -->
+    <url><loc>https://seacrowbooks.com/blog/categories/speculative-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/speculative-romance</loc></url>
+
+        <!-- Blog - Speculative - Fantasy -->
+        <url><loc>https://seacrowbooks.com/blog/categories/fantasy-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/urban-fantasy-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/historical-fantasy-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/epic-fantasy-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/elfpunk-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/cozy-fantasy-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/swords-and-sorcery-fantasy-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/fairy-tale-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/witch-and-wizard-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/fae-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/contemporary-fantasy-romance</loc></url>
+
+        <!-- Blog - Speculative - Paranormal -->
+        <url><loc>https://seacrowbooks.com/blog/categories/paranormal-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/vampire-romance</loc></url>
+
+        <!-- Blog - Speculative - science fiction -->
+        <url><loc>https://seacrowbooks.com/blog/categories/science-fiction-romance</loc></url>
+
+    <!-- Blog - Period Piece -->
+    <url><loc>https://seacrowbooks.com/blog/categories/period-piece-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/period-piece-romance</loc></url>
+
+    <!-- Blog - Inclusive -->
+    <url><loc>https://seacrowbooks.com/blog/categories/inclusive-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/inclusive-romance</loc></url>
+
+    <!-- Blog - Age Based -->
+    <url><loc>https://seacrowbooks.com/blog/categories/age-based-romance</loc></url>
+    <url><lochttps://seacrowbooks.com/blog/age-based-romance></loc></url>
+
+    <!-- Blog - Staples -->
+    <url><loc>https://seacrowbooks.com/blog/categories/staples-of-romance-fiction</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/staple-genres-of-romance-fiction</loc></url>
+
+    <!-- Blog - Thematic -->
+    <url><loc>https://seacrowbooks.com/blog/categories/thematic-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/thematic-romance</loc></url>
 
 </urlset>
+
+
+    <url><loc></loc></url>
