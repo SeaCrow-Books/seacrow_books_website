@@ -13,22 +13,21 @@ Rails.application.routes.draw do
     resources :tags  
   end  
 
-# config/routes.rb
-namespace :blog do
-  resources :categories do
-    get 'child_categories', on: :member
-  end
-  resources :image_resources
-  resources :posts, path: '/' do
-    # Nested resource for writer_engagements within posts
-    resources :writer_engagements, only: [:create]
+  namespace :blog do
+    resources :writer_engagements, only: [:index, :destroy, :show, :edit, :update]
+  
+    resources :categories do
+      get 'child_categories', on: :member
+    end
+    resources :image_resources
+    resources :posts, path: '/' do
+      resources :writer_engagements, only: [:create]
+    end
+    
+    get '/image_resources/:id/permanent_image', to: 'image_resources#permanent_image', as: 'permanent_image'
   end
   
-  # Existing route for getting a permanent image
-  get '/image_resources/:id/permanent_image', to: 'image_resources#permanent_image', as: 'permanent_image'
-end
 
-  
   # Publishing
   namespace :publishing do
     resources :books do
