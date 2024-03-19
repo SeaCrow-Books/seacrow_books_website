@@ -24,10 +24,11 @@ Rails.application.routes.draw do
       resources :writer_engagements, only: [:create]
     end
     
+    resources :post_authors
+    
     get '/image_resources/:id/permanent_image', to: 'image_resources#permanent_image', as: 'permanent_image'
   end
   
-
   # Publishing
   namespace :publishing do
     resources :books do

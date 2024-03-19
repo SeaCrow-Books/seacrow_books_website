@@ -1,0 +1,22 @@
+<section>
+
+  <div class="row">
+    <div class="col-md-4">
+
+      <!-- Name -->
+      <h1 class="post-author-show__title"><%= @post_author.name.titleize %> Articles</h1>
+      
+      <!-- Image -->
+      <%= image_tag @post_author.image, alt: @post_author.name.titleize, class: "img-fluid mx-auto d-block rounded  post-author-show__image" %>
+
+      <!-- Description -->
+      <p class="post-author-show__description"><%= MarkdownRenderer.render(@post_author.description) %></p>
+
+    </div>
+
+    <div class="col-md-8 mt-5">
+      <!-- Content for the second column -->
+      <%= render partial: 'shared/latest_posts', locals: { posts: @published_post_author_posts }%>
+    </div>
+  </div>
+</section>

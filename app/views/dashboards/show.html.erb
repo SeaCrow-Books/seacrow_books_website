@@ -2,6 +2,7 @@
   <div class="col-lg-10">
 
  <div class="row mt-5">
+
       <div class="col-lg-3">
           <div class="card h-100">
               <div class="card-body">
@@ -75,10 +76,11 @@
         </div>
       </div>
 
-    </div>
+  </div>
 
 
-     <div class="row mt-5">
+  <div class="row mt-5">
+  
       <div class="col-lg-8">
           <!-- Card for posts -->
           <div class="card h-100">
@@ -130,9 +132,10 @@
     </div>
 
 
-    </div>
+  </div>
 
     <div class="row mt-5">
+
       <div class="col-lg-4">
             <!-- Card for Users -->
             <div class="card h-100">
@@ -179,7 +182,23 @@
       </div>
 
       <div class="col-lg-4">
-           
+        <!-- Card for Post Authors -->
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Post Authors</h2>
+              <ul>
+                <% @post_authors.each do |post_author| %>
+                  <li class="card-text">
+                    <%= link_to post_author.name, blog_post_author_path(post_author) %> | 
+                    <%= link_to 'Edit', edit_blog_post_author_path(post_author) if policy(post_author).update? %> |
+                    <%= link_to 'Delete', blog_post_author_path(post_author), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(post_author).destroy? %>
+                  </li>
+                <% end %>
+              </ul>
+
+              <%= link_to 'New Post Author', new_blog_post_author_path, class: 'btn btn-sm btn-outline-primary' %>
+          </div>
+        </div>
       </div>
 
       <div class="col-lg-4">
