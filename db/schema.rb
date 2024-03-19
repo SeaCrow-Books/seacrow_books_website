@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_14_183102) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_100618) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -244,6 +244,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_14_183102) do
     t.index ["slug"], name: "index_image_resources_on_slug", unique: true
   end
 
+  create_table "post_authors", force: :cascade do |t|
+    t.string "name"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.text "description"
+    t.index ["post_id"], name: "index_post_authors_on_post_id"
+    t.index ["slug"], name: "index_post_authors_on_slug", unique: true
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -258,6 +269,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_14_183102) do
     t.boolean "published", default: false
     t.string "main_image_alt_text"
     t.string "description"
+    t.integer "post_author_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -334,6 +346,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_14_183102) do
   add_foreign_key "chat_sessions", "chat_custom_instructions"
   add_foreign_key "chat_sessions", "users"
   add_foreign_key "chats", "chat_sessions"
+  add_foreign_key "post_authors", "posts"
   add_foreign_key "taggings", "tags"
   add_foreign_key "writer_engagements", "posts"
 end

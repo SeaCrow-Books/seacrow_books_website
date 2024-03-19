@@ -1,0 +1,46 @@
+<div class="form__container">
+  <%= form_with(model: post_author) do |form| %>
+    <% if post_author.errors.any? %>
+      <div class="form__group" id="error_explanation">
+        <h2><%= pluralize(post_author.errors.count, "error") %> prohibited this post_author from being saved:</h2>
+
+        <ul class="form__explainer-text">
+          <% post_author.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form__group">
+      <%= form.label :name, class: "form__label" %>
+      <%= form.text_field :name, id: :post_author_name, class: "form-control form__input" %>
+    </div>
+
+    <div class="form__group">
+      <%= form.label :description, class: 'form-label form__label' %>
+      <p class="form__explainer-text">You can write in Markdown</p>
+      <%= form.text_area :description, class: 'form-control form__input', data: { controller: "textarea", action: "input->textarea#resizeOnInput" }, placeholder: "Write in markdown" %>
+    </div>
+
+    <!-- Image -->
+    <div class="form-group form__group">
+      <%= form.label :image, class: 'form-label form__label' %>
+        
+      <% if form.object.image.attached? %>
+          <div class="mb-3 d-flex align-items-center justify-content-center">
+            <%= image_tag form.object.image, class: "img-fluid" %>
+          </div>
+          <p class="form__explainer-text">Select new file to replace image. It must be a JPEG, PNG, or WEBP.<p>
+        <% else %>
+          <p class="form__explainer-text">Select file for main image. It must be a JPEG, PNG, or WEBP.<p>
+        <% end %>
+
+        <%= form.file_field :image, class: 'form-control' %>
+      </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary form__submit" %>
+    </div>
+  <% end %>
+</div>
