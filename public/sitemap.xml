@@ -15,6 +15,9 @@
     <!-- Blog -->
     <url><loc>https://seacrowbooks.com/blog</loc></url>
 
+    <!-- Blog - Post Writers -->
+   <url><loc> https://seacrowbooks.com/blog/post_authors/suzie-morrow<url><loc>
+
     <!-- Blog - Romance Fiction-->
     <url><loc>https://seacrowbooks.com/blog/categories/romance-fiction</loc></url>
     <url><loc>https://seacrowbooks.com/blog/romance-fiction</loc></url>
