@@ -33,11 +33,12 @@
         <%= f.text_field :custom_url, class: 'form-control post_form__input', placeholder: 'Leave blank to use title' %>
       </div>
 
-      <!-- Writer -->
+      <!-- Post Author -->
       <div class="form-group form__group">
-        <%= f.label :writer, class: 'form-label form__label' %>
+        <%= f.label "Post Author", class: 'form-label form__label' %>
         <p class="form__explainer-text">This is the author of the post, e.g. Stephen King.</p>
-        <%= f.text_field :writer, placeholder: "Add the name of the post's author...", value: 'Sarah Rosewood', class: 'form-control post-form__input' %>
+        <%= f.collection_select :post_author_id, @post_authors, :id, :name, {}, { class: 'form-select form__input' } %>
+
       </div>
 
       <!-- Meta description -->

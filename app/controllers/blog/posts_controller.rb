@@ -30,6 +30,7 @@ module Blog
       @post = Post.new
       @page_title = "New Post"
       @categories = Blog::Category.where(parent_id: nil)
+      @post_authors = Blog::PostAuthor.all
       authorize @post
     end
   
@@ -46,6 +47,7 @@ module Blog
     def edit
       authorize @post
       @categories = Blog::Category.where(parent_id: nil)
+      @post_authors = Blog::PostAuthor.all
       @page_title = "Editing" + " " + @post.meta_title.titleize 
     end
   
@@ -78,7 +80,7 @@ module Blog
     end
   
     def post_params
-      params.require(:blog_post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, category_ids: [])
+      params.require(:blog_post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, :post_author, :post_author_id, category_ids: [])
     end
 
     def set_layout

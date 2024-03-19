@@ -19,7 +19,12 @@
           <h1 class="post-show__title"><%= @post.title.titleize %></h1>
           <hr>
           <div class="post-show__metadata">
-            <%= @post.writer %> on <%= @post.updated_at.strftime('%B %d, %Y') %> | 
+            <% if @post.post_author.present? %>
+              <%= link_to @post.post_author.name, blog_post_author_path(@post.post_author) %>
+            <% else %>
+              <%= @post.writer %>
+            <% end %> 
+            on <%= @post.updated_at.strftime('%B %d, %Y') %> |
             <i class="bi bi-stopwatch-fill"></i> <%= read_time(@post.content) %>
 
             <% if policy(@post).edit? %>
@@ -55,7 +60,7 @@
         </div> 
       </div>
 
-      <!-- email capture -->
+      <!-- Email capture -->
       <div class="card mt-5">
         <div class="card-body">
           <%= turbo_frame_tag 'writer_engagement_form' do %>

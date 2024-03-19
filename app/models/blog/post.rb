@@ -5,6 +5,7 @@ module Blog
     # Relationships
     has_and_belongs_to_many :categories, join_table: 'categories_posts'
     has_many :writer_engagements
+    belongs_to :post_author, optional: true
       
     # Callbacks
     before_save :set_meta_title
@@ -13,7 +14,7 @@ module Blog
     # Validations
     validates :title, presence: true, uniqueness: { case_sensitive: false }
     validates :content, presence: true
-    validates :writer, presence: true 
+    validates :post_author, presence: true 
     validates :description, length: { maximum: 250, message: "should not exceed 250 characters" }
     validates :meta_description, length: { maximum: 250, message: "should not exceed 250 characters" }
     validates :main_image_alt_text, length: { maximum: 125, message: "should not exceed 125 characters" }
