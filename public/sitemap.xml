@@ -46,11 +46,14 @@
 
         <!-- Blog - Speculative - Paranormal -->
         <url><loc>https://seacrowbooks.com/blog/categories/paranormal-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/paranormal-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/vampire-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/ghost-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/werewolf-and-shapeshifter-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/angel-and-demon-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/sorcerer-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/zombie-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/haunted-love</loc></url>
 
         <!-- Blog - Speculative - science fiction -->
         <url><loc>https://seacrowbooks.com/blog/categories/science-fiction-romance</loc></url>
