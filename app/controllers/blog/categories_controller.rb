@@ -14,6 +14,11 @@ module Blog
       @category_posts = @category.posts
       @published_category_posts = @category_posts.published
       authorize @category
+
+      # Use the CategoryHierarchyService to get ancestors and descendants
+      hierarchy_service = Blog::CategoryHierarchyService.new(@category)
+      @ancestors = hierarchy_service.ancestors
+      @descendants = hierarchy_service.descendants
     end
 
     def new
@@ -49,33 +54,29 @@ module Blog
     def destroy
       authorize @category
       @category.destroy
-      redirect_to categories_url, notice: 'Category was successfully destroyed.'
+      redirect_to dashboard_path, notice: 'Category was successfully destroyed.'
     end
 
-    # Action to show child categories of a specific category
     def child_categories
-      # Assuming you want to show child categories, you can access them through the association
       @child_categories = @category.child_categories
       respond_to do |format|
-        format.html # If you have a view for child_categories.html.erb
-        format.json { render json: @child_categories } # Or if you're responding with JSON
+        format.html
+        format.json { render json: @child_categories }
       end
     end
 
     private
 
     def set_category
-      @category = Category.friendly.find(params[:id]) # This assumes you're using the 'friendly_id' gem for slug management
+      @category = Category.friendly.find(params[:id])
     end
 
     def category_params
-      params.require(:blog_category).permit(:name, :description, :parent_id) # Include :parent_id to allow assigning parent categories
+      params.require(:blog_category).permit(:name, :description, :parent_id)
     end
 
     def set_layout
       case action_name
-      when 
-        'page_templates/tiny_page'
       when 'new', 'edit'
         'page_templates/small_page'
       when 'show'
@@ -86,6 +87,5 @@ module Blog
         'application'
       end
     end
-
   end
 end
