@@ -38,6 +38,23 @@
       end, "")
     end
 
+    def display_category_and_posts(category)
+      render_content = ''.html_safe
+  
+      # Display the category title linking to its show page
+      render_content += content_tag(:h3, link_to(category.name.titleize, blog_category_path(category)), class: 'category-show__sub-title')
+  
+      # Display the category's posts using the `latest_posts` partial
+      render_content += render(partial: 'shared/latest_posts', locals: { posts: category.posts.published })
+  
+      # Recursively display each child category and its posts
+      category.child_categories.each do |child_category|
+        render_content += display_category_and_posts(child_category)
+      end
+  
+      render_content
+    end
+
     private
   
     def render_category(category, &block)
