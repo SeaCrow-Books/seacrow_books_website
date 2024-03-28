@@ -55,21 +55,10 @@
         <%= f.text_field :description, placeholder: "Describe the post for the reader... Write in MARKDOWN", class: 'form-control post_form__input' %>
       </div>
 
-      <!-- Category Checkboxes -->
+      <!-- Category Checkboxes with Nesting -->
       <div class="form-group form__group">
         <%= f.label :category_ids, "Categories", class: 'form-label form__label' %>
-        <% @categories.each do |category| %>
-          <div class="form-check">
-            <%= f.check_box :category_ids, { multiple: true, id: "category_#{category.id}" }, category.id, nil %>
-            <%= label_tag "category_#{category.id}", category.name, class: 'form-check-label' %>
-          </div>
-          <% category.child_categories.each do |child| %>
-            <div class="form-check" style="margin-left: 20px;">
-              <%= f.check_box :category_ids, { multiple: true, id: "category_#{child.id}" }, child.id, nil %>
-              <%= label_tag "category_#{child.id}", child.name, class: 'form-check-label' %>
-            </div>
-          <% end %>
-        <% end %>
+        <%= category_checkboxes(@categories.where(parent_id: nil), f) %>
       </div>
 
       <!-- Main Image -->

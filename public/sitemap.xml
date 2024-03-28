@@ -19,19 +19,19 @@
     <url><loc>https://seacrowbooks.com/blog/post_authors/suzie-morrow</loc></url>
 
     <!-- Blog - Romance Fiction-->
-    <url><loc>https://seacrowbooks.com/blog/categories/romance-fiction</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/categories/romance-fiction-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/romance-fiction</loc></url>
 
     <!-- Blog - Sensual and explicit -->
-    <url><loc>https://seacrowbooks.com/blog/categories/sensual-explicit-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/categories/sensual-explicit-romance-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/sensual-and-explicit-romance</loc></url>
 
     <!-- Blog - Speculative -->
-    <url><loc>https://seacrowbooks.com/blog/categories/speculative-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/categories/speculative-romance-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/speculative-romance</loc></url>
 
         <!-- Blog - Speculative - Fantasy -->
-        <url><loc>https://seacrowbooks.com/blog/categories/fantasy-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/categories/fantasy-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/fantasy-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/urban-fantasy-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/historical-fantasy-romance</loc></url>
@@ -45,7 +45,7 @@
         <url><loc>https://seacrowbooks.com/blog/contemporary-fantasy-romance</loc></url>
 
         <!-- Blog - Speculative - Paranormal -->
-        <url><loc>https://seacrowbooks.com/blog/categories/paranormal-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/categories/paranormal-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/paranormal-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/vampire-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/ghost-romance</loc></url>
@@ -56,7 +56,7 @@
         <url><loc>https://seacrowbooks.com/blog/haunted-love</loc></url>
 
         <!-- Blog - Speculative - science fiction -->
-        <url><loc>https://seacrowbooks.com/blog/categories/science-fiction-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/categories/science-fiction-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/science-fiction-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/space-opera-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/alien-romance</loc></url>
@@ -66,24 +66,27 @@
         <url><loc>https://seacrowbooks.com/blog/cyberpunk-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/robot-romance</loc></url>
 
+    <!-- Blog - Dark Romance -->
+    <url><loc>https://seacrowbooks.com/blog/categories/dark-romance-genre</loc></url>
+
     <!-- Blog - Period Piece -->
-    <url><loc>https://seacrowbooks.com/blog/categories/period-piece-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/categories/period-piece-romance-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/period-piece-romance</loc></url>
 
     <!-- Blog - Inclusive -->
-    <url><loc>https://seacrowbooks.com/blog/categories/inclusive-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/categories/inclusive-romance-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/inclusive-romance</loc></url>
 
     <!-- Blog - Age Based -->
-    <url><loc>https://seacrowbooks.com/blog/categories/age-based-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/categories/age-based-romance-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/age-based-romance</loc></url>
 
     <!-- Blog - Staples -->
-    <url><loc>https://seacrowbooks.com/blog/categories/staples-of-romance-fiction</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/categories/staples-of-romance-fiction-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/staple-genres-of-romance-fiction</loc></url>
 
     <!-- Blog - Thematic -->
-    <url><loc>https://seacrowbooks.com/blog/categories/thematic-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/categories/thematic-romance-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/thematic-romance</loc></url>
 
 </urlset>
