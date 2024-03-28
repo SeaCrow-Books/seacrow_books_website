@@ -1,26 +1,19 @@
 
-    <section>
+<section>
+  <h1 class="category-show__title"><%= @category.name %> Articles</h1>
+  <div class="category-show__description">
+    <p class="category-show__description-text">
+      <%= MarkdownRenderer.render(@category.description) %>
+    </p>
+  </div>
 
-      <h1 class="category-show__title"><%= @category.name %> Articles</h1>
-      <div class="category-show__description">
-        <p class="category-show__description-text">
-          <%= MarkdownRenderer.render(@category.description) %>
-        </p>
-      </div>
+  <!-- Display the articles/posts for this category -->
+  <%= render partial: 'shared/latest_posts', locals: { posts: @published_category_posts } %>
 
-      <!-- Display the articles/posts for this category -->
-      <%= render partial: 'shared/latest_posts', locals: { posts: @published_category_posts }%>
-
-      <!-- Display child categories if they exist -->
-      <% if @category.child_categories.any? %>
-        <div class="category-show__children">
-          <h3>Subcategories:</h3>
-          <ul>
-            <% @category.child_categories.each do |child| %>
-              <li><%= link_to child.name, blog_category_path(child) %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-    </section>
+  <!-- Display child and subchild categories and their posts -->
+  <div class="category-show__children">
+    <% @category.child_categories.each do |child| %>
+      <%= display_category_and_posts(child) %>
+    <% end %>
+  </div>
+</section>
