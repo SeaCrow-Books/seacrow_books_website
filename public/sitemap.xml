@@ -78,9 +78,11 @@
     <url><loc>https://seacrowbooks.com/blog/dark-fantasy-romance</loc></url>
     <url><loc>https://seacrowbooks.com/blog/anti-hero-romance</loc></url>
 
-    <!-- Blog - Period Piece -->
-    <url><loc>https://seacrowbooks.com/blog/categories/period-piece-romance-genre</loc></url>
-    <url><loc>https://seacrowbooks.com/blog/period-piece-romance</loc></url>
+    <!-- Blog - Historical Romance -->
+    <url><loc>https://seacrowbooks.com/blog/categories/historical-romance</loc></url>
+
+    <!-- Blog - Contemporary Romance -->
+    <url><loc>https://seacrowbooks.com/blog/categories/contemporary-romance</loc></url>
 
     <!-- Blog - Inclusive -->
     <url><loc>https://seacrowbooks.com/blog/categories/inclusive-romance-genre</loc></url>
