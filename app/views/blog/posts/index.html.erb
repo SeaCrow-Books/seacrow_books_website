@@ -7,7 +7,7 @@
         <div class="col-lg-6 d-flex">
           <div class="card shadow-sm w-100">
             <%= link_to blog_post_path(@featured_post) do %>
-              <%= image_tag @featured_post.main_image, alt: @featured_post.main_image_alt_text, class: "card-img-top" %> 
+              <%= image_tag @featured_post.main_image, loading: "lazy", alt: @featured_post.main_image_alt_text, class: "card-img-top" %> 
             <% end %>
 
             <div class="card-body d-flex flex-column justify-content-between">
@@ -24,7 +24,7 @@
         <div class="col-lg-6 d-flex justify-content-center align-items-center">
           <div class="my-3">
             <%= link_to publishing_book_path(@featured_book) do %>
-              <%= image_tag @featured_book.cover, alt: "#{@featured_book.title} cover", class: "img-fluid", style: "max-width: 300px; height: auto;" %>
+              <%= image_tag @featured_book.cover, loading: "lazy", alt: "#{@featured_book.title} cover", class: "img-fluid", style: "max-width: 300px; height: auto;" %>
             <% end %>
           </div>
         </div>

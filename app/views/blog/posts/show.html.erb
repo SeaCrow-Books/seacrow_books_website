@@ -3,7 +3,7 @@
   <div class="col-12">
     <div class="post-show__main-image">
       <% if @post.main_image.attached? %>
-        <%= image_tag @post.main_image, alt: @post.main_image_alt_text, class: "img-fluid mx-auto d-block rounded" %>
+        <%= image_tag @post.main_image, alt: @post.main_image_alt_text, loading: "lazy", class: "img-fluid mx-auto d-block rounded" %>
       <% end %>
     </div>
   </div>
