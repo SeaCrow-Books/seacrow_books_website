@@ -80,11 +80,14 @@
 
     <!-- Blog - Historical Romance -->
     <url><loc>https://seacrowbooks.com/blog/categories/historical-romance-genre</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/historical-romance</loc></url>
     <url><loc>https://seacrowbooks.com/blog/regency-romance</loc></url>
     <url><loc>https://seacrowbooks.com/blog/western-romance</loc></url>
     <url><loc>https://seacrowbooks.com/blog/viking-romance</loc></url>
     <url><loc>https://seacrowbooks.com/blog/pirate-romance</loc></url>
     <url><loc>https://seacrowbooks.com/blog/tudor-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/medieval-romance</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/elizabethan-romance</loc></url>
 
     <!-- Blog - Contemporary Romance -->
     <url><loc>https://seacrowbooks.com/blog/categories/contemporary-romance-genre</loc></url>
