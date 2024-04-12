@@ -50,7 +50,7 @@
               <td><%= image_resource.tags.join(', ') %></td>
               <td>
                 <% if image_resource.image.attached? %>
-                  <%= image_tag image_resource.image, class: "image-resource__resize_to_smaller_image" %>
+                  <%= image_tag image_resource.image, loading: "lazy", class: "image-resource__resize_to_smaller_image" %>
                 <% else %>
                   No Image
                 <% end %>
