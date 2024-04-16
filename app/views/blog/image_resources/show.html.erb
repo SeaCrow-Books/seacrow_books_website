@@ -60,15 +60,15 @@
             Permanent URL
           </div>
           <div class="card-body">
-            <p class="card-text"><%= blog_permanent_image_url(@image_resource) %></p>
-<p class="card-text">
-  <%= h "<div itemscope itemtype=\"https://schema.org/ImageObject\">" %>
-  <%= h "  <img src=\"" + blog_permanent_image_url(@image_resource) + "\" alt=\"" + @image_resource.alt_description + "\" itemprop=\"contentUrl\" width=\"700\" height=\"400\" class=\"img-fluid post-show__media rounded mx-auto d-block\" loading=\"lazy\">" %>
-  <%= h "  <span itemprop=\"creator\" itemtype=\"https://schema.org/Person\" itemscope>" %>
-  <%= h "    <meta itemprop=\"name\" content=\"Ben Gary\" />" %>
-  <%= h "  </span><br />" %>
-  <%= h "</div>" %>
-</p>
+           
+            <p class="card-text">
+              <%= h "<div itemscope itemtype=\"https://schema.org/ImageObject\">" %>
+              <%= h "  <img src=\"" + blog_permanent_image_url(@image_resource) + "\" alt=\"" + @image_resource.alt_description + "\" itemprop=\"contentUrl\" width=\"700\" height=\"400\" class=\"img-fluid post-show__media rounded mx-auto d-block\" loading=\"lazy\">" %>
+              <%= h "  <span itemprop=\"creator\" itemtype=\"https://schema.org/Person\" itemscope>" %>
+              <%= h "    <meta itemprop=\"name\" content=\"Ben Gary\" />" %>
+              <%= h "  </span><br />" %>
+              <%= h "</div>" %>
+            </p>
 
           </div>
         </div>
