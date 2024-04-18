@@ -60,7 +60,6 @@
                 <div class="book-show__book-description"><%= markdown_to_html(@book.description) %></div>
                 <%= link_to_if_authorized('Edit', @book, :edit) %>
                 <%= link_to_if_authorized('Delete', @book, :destroy) %>
-                <%= link_to_if_authorized('View Sections', @book, :book_sections) %>
 
                 <% if @book.amazon_url %>
                     <%= link_to @book.amazon_url, class: 'btn btn-primary', target: '_blank' do %>
