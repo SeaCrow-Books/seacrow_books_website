@@ -4,7 +4,6 @@ module Publishing
     #Relationships
     belongs_to :book_collection
     has_and_belongs_to_many :genres, join_table: 'books_genres'
-    has_many :book_sections, dependent: :destroy
 
     #Attachments
     has_one_attached :cover
