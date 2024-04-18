@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_18_082242) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_18_083456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,15 +94,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_082242) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
-  create_table "ai_models", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.index ["slug"], name: "index_ai_models_on_slug", unique: true
-  end
-
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -164,43 +155,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_082242) do
     t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_categories_posts_on_category_id"
     t.index ["post_id"], name: "index_categories_posts_on_post_id"
-  end
-
-  create_table "chat_custom_instructions", force: :cascade do |t|
-    t.string "name"
-    t.text "instruction_text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.string "slug"
-    t.string "status", default: "true"
-    t.index ["slug"], name: "index_chat_custom_instructions_on_slug", unique: true
-    t.index ["user_id"], name: "index_chat_custom_instructions_on_user_id"
-  end
-
-  create_table "chat_sessions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "session_name"
-    t.bigint "chat_custom_instruction_id"
-    t.bigint "user_id"
-    t.bigint "ai_model_id"
-    t.integer "status", default: 0
-    t.index ["ai_model_id"], name: "index_chat_sessions_on_ai_model_id"
-    t.index ["chat_custom_instruction_id"], name: "index_chat_sessions_on_chat_custom_instruction_id"
-    t.index ["user_id"], name: "index_chat_sessions_on_user_id"
-  end
-
-  create_table "chats", force: :cascade do |t|
-    t.string "user_input"
-    t.string "bot_response"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "messages"
-    t.bigint "chat_session_id"
-    t.string "role"
-    t.text "content"
-    t.index ["chat_session_id"], name: "index_chats_on_chat_session_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -327,11 +281,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_082242) do
   add_foreign_key "books", "book_collections"
   add_foreign_key "categories_posts", "categories"
   add_foreign_key "categories_posts", "posts"
-  add_foreign_key "chat_custom_instructions", "users"
-  add_foreign_key "chat_sessions", "ai_models"
-  add_foreign_key "chat_sessions", "chat_custom_instructions"
-  add_foreign_key "chat_sessions", "users"
-  add_foreign_key "chats", "chat_sessions"
   add_foreign_key "post_authors", "posts"
   add_foreign_key "taggings", "tags"
   add_foreign_key "writer_engagements", "posts"
