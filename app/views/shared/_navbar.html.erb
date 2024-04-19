@@ -92,18 +92,40 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="booksDropdown">
             <% @all_authors.each do |author| %>
-              <li><a class="dropdown-item" href="<%= publishing_author_path(author) %>"><%= author.name.titleize %></a></li>
+              <li><a class="dropdown-item" href="<%= author_path(author) %>"><%= author.name.titleize %></a></li>
             <% end %>
           </ul>
         </li>
-        <!-- Books dropdown -->
+        <!-- Series dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="booksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Books
+            Series
           </a>
           <ul class="dropdown-menu" aria-labelledby="booksDropdown">
-            <% @all_books.each do |book| %>
-              <li><a class="dropdown-item" href="<%= publishing_book_path(book.slug) %>"><%= book.title %></a></li>
+            <% @all_series.each do |series| %>
+              <li><a class="dropdown-item" href="<%= book_collection_path(series) %>"><%= series.name.titleize %></a></li>
+            <% end %>
+          </ul>
+        </li>
+        <!-- Genre dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="booksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Genres
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="booksDropdown">
+            <% @all_genres.each do |genre| %>
+              <li><a class="dropdown-item" href="<%= book_genre_path(genre) %>"><%= genre.name.titleize %></a></li>
+            <% end %>
+          </ul>
+        </li>
+        <!-- Trope dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="booksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Tropes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="booksDropdown">
+            <% @all_tropes.each do |trope| %>
+              <li><a class="dropdown-item" href="<%= book_trope_path(trope) %>"><%= trope.name.titleize %></a></li>
             <% end %>
           </ul>
         </li>
@@ -117,19 +139,33 @@
               <%= current_user.full_name %>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+
+              <!-- Only shows to admin -->
+              <% if current_user.management? %>
+                <li>
+                  <%= link_to admin_dashboard_path, class: 'dropdown-item' do %>
+                    <i class="bi bi-speedometer"></i> Admin Dashboard
+                  <% end %>  
+                </li>
+              <% end %>
+
               <li>
-                <%= link_to dashboard_path, class: 'dropdown-item' do %>
-                  <i class="bi bi-speedometer2"></i> Dashboard
+                <%= link_to blog_dashboard_path, class: 'dropdown-item' do %>
+                  <i class="bi bi-file-post"></i> Blog Dashboard
                 <% end %>  
               </li>
+
+              <li>
+                <%= link_to book_dashboard_path, class: 'dropdown-item' do %>
+                  <i class="bi bi-book"></i> Book Dashboard
+                <% end %>  
+              </li>
+
+              <li class="dropdown-divider"></li>
+
               <li>
                 <%= link_to blog_image_resources_path, class: 'dropdown-item' do %>
-                  <i class="bi bi-image"></i> Images
-                <% end %>  
-              </li>
-              <li>
-                <%= link_to new_blog_post_path, class: 'dropdown-item' do %>
-                  <i class="bi bi-file-post"></i> New Post
+                  <i class="bi bi-images"></i> Images
                 <% end %>  
               </li>
 

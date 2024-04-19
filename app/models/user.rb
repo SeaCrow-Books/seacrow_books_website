@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :chat_custom_instructions, dependent: :destroy
   has_many :chat_sessions, dependent: :destroy
 
-  enum role: { staff: 0, admin: 1 }
+  enum role: { staff: 0, admin: 1, manager: 2 }
 
   after_initialize :set_default_role, if: :new_record?
 
@@ -19,6 +19,10 @@ class User < ApplicationRecord
       last_name&.capitalize
     ].compact.join(' ')
   end
+
+  def management?
+    admin? || staff?
+  end
      
   private
      
@@ -26,5 +30,7 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :staff
   end
+
+
 
 end

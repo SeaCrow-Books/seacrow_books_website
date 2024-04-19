@@ -13,11 +13,9 @@
       if policy_check
         link_options = case action
                        when :edit
-                         { path: edit_publishing_book_path(book), method: :get }
+                         { path: edit_book_path(book), method: :get }
                        when :destroy
-                         { path: publishing_book_path(book), method: :delete, data: { confirm: 'Are you sure?' } }
-                       when :book_sections
-                         { path: publishing_book_book_sections_path(book), method: :get, class: 'btn btn-primary' }
+                         { path: book, method: :delete, data: { confirm: 'Are you sure?' } }
                        else
                          {}
                        end

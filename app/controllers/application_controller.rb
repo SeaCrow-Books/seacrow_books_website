@@ -6,8 +6,11 @@ class ApplicationController < ActionController::Base
 
     # Sets variables for navbar
     def set_variables_for_navbar
-      @all_books = Publishing::Book.all
-      @all_authors = Publishing::Author.all
+      @all_books = Book.all
+      @all_authors = Author.all
+      @all_series = BookCollection.all
+      @all_genres = BookGenre.all
+      @all_tropes = BookGenre.all
     end
 
     protected
@@ -23,7 +26,7 @@ class ApplicationController < ActionController::Base
 
     # Redirect after sign in
     def after_sign_in_path_for(resource)
-      dashboard_path # Your path may vary
+      blog_dashboard_path
     end
 
 end
