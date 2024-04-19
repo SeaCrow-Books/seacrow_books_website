@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :book_tropes
+
   # Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
@@ -21,10 +21,10 @@ Rails.application.routes.draw do
   end
   
   # Publishing related resources
-  resources :book_collections
+  resources :book_collections, path: 'series'
   resources :books
   resources :book_genres
-  # resources :book_tropes
+  resources :book_tropes
   resources :authors
 
   # Site config related routes

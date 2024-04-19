@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       @all_authors = Author.all
       @all_series = BookCollection.all
       @all_genres = BookGenre.all
-      @all_tropes = BookGenre.all
+      @all_tropes = BookTrope.all
     end
 
     protected
