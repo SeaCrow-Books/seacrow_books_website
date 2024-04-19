@@ -1,9 +1,10 @@
 
   class BookCollectionsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: %i[edit update destroy]
     before_action :set_book_collection, only: %i[show edit update destroy]
-    after_action :verify_authorized, except: :index
     after_action :verify_policy_scoped, only: :index
+    layout :set_layout
+
 
     # GET /publishing/authors/:author_id/series
     def index
@@ -69,4 +70,20 @@
     def book_collection_params
       params.require(:book_collection).permit(:name, :author_id)
     end
+  
+    def set_layout
+      case action_name
+      when 
+        'page_templates/tiny_page'
+      when 'new', 'edit'
+        'page_templates/small_page'
+      when
+        'page_templates/medium_page'
+      when 'index', 'show'
+        'page_templates/large_page'
+      else
+        'application'
+      end
+    end
+    
   end
