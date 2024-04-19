@@ -1,6 +1,8 @@
 class BookGenresController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[edit update destroy]
   before_action :set_book_genre, only: %i[show edit update destroy]
+  layout :set_layout
+
 
   def index
     @page_title = "Book Genres"
@@ -56,4 +58,20 @@ class BookGenresController < ApplicationController
   def book_genre_params
     params.require(:book_genre).permit(:name)
   end
+
+  def set_layout
+    case action_name
+    when 
+      'page_templates/tiny_page'
+    when 'new', 'edit'
+      'page_templates/small_page'
+    when
+      'page_templates/medium_page'
+    when 'index', 'show'
+      'page_templates/large_page'
+    else
+      'application'
+    end
+  end
+  
 end
