@@ -12,8 +12,8 @@ module Blog
       @featured_posts = @published_posts.order(created_at: :desc).offset(1).limit(3)
       @latest_posts = Post.latest_published
   
-      @featured_book = Publishing::Book.order(publication_date: :asc).first
-      @recent_books = Publishing::Book.order(publication_date: :desc).limit(3)
+      @featured_book = Book.order(publication_date: :asc).first
+      @recent_books = Book.order(publication_date: :desc).limit(3)
 
       authorize @posts
       @page_title = 'Articles'
@@ -70,7 +70,7 @@ module Blog
     def destroy
       authorize @post
       @post.destroy
-      redirect_to dashboard_path, notice: 'Post was successfully destroyed.'
+      redirect_to blog_dashboard_path, notice: 'Post was successfully destroyed.'
     end
   
     private

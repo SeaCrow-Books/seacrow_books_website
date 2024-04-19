@@ -1,21 +1,14 @@
 Rails.application.routes.draw do
-
-  get 'dashboards/show'
-
+  resources :book_tropes
   # Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  # Resources
-  Rails.application.routes.draw do
-    resources :users
-    resources :chat_custom_instructions
-    resources :ai_models
-    resources :tags  
-  end  
+  # Other resources and namespaces
+  resources :users
+  resources :tags  
 
   namespace :blog do
     resources :writer_engagements, only: [:index, :destroy, :show, :edit, :update]
-  
     resources :categories do
       get 'child_categories', on: :member
     end
@@ -23,43 +16,39 @@ Rails.application.routes.draw do
     resources :posts, path: '/' do
       resources :writer_engagements, only: [:create]
     end
-    
     resources :post_authors
-    
     get '/image_resources/:id/permanent_image', to: 'image_resources#permanent_image', as: 'permanent_image'
   end
   
-  # Publishing
-  namespace :publishing do
-    resources :books do
-      resources :book_sections do
-        patch :update_position, on: :member
-      end
-    end
-    resources :genres
-    resources :authors
-    resources :book_collections
-  end
+  # Publishing related resources
+  resources :book_collections
+  resources :books
+  resources :book_genres
+  # resources :book_tropes
+  resources :authors
 
-  # Chats
-  resources :chat_sessions do
-    resources :chats, only: [:create]
-  end  
-  
-  # Site config
+  # Site config related routes
   patch 'update_account_creation_permission', to: 'site_configs#update_account_creation_permission'
   get 'run_seed', to: 'site_configs#run_seed'
 
-  # Pages
+  # Static pages
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
   get 'privacy-policy', to: 'pages#privacy_policy'
   get 'trigger-support', to: 'pages#trigger_support'
 
   # Dashboard
-  get 'dashboard', to: 'dashboards#show', as: 'dashboard'
+  get 'blog_dashboard', to: 'dashboards#blog'
+  get 'book_dashboard', to: 'dashboards#book'
+  get 'admin_dashboard', to: 'dashboards#admin'
 
-  # Defines the root path route ("/")
+  # Root path
   root "pages#home"
+
+  # Nested routes for book_collections and books
+  resources :book_collections, path: '/', except: [:show] do
+    resources :books, path: '/'
+    get ':id', to: 'book_collections#show', as: 'show', on: :collection
+  end
 
 end

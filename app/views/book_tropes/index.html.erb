@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Book tropes</h1>
+
+<div id="book_tropes">
+  <% @book_tropes.each do |book_trope| %>
+    <%= render book_trope %>
+    <p>
+      <%= link_to "Show this book trope", book_trope %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New book trope", new_book_trope_path %>
