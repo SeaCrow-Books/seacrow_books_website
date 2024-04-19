@@ -1,5 +1,8 @@
 class BookTropesController < ApplicationController
+  before_action :authenticate_user!, only: %i[edit update destroy]
   before_action :set_book_trope, only: %i[ show edit update destroy ]
+  layout :set_layout
+
 
   # GET /book_tropes or /book_tropes.json
   def index
@@ -67,4 +70,20 @@ class BookTropesController < ApplicationController
     def book_trope_params
       params.require(:book_trope).permit(:name, :slug)
     end
+
+    def set_layout
+      case action_name
+      when 
+        'page_templates/tiny_page'
+      when 'new', 'edit'
+        'page_templates/small_page'
+      when
+        'page_templates/medium_page'
+      when 'index', 'show'
+        'page_templates/large_page'
+      else
+        'application'
+      end
+    end
+    
 end

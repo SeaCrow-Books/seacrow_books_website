@@ -1,6 +1,6 @@
 
   class AuthorsController < ApplicationController
-    before_action :authenticate_user!, only: %i[index edit update destroy]
+    before_action :authenticate_user!, only: %i[edit update destroy]
     before_action :set_author, only: %i[show edit update destroy]
     layout :set_layout
 
@@ -65,7 +65,7 @@
         'page_templates/tiny_page'
       when 'new', 'edit'
         'page_templates/small_page'
-      when 'show'
+      when
         'page_templates/medium_page'
       when 'index', 'show'
         'page_templates/large_page'
