@@ -1,0 +1,126 @@
+<% if current_user.management? %>
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="mt-3">
+        <!-- New Series -->
+        <%= link_to new_book_collection_path, class: 'btn btn-outline-primary btn-lg' do %>
+          <i class="bi bi-bookshelf"></i> New Series
+        <% end %>
+
+        <!-- New Book -->
+        <%= link_to new_book_path, class: 'btn btn-outline-primary btn-lg' do %>
+          <i class="bi bi-book"></i> New Book
+        <% end %>
+
+        <!-- New Genre -->
+        <%= link_to new_book_genre_path, class: 'btn btn-outline-primary btn-lg' do %>
+          <i class="bi bi-chat-square-text"></i> New Genre
+        <% end %>
+
+        <!-- New Trope -->
+        <%= link_to new_book_trope_path, class: 'btn btn-outline-primary btn-lg' do %>
+          <i class="bi bi-chat-right-dots"></i> New Trope
+        <% end %>
+
+        <!-- New Author -->
+        <%= link_to new_author_path, class: 'btn btn-outline-primary btn-lg' do %>
+          <i class="bi bi-person-plus"></i> New Author
+        <% end %>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="card-title">Books</h2>
+              <ul>
+                <% @books.each do |book| %>
+                  <li class="card-text">
+                    <%= link_to book.title, book_path(book) %> | 
+                    <%= link_to 'Edit', edit_book_path(book) if policy(book).update? %> |
+                    <%= link_to 'Delete', book_path(book), method: :delete, data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete } if policy(book).destroy? %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-lg-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="card-title">Authors</h2>
+              <ul>
+                <% @authors.each do |author| %>
+                  <li class="card-text">
+                    <%= link_to author.name, author_path(author) %> | 
+                    <%= link_to 'Edit', edit_author_path(author) if policy(author).update? %> |
+                    <%= link_to 'Delete', author_path(author), method: :delete, data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete } if policy(author).destroy? %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="card-title">Genres</h2>
+              <ul>
+                <% @genres.each do |genre| %>
+                  <li class="card-text">
+                    <%= link_to genre.name, genre %> | 
+                    <%= link_to 'Edit', edit_book_genre_path(genre) if policy(genre).update? %> |
+                    <%= link_to 'Delete', genre, method: :delete, data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete } if policy(genre).destroy? %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="card-title">Tropes</h2>
+              <ul>
+                <% @tropes.each do |trope| %>
+                  <li class="card-text">
+                    <%= link_to trope.name, trope %> | 
+                    <%= link_to 'Edit', edit_book_trope_path(trope) if policy(trope).update? %> |
+                    <%= link_to 'Delete', trope, method: :delete, data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete } if policy(trope).destroy? %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="card-title">Series</h2>
+              <ul>
+                <% @book_collections.each do |series| %>
+                  <li class="card-text">
+                    <%= link_to series.name, book_collection_path(series) %>
+                    <% if policy(series).update? %>
+                      | <%= link_to 'Edit', edit_book_collection_path(series) %>
+                    <% end %>
+                    <% if policy(series).destroy? %>
+                      | <%= link_to 'Delete', book_collection_path(series), method: :delete, data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete } %>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

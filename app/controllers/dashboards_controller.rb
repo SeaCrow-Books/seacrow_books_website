@@ -1,18 +1,26 @@
 class DashboardsController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-    @page_title = "Dashboard"
-    @books = Publishing::Book.all
-    @genres = Publishing::Genre.all
-    @authors = Publishing::Author.all
-    @book_collections = Publishing::BookCollection.all
+  def blog
+    @page_title = "Blog Dashboard"
     @categories = Blog::Category.all
     @posts = Blog::Post.all
-    @users = User.all
-    @authors = Publishing::Author.all
-    @writer_engagements = WriterEngagement.all
     @post_authors = Blog::PostAuthor.all
+  end
+
+  def book
+    @page_title = "Book Dashboard"
+    @books = Book.all
+    @genres = BookGenre.all
+    @tropes = BookTrope.all
+    @authors = Author.all
+    @book_collections = BookCollection.all
+  end
+
+  def admin
+    @page_title = "Admin Dashboard"
+    @users = User.all
+    @writer_engagements = WriterEngagement.all
   end
   
 end

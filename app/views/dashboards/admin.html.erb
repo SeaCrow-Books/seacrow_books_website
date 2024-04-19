@@ -1,0 +1,45 @@
+ <% if current_user.management? %>
+    <div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                    <!-- Card for Users -->
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title">Users</h2>
+                            <ul>
+                            <% @users.each do |user| %>
+                                <li>
+                                <!-- Check if user has permission to view the user's show page -->
+                                <% if policy(user).show? %>
+                                    <%= link_to user.full_name, user_path(user) %> 
+                                <% else %>
+                                    <%= user.full_name %> <!-- Just display the name without link -->
+                                <% end %>
+                                    | <%= user.role %>
+                                    | <%= user.email %>
+                                <!-- Check if user has permission to edit the user -->
+                                <% if policy(user).update? %>
+                                    | <%= link_to 'Edit', edit_user_path(user) %>
+                                <% end %>
+
+                                <!-- Check if user has permission to delete the user -->
+                                <% if policy(user).destroy? %>
+                                    | <%= link_to 'Delete', user_path(user), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } %>
+                                <% end %>
+                                </li>
+                            <% end %>
+                            </ul>
+
+                            <% config = SiteConfig.first %>
+                            <% if current_user.admin? %>
+                            <%= button_to (config.allow_new_accounts ? "Turn off account creation" : "Turn on account creation"), update_account_creation_permission_path, method: :patch, class: 'btn btn-sm btn-outline-danger' %>
+                            <% end %>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<% end %>
