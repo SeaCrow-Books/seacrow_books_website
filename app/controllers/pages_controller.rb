@@ -4,7 +4,7 @@ class PagesController < ApplicationController
       @page_title = 'Welcome' 
       @page_description = 'Home of high quality romance fiction'
       @featured_books = Book.order(created_at: :asc).limit(3)
-      @latest_posts = Blog::Post.latest_published
+      @latest_posts = Blog::Post.regular_posts.limit(9)
     end
 
     def about
