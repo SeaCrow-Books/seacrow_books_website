@@ -6,15 +6,15 @@
         <!-- Featured Post -->
         <div class="col-lg-6 d-flex">
           <div class="card shadow-sm w-100">
-            <%= link_to blog_post_path(@featured_post) do %>
-              <%= image_tag @featured_post.main_image, loading: "lazy", alt: @featured_post.main_image_alt_text, class: "card-img-top" %> 
+            <%= link_to blog_post_path(@ultimate_guide) do %>
+              <%= image_tag @ultimate_guide.main_image, loading: "lazy", alt: @ultimate_guide.main_image_alt_text, class: "card-img-top" %> 
             <% end %>
 
             <div class="card-body d-flex flex-column justify-content-between">
-              <h2 class="card-title"><%= link_to @featured_post.title.titleize, blog_post_path(@featured_post) %></h2>
-              <p class="featured-post__description"><%= MarkdownRenderer.render(@featured_post.description) %></p>
+              <h2 class="card-title"><%= link_to @ultimate_guide.title.titleize, blog_post_path(@ultimate_guide) %></h2>
+              <p class="featured-post__description"><%= MarkdownRenderer.render(@ultimate_guide.description) %></p>
               <div class="card-reading-time d-flex align-items-center">
-                  <i class="bi bi-stopwatch-fill"></i> <%= read_time(@featured_post.content) %>
+                  <i class="bi bi-stopwatch-fill"></i> <%= read_time(@ultimate_guide.content) %>
               </div>
             </div>
           </div>
@@ -31,12 +31,18 @@
 
       </div>
 
-      <!-- Sub Title for Latest Posts -->
+      <!-- Essential Posts -->
+      <div class="row">
+        <h2 class="tile-post__sub-title w-100">Essential Guides</h2>
+      </div>
+
+      <%= render partial: 'shared/latest_posts', locals: { posts: @essential_guides }%>
+
+      <!-- Latest Posts -->
       <div class="row">
         <h2 class="tile-post__sub-title w-100">Latest Posts</h2>
       </div>
 
-      <!-- Row for Latest Posts Cards -->
-      <%= render partial: 'shared/latest_posts', locals: { posts: @latest_posts }%>
+      <%= render partial: 'shared/latest_posts', locals: { posts: @regular_posts }%>
 
 
