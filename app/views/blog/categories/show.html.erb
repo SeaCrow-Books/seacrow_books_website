@@ -7,8 +7,11 @@
     </p>
   </div>
 
-  <!-- Display the articles/posts for this category -->
-  <%= render partial: 'shared/latest_posts', locals: { posts: @published_category_posts } %>
+  <!-- Essential Guides -->
+  <%= render partial: 'shared/latest_posts', locals: { posts: @essential_guides } %>
+
+  <!-- Regular posts -->
+  <%= render partial: 'shared/latest_posts', locals: { posts: @regular_posts } %>
 
   <!-- Display child and subchild categories and their posts -->
   <div class="category-show__children">

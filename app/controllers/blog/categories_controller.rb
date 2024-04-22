@@ -12,7 +12,8 @@ module Blog
     def show
       @page_title = @category.name.titleize
       @category_posts = @category.posts
-      @published_category_posts = @category_posts.published
+      @essential_guides = @category_posts.essential_guides
+      @regular_posts = @category_posts.regular_posts
       authorize @category
 
       # Use the CategoryHierarchyService to get ancestors and descendants

@@ -43,11 +43,10 @@ module Blog
     end
     
     # Scopes
-    scope :published, -> { where(published: true) }
-    scope :latest_published, -> { published.order(created_at: :desc) }
-    scope :ultimate_guides, -> { where(post_type: 'ultimate guide') }
-    scope :essential_guides, -> { where(post_type: 'essential guide') }
-    scope :regular_posts, -> { where(post_type: 'regular post') }    
+    scope :published, -> { where(published: true).order(created_at: :desc) }
+    scope :ultimate_guides, -> { published.where(post_type: 'ultimate guide') }
+    scope :essential_guides, -> { published.where(post_type: 'essential guide') }
+    scope :regular_posts, -> { published.where(post_type: 'regular post') }    
   
     private
 
