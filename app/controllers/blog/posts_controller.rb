@@ -7,9 +7,9 @@ module Blog
     def index
       @posts = Post.all
 
-      @ultimate_guide = @posts.ultimate_guides.order(created_at: :asc).first
+      @ultimate_guide = @posts.ultimate_guides.first
       @essential_guides = @posts.essential_guides
-      @regular_posts = Post.regular_posts.order(created_at: :desc).limit(12)
+      @regular_posts = @posts.regular_posts.limit(12)
   
       @featured_book = Book.order(publication_date: :asc).first
       @recent_books = Book.order(publication_date: :desc).limit(3)
