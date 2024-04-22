@@ -38,9 +38,8 @@
         <%= f.label "Post Author", class: 'form-label form__label' %>
         <p class="form__explainer-text">This is the author of the post, e.g. Stephen King.</p>
         <%= f.collection_select :post_author_id, @post_authors, :id, :name, {}, { class: 'form-select form__input' } %>
-
       </div>
-
+      
       <!-- Meta description -->
       <div class="form-group form__group">
         <%= f.label :meta_description, "Meta Description", class: 'form-label form__label' %>
@@ -53,6 +52,23 @@
         <%= f.label :description, "Description", class: 'form-label form__label' %>
         <p class="form__explainer-text">This is the description that will be shown on the blog front page. Write in MARKDOWN.<p>
         <%= f.text_field :description, placeholder: "Describe the post for the reader... Write in MARKDOWN", class: 'form-control post_form__input' %>
+      </div>
+
+      <!-- Type -->
+      <div class="form-group form__group">
+        <%= f.label :post_type, "Type", class: 'form-label form__label' %>
+        <div class="d-block">
+          <%= f.radio_button :post_type, 'ultimate guide', class: 'form-check-input', id: 'ultimate-guide' %>
+          <%= f.label :post_type, 'Ultimate Guide', class: 'form-check-label', for: 'ultimate-guide' %>
+        </div>
+        <div class="d-block">
+          <%= f.radio_button :post_type, 'essential guide', class: 'form-check-input', id: 'essential-guide' %>
+          <%= f.label :post_type, 'Essential Guide', class: 'form-check-label', for: 'essential-guide' %>
+        </div>
+        <div class="d-block">
+          <%= f.radio_button :post_type, 'regular post', class: 'form-check-input', id: 'regular-post' %>
+          <%= f.label :post_type, 'Regular Post', class: 'form-check-label', for: 'regular-post' %>
+        </div>
       </div>
 
       <!-- Category Checkboxes with Nesting -->

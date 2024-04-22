@@ -6,11 +6,10 @@ module Blog
   
     def index
       @posts = Post.all
-      @published_posts = Post.published
 
-      @featured_post = @published_posts.order(created_at: :asc).first
-      @featured_posts = @published_posts.order(created_at: :desc).offset(1).limit(3)
-      @latest_posts = Post.latest_published
+      @ultimate_guide = @posts.ultimate_guides.order(created_at: :asc).first
+      @essential_guides = @posts.essential_guides
+      @regular_posts = @posts.regular_posts
   
       @featured_book = Book.order(publication_date: :asc).first
       @recent_books = Book.order(publication_date: :desc).limit(3)
@@ -58,15 +57,16 @@ module Blog
         @post.main_image.attach(params[:blog_post][:main_image])
       end
     
-      # Other update logic
       if @post.update(post_params)
         redirect_to edit_blog_post_path(@post), notice: 'Post was successfully updated.'
       else
+        @categories = Blog::Category.where(parent_id: nil)
+        @post_authors = Blog::PostAuthor.all  # Ensure this is set on re-render
         render :edit, status: :unprocessable_entity
       end
     end
     
-  
+    
     def destroy
       authorize @post
       @post.destroy
@@ -80,7 +80,7 @@ module Blog
     end
   
     def post_params
-      params.require(:blog_post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, :post_author, :post_author_id, category_ids: [])
+      params.require(:blog_post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, :post_author, :post_type, :post_author_id, category_ids: [])
     end
 
     def set_layout

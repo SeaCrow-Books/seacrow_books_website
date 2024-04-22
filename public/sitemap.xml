@@ -115,6 +115,9 @@
         <url><loc>https://seacrowbooks.com/blog/baby-love</loc></url>
         <url><loc>https://seacrowbooks.com/blog/bonkbuster-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/international-lovers-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/amnesia-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/vacation-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/workplace-romance</loc></url>
 
         <!-- Blog - Inclusive -->
         <url><loc>https://seacrowbooks.com/blog/categories/inclusive-romance-genre</loc></url>
@@ -122,7 +125,10 @@
 
         <!-- Blog - Age Based -->
         <url><loc>https://seacrowbooks.com/blog/categories/age-based-romance-genre</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/age-gap-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/age-based-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/young-adult-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/new-adult-romance</loc></url>
 
         <!-- Blog - Staples -->
         <url><loc>https://seacrowbooks.com/blog/categories/staples-of-romance-fiction-genre</loc></url>

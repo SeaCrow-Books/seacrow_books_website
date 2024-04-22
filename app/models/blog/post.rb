@@ -15,6 +15,7 @@ module Blog
     validates :title, presence: true, uniqueness: { case_sensitive: false }
     validates :content, presence: true
     validates :post_author, presence: true 
+    validates :post_type, presence: true
     validates :description, length: { maximum: 250, message: "should not exceed 250 characters" }
     validates :meta_description, length: { maximum: 250, message: "should not exceed 250 characters" }
     validates :main_image_alt_text, length: { maximum: 125, message: "should not exceed 125 characters" }
@@ -44,7 +45,10 @@ module Blog
     # Scopes
     scope :published, -> { where(published: true) }
     scope :latest_published, -> { published.order(created_at: :desc) }
-
+    scope :ultimate_guides, -> { where(post_type: 'ultimate guide') }
+    scope :essential_guides, -> { where(post_type: 'essential guide') }
+    scope :regular_posts, -> { where(post_type: 'regular post') }    
+  
     private
 
     def set_meta_title
