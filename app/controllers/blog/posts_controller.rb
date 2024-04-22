@@ -9,7 +9,7 @@ module Blog
 
       @ultimate_guide = @posts.ultimate_guides.first
       @essential_guides = @posts.essential_guides
-      @regular_posts = @posts.regular_posts.limit(12)
+      @regular_posts = @posts.regular_posts.limit(18)
   
       @featured_book = Book.order(publication_date: :asc).first
       @recent_books = Book.order(publication_date: :desc).limit(3)
