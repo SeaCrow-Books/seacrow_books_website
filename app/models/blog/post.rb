@@ -12,7 +12,7 @@ module Blog
     before_save :set_publication_date
 
     # Validations
-    validates :title, presence: true, uniqueness: { case_sensitive: false }
+    validates :title, presence: true
     validates :content, presence: true
     validates :post_author, presence: true 
     validates :post_type, presence: true
