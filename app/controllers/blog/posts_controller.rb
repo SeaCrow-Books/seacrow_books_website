@@ -21,7 +21,7 @@ module Blog
     
     def show
       authorize @post
-      @page_title = @post.meta_title.titleize 
+      @page_title = @post.meta_title
       @page_description = @post.meta_description  
     end
   
