@@ -26,7 +26,7 @@
     end
   
     def create
-      @book = @book_collection.books.new(book_params)
+      @book = Book.new(book_params)
       authorize @book
       if @book.save
         redirect_to [@book_collection, @book], notice: 'Book was successfully created.'
@@ -66,11 +66,20 @@
   
     def book_params
       params.require(:book).permit(
-        :title, :description, :cover, :publication_date,
-        :title_tag_line, :series_number, :amazon_asin,
-        :book_genre_id, :book_trope_id
+        :title, 
+        :description, 
+        :cover, 
+        :publication_date, 
+        :title_tag_line, 
+        :series_number, 
+        :amazon_asin, 
+        :book_genre_id, 
+        :book_trope_id,
+        :author_id,              
+        :book_collection_id 
       )
     end
+    
   
     def track_book_view(book)
       AhoyEventTracker.new(@book, current_visit.visit_token).track_event

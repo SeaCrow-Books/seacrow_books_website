@@ -62,8 +62,9 @@
     <small class="form-text text-muted">You can use Markdown formatting here.</small>
   </div>
 
+  <!-- Book cover -->
   <div class="mb-3">
-        <% if f.object.cover.attached? %>
+          <% if f.object.persisted? && f.object.cover.attached? %>
           <div class="mb-3 d-flex align-items-center justify-content-center" style="max-width: 200px;">
             <%= image_tag f.object.cover, class: "img-fluid rounded shadow" %>
           </div>
