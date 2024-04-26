@@ -49,18 +49,12 @@
                         <div class="card-body">
                             <h2 class="card-title">Reader Emails</h2>
                             <ul>
-                            <% @captures.each do |capture| %>
-                                <li>
-                                    <%= capture.email %>
-                                </li>
-                            <% end %>
+                                <% @captures.each do |capture| %>
+                                    <li>
+                                        <%= capture.email %>
+                                    </li>
+                                <% end %>
                             </ul>
-
-                            <% config = SiteConfig.first %>
-                            <% if current_user.admin? %>
-                            <%= button_to (config.allow_new_accounts ? "Turn off account creation" : "Turn on account creation"), update_account_creation_permission_path, method: :patch, class: 'btn btn-sm btn-outline-danger' %>
-                            <% end %>
-
                         </div>
                     </div>
             </div>
