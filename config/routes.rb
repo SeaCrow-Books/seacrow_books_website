@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # Other resources
   resources :users
   resources :tags  
+
+  # Email Capture
+  resources :email_captures
   
   namespace :blog do
     resources :categories do
@@ -25,6 +28,8 @@ Rails.application.routes.draw do
   resources :book_genres
   resources :book_tropes
   resources :authors
+
+  get 'free-books-download', to: 'books#free_books_download'
 
   # Site config related routes
   patch 'update_account_creation_permission', to: 'site_configs#update_account_creation_permission'

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Email captures</h1>
+
+<div id="email_captures">
+  <% @email_captures.each do |email_capture| %>
+    <%= render email_capture %>
+    <p>
+      <%= link_to "Show this email capture", email_capture %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New email capture", new_email_capture_path %>

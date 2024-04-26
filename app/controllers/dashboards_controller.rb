@@ -20,6 +20,7 @@ class DashboardsController < ApplicationController
   def admin
     @page_title = "Admin Dashboard"
     @users = User.all
+    @captures = EmailCapture.all
   end
   
 end

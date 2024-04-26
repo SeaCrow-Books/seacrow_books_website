@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @email_capture %>
+
+<div>
+  <%= link_to "Edit this email capture", edit_email_capture_path(@email_capture) %> |
+  <%= link_to "Back to email captures", email_captures_path %>
+
+  <%= button_to "Destroy this email capture", @email_capture, method: :delete %>
+</div>

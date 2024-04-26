@@ -69,8 +69,20 @@
                     <% end %>
                 <% end %>
 
+                <!-- Download -->
+                <% if @book.manuscript_pdf.attached? || @book.manuscript_epub.attached? %>
+                    <%= render 'email_captures/book_show_capture_form', email_capture: @email_capture %>
+                <% end %>
+
             </div>
 
         </div> <!-- end of inner row -->
     </div> <!-- end of col-lg-10 -->
 </div> <!-- end of outer row -->
+
+<% if @book.manuscript_pdf.attached? %>
+  <%= link_to 'Download Manuscript PDF', rails_blob_path(@book.manuscript_pdf, disposition: "attachment") %>
+<% end %>
+<% if @book.manuscript_epub.attached? %>
+  <%= link_to 'Download Manuscript EPUB', rails_blob_path(@book.manuscript_epub, disposition: "attachment") %>
+<% end %>

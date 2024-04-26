@@ -2,6 +2,8 @@
     <div class="row justify-content-center">
     <div class="col-lg-10">
         <div class="row mt-5">
+
+            <!-- Users -->
             <div class="col-lg-6">
                     <!-- Card for Users -->
                     <div class="card h-100">
@@ -27,6 +29,29 @@
                                 <% if policy(user).destroy? %>
                                     | <%= link_to 'Delete', user_path(user), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } %>
                                 <% end %>
+                                </li>
+                            <% end %>
+                            </ul>
+
+                            <% config = SiteConfig.first %>
+                            <% if current_user.admin? %>
+                            <%= button_to (config.allow_new_accounts ? "Turn off account creation" : "Turn on account creation"), update_account_creation_permission_path, method: :patch, class: 'btn btn-sm btn-outline-danger' %>
+                            <% end %>
+
+                        </div>
+                    </div>
+            </div>
+
+            <!-- Emails -->
+                        <div class="col-lg-6">
+                    <!-- Card for Users -->
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title">Reader Emails</h2>
+                            <ul>
+                            <% @captures.each do |capture| %>
+                                <li>
+                                    <%= capture.email %>
                                 </li>
                             <% end %>
                             </ul>

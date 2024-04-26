@@ -15,6 +15,7 @@
       # genre = @book.book_genre
       # @related_books = genre.books.where.not(id: @book.id).limit(3)
       @related_books = Book.all
+      @email_capture = EmailCapture.new
       authorize @book
       # Assuming you have a method to handle view tracking
       track_book_view(@book)
@@ -52,6 +53,10 @@
       authorize @book
       @book.destroy
       redirect_to book_collection_books_path(@book_collection), notice: 'Book was successfully destroyed.'
+    end
+
+    def free_books_download
+      
     end
   
     private

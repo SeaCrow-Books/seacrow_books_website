@@ -1,0 +1,2 @@
+class EmailCapture < ApplicationRecord
+end

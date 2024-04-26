@@ -1,0 +1,2 @@
+module EmailCapturesHelper
+end
