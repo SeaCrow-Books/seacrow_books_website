@@ -57,6 +57,8 @@
             <!-- Right column  for the book details -->
             <div class="col-lg-9">
                 <div class="book-show__book-description"><%= markdown_to_html(@book.description) %></div>
+
+                <!-- Amazon -->
                 <% if @book.amazon_url %>
                     <%= link_to @book.amazon_url, class: 'btn btn-primary', target: '_blank' do %>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-amazon" viewBox="0 0 16 16">
@@ -66,9 +68,9 @@
                         Buy on Amazon
                     <% end %>
                 <% end %>
+
             </div>
 
         </div> <!-- end of inner row -->
     </div> <!-- end of col-lg-10 -->
 </div> <!-- end of outer row -->
-

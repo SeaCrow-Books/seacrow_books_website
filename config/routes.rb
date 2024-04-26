@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   # Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  # Other resources and namespaces
+  # Other resources
   resources :users
   resources :tags  
-
+  
   namespace :blog do
-    resources :writer_engagements, only: [:index, :destroy, :show, :edit, :update]
     resources :categories do
       get 'child_categories', on: :member
     end

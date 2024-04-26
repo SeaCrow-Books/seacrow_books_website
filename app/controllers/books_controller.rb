@@ -76,7 +76,9 @@
         :book_genre_id, 
         :book_trope_id,
         :author_id,              
-        :book_collection_id 
+        :book_collection_id,
+        :manuscript_pdf, 
+        :manuscript_epub
       )
     end
     

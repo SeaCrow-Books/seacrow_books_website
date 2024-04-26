@@ -20,7 +20,6 @@ class DashboardsController < ApplicationController
   def admin
     @page_title = "Admin Dashboard"
     @users = User.all
-    @writer_engagements = WriterEngagement.all
   end
   
 end
