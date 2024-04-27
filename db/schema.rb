@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_20_062520) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_26_090212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -170,6 +170,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_062520) do
     t.index ["post_id"], name: "index_categories_posts_on_post_id"
   end
 
+  create_table "email_captures", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -274,10 +280,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_062520) do
 
   create_table "writer_engagements", force: :cascade do |t|
     t.string "email"
-    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_writer_engagements_on_post_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -288,5 +292,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_062520) do
   add_foreign_key "categories_posts", "posts"
   add_foreign_key "post_authors", "posts"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "writer_engagements", "posts"
 end

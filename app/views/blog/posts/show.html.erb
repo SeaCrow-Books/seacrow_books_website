@@ -61,22 +61,38 @@
         </div> 
       </div>
 
-      <!-- Email capture -->
-      <div class="card mt-5">
-        <div class="card-body">
-          <%= turbo_frame_tag 'writer_engagement_form' do %>
-            <%= form_for WriterEngagement.new, url: blog_post_writer_engagements_path(@post), method: :post do |f| %>
-              <div class="form-group">
-                <p class="lead">Join our community group of erotic fiction fans and get the hottest, most exciting stories and news sent right to your inbox. Our weekly newsletter is your key to discovering secret fantasies, hidden desires, and a world of stories that will thrill and excite you.</p>
-                <%= f.email_field :email, class: 'form-control mt-4', placeholder: "Add your email...", required: true %>
-              </div>
-              <div class="d-grid gap-2">
-                <%= f.submit "Subscribe", class: 'btn btn-outline-primary mt-4' %>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
+<!-- Email capture -->
+<div class="card mt-5">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-sm-12 col-lg-6">
+        <!-- Book Cover -->
+        <%= link_to book_path(@free_book) do %>
+          <div class="image-link">
+            <%= image_tag @free_book.cover, alt: "#{@free_book.title} cover", class: "img-fluid rounded clickable-image" %>
+          </div>
+        <% end %>
+
       </div>
+      <div class="col-sm-12 col-lg-6">
+
+        <div>
+          <p class="lead">Download this FREE ebook today.</p>
+          <p>This <em>free collection</em> of short stories is the prequel to Bella and Luca's journey of sexual discovery in the popular <a href="https://seacrowbooks.com/series/undercover-obsessions">Undercover Obsession</a> series.</p>
+          <p>These Dark Romance mafia books show you a world of danger, domination and sexual submission.</p> 
+          <p>Discover the sexual awakenings of Bella, Luca, Bianca and Vittorio in this kinky collection.</p>
+  
+          <p><%= link_to "Find out more...", book_path(@free_book) %></p>
+        </div>
+
+
+        <!-- Form -->
+         <%= render 'email_captures/plain_capture_form', email_capture: @email_capture %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     </article>
   </div>
