@@ -56,7 +56,7 @@
     end
 
     def free_books_download
-      
+      @books = Book.all
     end
   
     private
