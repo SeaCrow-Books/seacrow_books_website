@@ -7,7 +7,7 @@
               
               <!-- Book Cover -->
               <% if @book.cover.attached? %>
-                  <%= image_tag @book.cover, alt: @book.title, class: "book-cover img-fluid book-show__cover-image" %>
+                  <%= image_tag @book.cover, alt: @book.title, class: "book-cover rounded img-fluid book-show__cover-image" %>
               <% else %>
                   <p>No Cover</p>
               <% end %>
@@ -71,7 +71,11 @@
 
                 <!-- Download -->
                 <% if @book.manuscript_pdf.attached? || @book.manuscript_epub.attached? %>
-                    <%= render 'email_captures/plain_capture_form', email_capture: @email_capture %>
+                    <div class="row">
+                        <div class="col col-lg-6">
+                            <%= render 'email_captures/plain_capture_form', email_capture: @email_capture %>
+                        </div>
+                    </div>
                 <% end %>
 
             </div>
