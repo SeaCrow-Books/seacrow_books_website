@@ -9,6 +9,8 @@
 
     #Attachments
     has_one_attached :cover
+    has_one_attached :manuscript_pdf
+    has_one_attached :manuscript_epub
 
     # Validations
     validates :title, presence: true
@@ -20,6 +22,10 @@
     validates :book_genre, presence: true
     validates :book_trope, presence: true
     validates :author, presence: true
+
+    validates :manuscript_pdf, file_content_type: { in: %w(application/pdf) }
+    validates :manuscript_epub, file_content_type: { in: %w(application/epub+zip) }
+  
 
     # For ActiveStorage attachment validation:
     validates :cover, image_content_type: true

@@ -1,8 +1,9 @@
 
   class BooksController < ApplicationController
     before_action :authenticate_user!, only: %i[index edit update destroy]
- #   before_action :set_book_collection
     before_action :set_book, only: %i[show edit update destroy]
+    layout :set_layout
+
   
     def index
       @page_title = "Books"
@@ -12,11 +13,9 @@
   
     def show
       @page_title = "#{@book.title.titleize} by #{@book.author.name.titleize}"
-      # genre = @book.book_genre
-      # @related_books = genre.books.where.not(id: @book.id).limit(3)
       @related_books = Book.all
+      @email_capture = EmailCapture.new
       authorize @book
-      # Assuming you have a method to handle view tracking
       track_book_view(@book)
     end
   
@@ -26,7 +25,7 @@
     end
   
     def create
-      @book = @book_collection.books.new(book_params)
+      @book = Book.new(book_params)
       authorize @book
       if @book.save
         redirect_to [@book_collection, @book], notice: 'Book was successfully created.'
@@ -53,6 +52,10 @@
       @book.destroy
       redirect_to book_collection_books_path(@book_collection), notice: 'Book was successfully destroyed.'
     end
+
+    def free_books_download
+      @book = Book.find_by(title: 'The Stories')
+    end
   
     private
   
@@ -66,10 +69,35 @@
   
     def book_params
       params.require(:book).permit(
-        :title, :description, :cover, :publication_date,
-        :title_tag_line, :series_number, :amazon_asin,
-        :book_genre_id, :book_trope_id
+        :title, 
+        :description, 
+        :cover, 
+        :publication_date, 
+        :title_tag_line, 
+        :series_number, 
+        :amazon_asin, 
+        :book_genre_id, 
+        :book_trope_id,
+        :author_id,              
+        :book_collection_id,
+        :manuscript_pdf, 
+        :manuscript_epub
       )
+    end
+    
+    def set_layout
+      case action_name
+      when 
+        'page_templates/tiny_page'
+      when 
+        'page_templates/small_page'
+      when
+        'page_templates/medium_page'
+      when 'show', 'new', 'edit', 'free_books_download'
+        'page_templates/large_page'
+      else
+        'application'
+      end
     end
   
     def track_book_view(book)

@@ -20,11 +20,11 @@
           </div>
         </div>
 
-        <!-- Most Recent Book -->
+        <!-- Featured Book -->
         <div class="col-lg-6 d-flex justify-content-center align-items-center">
           <div class="my-3">
             <%= link_to book_path(@featured_book) do %>
-              <%= image_tag @featured_book.cover, loading: "lazy", alt: "#{@featured_book.title} cover", class: "img-fluid", style: "max-width: 300px; height: auto;" %>
+              <%= image_tag @featured_book.cover, loading: "lazy", alt: "#{@featured_book.title} cover", class: "rounded img-fluid", style: "max-width: 300px; height: auto;" %>
             <% end %>
           </div>
         </div>
