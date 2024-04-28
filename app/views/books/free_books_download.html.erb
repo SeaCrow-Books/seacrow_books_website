@@ -70,7 +70,7 @@
                 <% end %>
 
                 <!-- Download -->
-                <% if @book.manuscript_pdf.attached? || @book.manuscript_epub.attached? %>
+                <% if @book.manuscript_pdf.attached? %>
 
                   <div class="row mt-4">
                     <div class="col-12 col-lg-6 mb-3">
@@ -81,6 +81,10 @@
                         Download Manuscript PDF 
                       <% end %>
                     </div>
+
+                 <% end %> 
+
+                 <% if @book.manuscript_epub.attached? %>
                     <div class="col-12 col-lg-6 mb-3">
                       <%= link_to rails_blob_path(@book.manuscript_epub, disposition: "attachment"), class: "btn btn-success w-100" do %>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
