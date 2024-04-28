@@ -52,6 +52,7 @@
                                 <% @captures.each do |capture| %>
                                     <li>
                                         <%= capture.email %>
+                                        <%= link_to 'Delete', email_capture_path(capture), method: :delete, data: { turbo_confirm: 'Are you sure?', "turbo-method": :delete } %>
                                     </li>
                                 <% end %>
                             </ul>
