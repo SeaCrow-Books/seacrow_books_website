@@ -4,25 +4,29 @@ class EmailCapturesController < ApplicationController
   # GET /email_captures or /email_captures.json
   def index
     @email_captures = EmailCapture.all
+    authorize @email_captures
   end
 
   # GET /email_captures/1 or /email_captures/1.json
   def show
+    authorize @email_capture
   end
 
   # GET /email_captures/new
   def new
     @email_capture = EmailCapture.new
+    authorize @email_capture
   end
 
   # GET /email_captures/1/edit
   def edit
+    authorize @email_capture
   end
 
   # POST /email_captures or /email_captures.json
   def create
     @email_capture = EmailCapture.new(email_capture_params)
-
+    authorize @email_capture
     respond_to do |format|
       if @email_capture.save
         format.html { redirect_to free_books_download_path, notice: "Email capture was successfully created." }
@@ -36,6 +40,7 @@ class EmailCapturesController < ApplicationController
 
   # PATCH/PUT /email_captures/1 or /email_captures/1.json
   def update
+    authorize @email_capture
     respond_to do |format|
       if @email_capture.update(email_capture_params)
         format.html { redirect_to email_capture_url(@email_capture), notice: "Email capture was successfully updated." }
@@ -50,9 +55,9 @@ class EmailCapturesController < ApplicationController
   # DELETE /email_captures/1 or /email_captures/1.json
   def destroy
     @email_capture.destroy!
-
+    authorize @email_capture
     respond_to do |format|
-      format.html { redirect_to email_captures_url, notice: "Email capture was successfully destroyed." }
+      format.html { redirect_to admin_dashboard_path, notice: "Email capture was successfully destroyed." }
       format.json { head :no_content }
     end
   end
