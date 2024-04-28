@@ -89,3 +89,7 @@ gem 'rest-client'
 
 gem 'base64', '0.1.1' # This was causing problems, had to bring it downm from 0.2.0
 
+# Monitering
+gem "stackprof"
+gem "sentry-ruby"
+gem "sentry-rails"
