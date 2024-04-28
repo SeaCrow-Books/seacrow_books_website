@@ -13,6 +13,7 @@
 
     # GET /publishing/authors/:author_id/series/:id
     def show
+      @books = @book_collection.books.order(:series_number)
       authorize @book_collection
     end
 
