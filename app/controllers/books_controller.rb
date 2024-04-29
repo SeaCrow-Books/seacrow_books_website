@@ -54,7 +54,9 @@
     end
 
     def free_books_download
+      @title = "Free books"
       @book = Book.find_by(title: 'The Stories')
+      @noindex = true
     end
   
     private

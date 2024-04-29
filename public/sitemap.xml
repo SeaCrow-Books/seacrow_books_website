@@ -30,19 +30,19 @@
     <!-- Blog - Post Writers -->
     <url><loc>https://seacrowbooks.com/blog/post_authors/suzie-morrow</loc></url>
 
-    <!-- Blog - Romance Fiction-->
+    <!-- Blog - Genre - Romance Fiction-->
     <url><loc>https://seacrowbooks.com/blog/categories/romance-fiction-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/romance-fiction</loc></url>
 
-    <!-- Blog - Sensual and explicit -->
+    <!-- Blog - Genre - Sensual and explicit -->
     <url><loc>https://seacrowbooks.com/blog/categories/sensual-explicit-romance-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/sensual-and-explicit-romance</loc></url>
 
-    <!-- Blog - Speculative -->
+    <!-- Blog - Genre - Speculative -->
     <url><loc>https://seacrowbooks.com/blog/categories/speculative-romance-genre</loc></url>
     <url><loc>https://seacrowbooks.com/blog/speculative-romance</loc></url>
 
-        <!-- Blog - Speculative - Fantasy -->
+        <!-- Blog - Genre - Speculative - Fantasy -->
         <url><loc>https://seacrowbooks.com/blog/categories/fantasy-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/fantasy-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/urban-fantasy-romance</loc></url>
@@ -56,7 +56,7 @@
         <url><loc>https://seacrowbooks.com/blog/fae-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/contemporary-fantasy-romance</loc></url>
 
-        <!-- Blog - Speculative - Paranormal -->
+        <!-- Blog - Genre - Speculative - Paranormal -->
         <url><loc>https://seacrowbooks.com/blog/categories/paranormal-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/paranormal-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/vampire-romance</loc></url>
@@ -67,7 +67,7 @@
         <url><loc>https://seacrowbooks.com/blog/zombie-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/haunted-love</loc></url>
 
-        <!-- Blog - Speculative - science fiction -->
+        <!-- Blog - Genre - Speculative - science fiction -->
         <url><loc>https://seacrowbooks.com/blog/categories/science-fiction-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/science-fiction-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/space-opera-romance</loc></url>
@@ -78,7 +78,7 @@
         <url><loc>https://seacrowbooks.com/blog/cyberpunk-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/robot-romance</loc></url>
 
-        <!-- Blog - Dark Romance -->
+        <!-- Blog - Genre - Dark Romance -->
         <url><loc>https://seacrowbooks.com/blog/categories/dark-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/dark-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/mafia-romance</loc></url>
@@ -90,7 +90,7 @@
         <url><loc>https://seacrowbooks.com/blog/dark-fantasy-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/anti-hero-romance</loc></url>
 
-        <!-- Blog - Historical Romance -->
+        <!-- Blog - Genre - Historical Romance -->
         <url><loc>https://seacrowbooks.com/blog/categories/historical-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/historical-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/regency-romance</loc></url>
@@ -104,7 +104,7 @@
         <url><loc>https://seacrowbooks.com/blog/georgian-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/colonial-united-states-romance</loc></url>
 
-        <!-- Blog - Contemporary Romance -->
+        <!-- Blog - Genre - Contemporary Romance -->
         <url><loc>https://seacrowbooks.com/blog/categories/contemporary-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/contemporary-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/contemporary-romantic-suspense</loc></url>
@@ -119,22 +119,23 @@
         <url><loc>https://seacrowbooks.com/blog/vacation-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/workplace-romance</loc></url>
 
-        <!-- Blog - Inclusive -->
+        <!-- Blog - Genre - Inclusive -->
         <url><loc>https://seacrowbooks.com/blog/categories/inclusive-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/inclusive-romance</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/interracial-romance</loc></url>
 
-        <!-- Blog - Age Based -->
+        <!-- Blog - Genre - Age Based -->
         <url><loc>https://seacrowbooks.com/blog/categories/age-based-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/age-gap-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/age-based-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/young-adult-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/new-adult-romance</loc></url>
 
-        <!-- Blog - Staples -->
+        <!-- Blog - Genre - Staples -->
         <url><loc>https://seacrowbooks.com/blog/categories/staples-of-romance-fiction-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/staple-genres-of-romance-fiction</loc></url>
 
-        <!-- Blog - Thematic -->
+        <!-- Blog - Genre - Thematic -->
         <url><loc>https://seacrowbooks.com/blog/categories/thematic-romance-genre</loc></url>
         <url><loc>https://seacrowbooks.com/blog/thematic-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/christmas-romance</loc></url>
@@ -143,4 +144,11 @@
         <url><loc>https://seacrowbooks.com/blog/office-romance</loc></url>
         <url><loc>https://seacrowbooks.com/blog/college-romance</loc></url>
 
+    <!-- Blog - Tropes - Romance Fiction-->
+    <url><loc>https://seacrowbooks.com/blog/categories/romance-fiction-tropes</loc></url>
+
+        <!-- Blog - Common Tropes -->
+        <url><loc>https://seacrowbooks.com/blog/categories/common-romance-tropes</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/friends-to-lovers</loc></url>
+        <url><loc>https://seacrowbooks.com/blog/opposites-attract</loc></url>
 </urlset>

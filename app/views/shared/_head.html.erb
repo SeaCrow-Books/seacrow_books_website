@@ -1,5 +1,20 @@
 <head>
-    <%= display_meta_tags title: yield(:page_title), description: yield(:page_description), :canonical => '' + request.path, site: "SeaCrow Books", reverse: true  %>
+
+    <%
+    meta_options = {
+        title: yield(:page_title),
+        description: yield(:page_description),
+        canonical: request.path,
+        site: "SeaCrow Books",
+        reverse: true
+    }
+    
+    # Conditionally add `noindex` to the hash if @noindex is set (e.g.   @noindex = true in controller)
+    meta_options[:noindex] = true if @noindex
+    %>
+
+    <%= display_meta_tags meta_options %>
+
     
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
