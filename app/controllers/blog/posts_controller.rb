@@ -7,12 +7,9 @@ module Blog
     def index
       @posts = Post.all
 
-      @ultimate_guide = @posts.ultimate_guides.first
+      @ultimate_guides = @posts.ultimate_guides
       @essential_guides = @posts.essential_guides
       @regular_posts = @posts.regular_posts.limit(18)
-  
-      @featured_book = Book.find_by(title: 'The Stories')
-      @recent_books = Book.order(publication_date: :desc).limit(3)
 
       authorize @posts
       @page_title = 'Articles'

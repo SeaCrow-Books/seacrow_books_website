@@ -32,7 +32,7 @@
 
     <!-- Blog - Genre - Romance Fiction-->
     <url><loc>https://seacrowbooks.com/blog/categories/romance-fiction-genre</loc></url>
-    <url><loc>https://seacrowbooks.com/blog/romance-fiction</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/romance-fiction-genres</loc></url>
 
     <!-- Blog - Genre - Sensual and explicit -->
     <url><loc>https://seacrowbooks.com/blog/categories/sensual-explicit-romance-genre</loc></url>
@@ -146,6 +146,7 @@
 
     <!-- Blog - Tropes - Romance Fiction-->
     <url><loc>https://seacrowbooks.com/blog/categories/romance-fiction-tropes</loc></url>
+    <url><loc>https://seacrowbooks.com/blog/romance-fiction-tropes</loc></url>
 
         <!-- Blog - Common Tropes -->
         <url><loc>https://seacrowbooks.com/blog/categories/common-romance-tropes</loc></url>
