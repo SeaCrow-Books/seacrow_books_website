@@ -3,31 +3,26 @@
       <!-- Row for Featured Post and Most Recent Book -->
       <div class="row mb-4 mt-3"> 
 
-        <!-- Featured Post -->
-        <div class="col-lg-6 d-flex">
-          <div class="card shadow-sm w-100">
-            <%= link_to blog_post_path(@ultimate_guide) do %>
-              <%= image_tag @ultimate_guide.main_image, loading: "lazy", alt: @ultimate_guide.main_image_alt_text, class: "card-img-top" %> 
-            <% end %>
+        <!-- Ulimate Guides -->
+        <%  @ultimate_guides.each do |ultimate_guide| %>
 
-            <div class="card-body d-flex flex-column justify-content-between">
-              <h2 class="card-title"><%= link_to @ultimate_guide.title.titleize, blog_post_path(@ultimate_guide) %></h2>
-              <p class="featured-post__description"><%= MarkdownRenderer.render(@ultimate_guide.description) %></p>
-              <div class="card-reading-time d-flex align-items-center">
-                  <i class="bi bi-stopwatch-fill"></i> <%= read_time(@ultimate_guide.content) %>
+          <div class="col-lg-6 d-flex">
+            <div class="card shadow-sm w-100">
+              <%= link_to blog_post_path(ultimate_guide) do %>
+                <%= image_tag ultimate_guide.main_image, loading: "lazy", alt: ultimate_guide.main_image_alt_text, class: "card-img-top" %> 
+              <% end %>
+
+              <div class="card-body d-flex flex-column justify-content-between">
+                <h2 class="card-title"><%= link_to ultimate_guide.title.titleize, blog_post_path(ultimate_guide) %></h2>
+                <p class="featured-post__description"><%= MarkdownRenderer.render(ultimate_guide.description) %></p>
+                <div class="card-reading-time d-flex align-items-center">
+                    <i class="bi bi-stopwatch-fill"></i> <%= read_time(ultimate_guide.content) %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Featured Book -->
-        <div class="col-lg-6 d-flex justify-content-center align-items-center">
-          <div class="my-3">
-            <%= link_to book_path(@featured_book) do %>
-              <%= image_tag @featured_book.cover, loading: "lazy", alt: "#{@featured_book.title} cover", class: "rounded img-fluid", style: "max-width: 300px; height: auto;" %>
-            <% end %>
-          </div>
-        </div>
+        <% end %>
 
       </div>
 

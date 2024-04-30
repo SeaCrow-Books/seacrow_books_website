@@ -12,6 +12,7 @@ class BookGenresController < ApplicationController
 
   def show
     @page_title = @book_genre.name.titleize
+    @genre_books = @book_genre.books.order(:series_number)
     authorize @book_genre
   end
 

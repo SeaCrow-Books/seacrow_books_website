@@ -12,6 +12,7 @@
 
     def show
       @page_title = "#{@author.name.titleize}" + " Books"
+      @author_books = @author.books.order(:series_number)
       authorize @author
     end
 

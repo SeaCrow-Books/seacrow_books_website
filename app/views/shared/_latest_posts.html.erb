@@ -1,19 +1,19 @@
-      <div class="row">
-          <% posts.each_with_index do |post, index| %>
-              <% if index % 3 == 0 && index != 0 %>
-                  </div><div class="row"> <!-- Close the current row and start a new row every 3 posts -->
-              <% end %>
+<div class="row">
+    <% posts.each_with_index do |post, index| %>
+        <% if index % 3 == 0 && index != 0 %>
+            </div><div class="row"> <!-- Close the current row and start a new row every 3 posts -->
+        <% end %>
 
-              <div class="col-md-4 d-flex mb-4">
-                <div class="card shadow-sm w-100">
-                  <%= link_to blog_post_path(post) do %>
-                      <%= image_tag post.main_image, loading: "lazy", alt: post.main_image_alt_text, class: "card-img-top" %> 
-                  <% end %>
+        <div class="col-md-4 d-flex mb-4">
+        <div class="card shadow-sm w-100">
+            <%= link_to blog_post_path(post) do %>
+                <%= image_tag post.main_image, loading: "lazy", alt: post.main_image_alt_text, class: "card-img-top" %> 
+            <% end %>
 
-                  <div class="card-body d-flex flex-column justify-content-between">
-                      <h3 class="card-title post-title-in-card"><%= link_to post.title.titleize, blog_post_path(post) %></h3>
-                  </div>
-                </div>
-              </div>
-          <% end %>
-      </div>
+            <div class="card-body d-flex flex-column justify-content-between">
+                <h3 class="card-title post-title-in-card"><%= link_to post.title, blog_post_path(post) %></h3>
+            </div>
+        </div>
+        </div>
+    <% end %>
+</div>
