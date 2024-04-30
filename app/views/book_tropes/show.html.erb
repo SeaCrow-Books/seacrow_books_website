@@ -2,13 +2,7 @@
   <div class="col-lg-10">
     <h1 class="mb-4"><%= @book_trope.name.titleize %></h1>
     <div class="row">
-      <%  @book_trope.books.each do |book| %>
-          <div class="col-12 col-md-4 mb-4">
-              <%= link_to book_path(book) do %>
-                  <%= image_tag book.cover, alt: book.title, class: "img-fluid clickable-image" %>
-              <% end %>
-          </div>
-      <% end %>
+      <%= render partial: 'shared/book_series', locals: { books: @trope_books }%>
     </div>
   </div>
 </div>

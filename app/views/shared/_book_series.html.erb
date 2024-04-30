@@ -1,0 +1,7 @@
+<% books.each do |book| %>
+    <div class="col-12 col-md-3 mb-4">
+        <%= link_to book_path(book) do %>
+            <%= image_tag book.cover, alt: book.title, class: "img-fluid clickable-image" %>
+        <% end %>
+    </div>
+<% end %>
