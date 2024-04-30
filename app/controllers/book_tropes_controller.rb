@@ -11,6 +11,7 @@ class BookTropesController < ApplicationController
 
   # GET /book_tropes/1 or /book_tropes/1.json
   def show
+    @trope_books = @book_trope.books.order(:series_number)
   end
 
   # GET /book_tropes/new
