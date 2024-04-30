@@ -7,16 +7,17 @@
     <url><loc>https://seacrowbooks.com/privacy-policy</loc></url>
     <url><loc>https://seacrowbooks.com/trigger-support</loc></url>
 
-    <!-- Books -->
-    <url><loc>https://seacrowbooks.com/publishing/authors/sarah-rosewood</loc></url>
-    <url><loc>https://seacrowbooks.com/publishing/books/the-heist</loc></url>
-    <url><loc>https://seacrowbooks.com/publishing/books/the-hideout</loc></url>
-
     <!-- Authors -->
     <url><loc>https://seacrowbooks.com/authors/sarah-rosewood</loc></url>
 
-    <!-- Series -->
+    <!-- Series - Undercover Obsessions -->
     <url><loc>https://seacrowbooks.com/series/undercover-obsessions</loc></url>
+
+        <!-- Books - Undercover Obsessions -->
+        <url><loc>https://seacrowbooks.com/publishing/books/the-heist</loc></url>
+        <url><loc>https://seacrowbooks.com/publishing/books/the-hideout</loc></url>
+        <url><loc>https://seacrowbooks.com/books/the-hunt</loc></url>
+        <url><loc>https://seacrowbooks.com/books/the-stories</loc></url>
 
     <!-- Book Genres -->
     <url><loc>https://seacrowbooks.com/book_genres/dark-romance</loc></url>
