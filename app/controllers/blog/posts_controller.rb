@@ -35,9 +35,12 @@ module Blog
     def create
       @post = Post.new(post_params)
       authorize @post
+    
       if @post.save
-        redirect_to edit_blog_post_path(@post), notice: 'Post was successfully created.'
+        redirect_to blog_post_path(@post), notice: 'Post was successfully created.'
       else
+        @categories = Blog::Category.where(parent_id: nil)  
+        @post_authors = Blog::PostAuthor.all
         render :new, status: :unprocessable_entity
       end
     end
@@ -84,18 +87,14 @@ module Blog
 
     def set_layout
       case action_name
-      when 
-        'page_templates/tiny_page'
-      when 
-        'page_templates/small_page'
       when 'show', 'new', 'edit'
-        'page_templates/medium_page'
+         'page_templates/medium_page'
       when 'index'
-        'page_templates/large_page'
+         'page_templates/large_page'
       else
-        'application'
+         'application'
       end
-    end
+   end
 
   end
 end  

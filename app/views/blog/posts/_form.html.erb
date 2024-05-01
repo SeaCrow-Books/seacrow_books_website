@@ -80,18 +80,19 @@
       <!-- Main Image -->
       <div class="form-group form__group">
         <%= f.label :main_image, class: 'form-label form__label' %>
-        
-        <% if f.object.main_image.attached? %>
+
+        <% if f.object.persisted? && f.object.main_image.attached? %>
           <div class="mb-3 d-flex align-items-center justify-content-center" style="max-width: 200px;">
             <%= image_tag f.object.main_image, alt: "Main Image", class: "img-fluid rounded shadow" %>
           </div>
-          <p class="form__explainer-text">Select new file to replace image. It must be a JPEG, PNG, or WEBP.<p>
+          <p class="form__explainer-text">Select a new file to replace the image. It must be a JPEG, PNG, or WEBP.</p>
         <% else %>
-          <p class="form__explainer-text">Select file for main image. It must be a JPEG, PNG, or WEBP.<p>
+          <p class="form__explainer-text">Select a file for the main image. It must be a JPEG, PNG, or WEBP.</p>
         <% end %>
 
         <%= f.file_field :main_image, class: 'form-control' %>
-      </div>
+</div>
+
 
       <!-- Image alt text -->
       <div class="form-group form__group">
