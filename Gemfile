@@ -87,6 +87,9 @@ gem 'pundit'
 gem 'redcarpet'
 gem 'rest-client'
 
+# Storage
+gem 'aws-sdk-s3'
+
 # Monitering
 gem "stackprof"
 gem "sentry-ruby"
