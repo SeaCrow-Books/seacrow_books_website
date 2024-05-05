@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_05_122824) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_05_150406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -158,11 +158,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_122824) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
-  create_table "categories_image_resources", id: false, force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.bigint "image_resource_id", null: false
-  end
-
   create_table "categories_posts", id: false, force: :cascade do |t|
     t.bigint "post_id", null: false
     t.bigint "category_id", null: false
@@ -194,6 +189,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_122824) do
     t.string "name"
     t.string "slug"
     t.string "image_type"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_image_resources_on_category_id"
     t.index ["slug"], name: "index_image_resources_on_slug", unique: true
   end
 
@@ -291,6 +288,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_122824) do
   add_foreign_key "books", "book_collections"
   add_foreign_key "categories_posts", "categories"
   add_foreign_key "categories_posts", "posts"
+  add_foreign_key "image_resources", "categories"
   add_foreign_key "post_authors", "posts"
   add_foreign_key "taggings", "tags"
 end

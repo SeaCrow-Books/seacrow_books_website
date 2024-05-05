@@ -2,7 +2,7 @@
 class Category < ApplicationRecord
   # Establishes the relationship to posts and image resources.
   has_and_belongs_to_many :posts, join_table: 'categories_posts'
-  has_and_belongs_to_many :image_resources, join_table: 'categories_image_resources'
+  has_many :image_resources
 
   # Self-referential associations for hierarchy.
   # Ensures that each category knows about its children (if any) and its parent (if any).

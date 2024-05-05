@@ -6,20 +6,19 @@ class ImageResourcesController < ApplicationController
 
   def index
     @page_title = "Image Resources"
+    @image_resources = ImageResource.all
+  
     if params[:filter].present?
       filter_type, filter_id = params[:filter].split('_')
-      
+  
       case filter_type
       when 'category'
-        @image_resources = ImageResource.joins(:categories).where('categories.id = ?', filter_id)
+        @image_resources = @image_resources.where(category_id: filter_id)
       when 'tag'
-        @image_resources = ImageResource.tagged_with(ActsAsTaggableOn::Tag.find(filter_id).name)
-      else
-        @image_resources = ImageResource.all
+        @image_resources = @image_resources.tagged_with(ActsAsTaggableOn::Tag.find(filter_id).name)
       end
-    else
-      @image_resources = ImageResource.all
     end
+  
     authorize @image_resources
   end
 
@@ -83,8 +82,8 @@ class ImageResourcesController < ApplicationController
   end
 
   def image_resource_params
-    params.require(:image_resource).permit(:alt_description, :image, :image_type, :name, :notes, tag_list: [], category_ids: [])
-  end
+    params.require(:image_resource).permit(:alt_description, :image, :image_type, :name, :notes, :category_id, tag_list: [])
+  end  
 
   def add_new_tags_to_image_resource
     tag_names = params[:new_tags].split(',').map(&:strip)
