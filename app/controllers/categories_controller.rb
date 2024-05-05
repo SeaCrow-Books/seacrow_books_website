@@ -1,4 +1,4 @@
-module Blog
+
   class CategoriesController < ApplicationController
     before_action :authenticate_user!, only: %i[index edit update destroy child_categories]
     before_action :set_category, only: %i[show edit update destroy child_categories]
@@ -17,13 +17,13 @@ module Blog
       authorize @category
 
       # Use the CategoryHierarchyService to get ancestors and descendants
-      hierarchy_service = Blog::CategoryHierarchyService.new(@category)
+      hierarchy_service = CategoryHierarchyService.new(@category)
       @ancestors = hierarchy_service.ancestors
       @descendants = hierarchy_service.descendants
     end
 
     def new
-      @category = Blog::Category.new
+      @category =  Category.new
       authorize @category
       @page_title = 'New Category'
     end
@@ -73,7 +73,7 @@ module Blog
     end
 
     def category_params
-      params.require(:blog_category).permit(:name, :description, :parent_id)
+      params.require(:category).permit(:name, :description, :parent_id)
     end
 
     def set_layout
@@ -89,4 +89,4 @@ module Blog
       end
     end
   end
-end
+

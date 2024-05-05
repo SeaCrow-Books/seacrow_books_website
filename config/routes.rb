@@ -10,17 +10,16 @@ Rails.application.routes.draw do
   # Email Capture
   resources :email_captures
   
-  namespace :blog do
+  # Blog
     resources :categories do
       get 'child_categories', on: :member
     end
-    resources :image_resources
-    resources :posts, path: '/' do
-      resources :writer_engagements, only: [:create]
-    end
+    resources :posts, path: 'blog'
     resources :post_authors
     get '/image_resources/:id/permanent_image', to: 'image_resources#permanent_image', as: 'permanent_image'
-  end
+
+  # Images
+  resources :image_resources
   
   # Publishing related resources
   resources :book_collections, path: 'series'

@@ -5,7 +5,7 @@
         has_many :books
 
         # Validations
-        validates :name, presence: true
+        validates :name, presence: true    
 
         # Friendly ID
         extend FriendlyId

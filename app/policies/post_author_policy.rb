@@ -1,5 +1,5 @@
-module Blog
-  class CategoryPolicy < ApplicationPolicy
+
+  class PostAuthorPolicy < ApplicationPolicy
 
     def index?
       user&.admin?
@@ -27,4 +27,3 @@ module Blog
       end
     end
   end
-end

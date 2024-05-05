@@ -1,7 +1,7 @@
 <%= form_with(model: @book, local: true, class: 'needs-validation', novalidate: true) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <p class="lead"><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</p>
       <ul>
         <% @book.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -69,10 +69,10 @@
       <div class="mb-3 d-flex align-items-center justify-content-center" style="max-width: 200px;">
         <%= image_tag f.object.cover, class: "img-fluid rounded shadow" %>
       </div>
-          <p class="form__explainer-text">Select new file to replace cover image. It must be a JPEG, PNG, or WEBP.<p>
-        <% else %>
-          <p class="form__explainer-text">Select file for cover image. It must be a JPEG, PNG, or WEBP.<p>
-        <% end %>
+      <p class="form__explainer-text">Select a new file to replace the cover image. It must be a JPEG, PNG, or WEBP.</p>
+    <% else %>
+      <p class="form__explainer-text">Select a file for the cover image. It must be a JPEG, PNG, or WEBP.</p>
+    <% end %>
     <%= f.file_field :cover, class: 'form-control' %>
   </div>
 

@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <h1><%= @image_resource.name.titleize %></h1>
       <% if policy(@image_resource).update? %>
-        <%= link_to 'Edit Image', edit_blog_image_resource_path(@image_resource), class: 'btn btn-outline-primary' %>
+        <%= link_to 'Edit Image', edit_image_resource_path(@image_resource), class: 'btn btn-outline-primary' %>
       <% end %>
     </div>
 
@@ -44,17 +44,7 @@
 
     <!-- Notes and Permanent URL -->
     <div class="row mt-4">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            Notes
-          </div>
-          <div class="card-body">
-            <%= @image_resource.notes %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             Permanent URL
@@ -63,7 +53,8 @@
            
             <p class="card-text">
               <%= h "<div itemscope itemtype=\"https://schema.org/ImageObject\">" %>
-              <%= h "  <img src=\"" + blog_permanent_image_url(@image_resource) + "\" alt=\"" + @image_resource.alt_description + "\" itemprop=\"contentUrl\" width=\"700\" height=\"400\" class=\"img-fluid post-show__media rounded mx-auto d-block\" loading=\"lazy\">" %>
+              <% dimensions = image_dimensions(@image_resource.image_type) %>
+              <%= h "  <img src=\"" + permanent_image_url(@image_resource) + "\" alt=\"" + @image_resource.alt_description + "\" itemprop=\"contentUrl\" width=\"#{dimensions[:width]}\" height=\"#{dimensions[:height]}\" class=\"img-fluid post-show__media rounded mx-auto d-block\" loading=\"lazy\">" %>
               <%= h "  <span itemprop=\"creator\" itemtype=\"https://schema.org/Person\" itemscope>" %>
               <%= h "    <meta itemprop=\"name\" content=\"Ben Gary\" />" %>
               <%= h "  </span><br />" %>
