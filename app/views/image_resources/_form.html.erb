@@ -53,9 +53,8 @@
       <!-- Category -->
       <div class="col-12 form__group">
         <p class="form__label">Category</p>
-        <%= form.collection_select :category_id, Category.all, :id, :name, {include_blank: 'Select a Category'}, class: 'form-control' %>
+        <%= form.collection_select :category_id, Category.order(:name), :id, :name, {include_blank: 'Select a Category'}, class: 'form-control' %>
       </div>
-
 
       <div class="col-12 form__group">
         <div class="mb-3">
