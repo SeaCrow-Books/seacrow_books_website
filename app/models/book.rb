@@ -25,7 +25,7 @@
 
     validates :manuscript_pdf, file_content_type: { in: %w(application/pdf) }
     validates :manuscript_epub, file_content_type: { in: %w(application/epub+zip) }
-    validates :cover, file_content_type: { in: %w(image/webp), message: "must be a WEBP image" }
+    validates :cover, file_content_type: { in: %w(image/webp)}
 
     # Friendly_id
     extend FriendlyId

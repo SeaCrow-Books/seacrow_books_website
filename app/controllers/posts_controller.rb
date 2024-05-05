@@ -1,4 +1,4 @@
-module Blog
+
   class PostsController < ApplicationController
     before_action :authenticate_user!, only: %i[edit update destroy]
     before_action :set_post, only: %i[show edit update destroy]
@@ -27,8 +27,8 @@ module Blog
     def new
       @post = Post.new
       @page_title = "New Post"
-      @categories = Blog::Category.where(parent_id: nil)
-      @post_authors = Blog::PostAuthor.all
+      @categories =  Category.where(parent_id: nil)
+      @post_authors =  PostAuthor.all
       authorize @post
     end
   
@@ -37,33 +37,33 @@ module Blog
       authorize @post
     
       if @post.save
-        redirect_to blog_post_path(@post), notice: 'Post was successfully created.'
+        redirect_to  post_path(@post), notice: 'Post was successfully created.'
       else
-        @categories = Blog::Category.where(parent_id: nil)  
-        @post_authors = Blog::PostAuthor.all
+        @categories =  Category.where(parent_id: nil)  
+        @post_authors =  PostAuthor.all
         render :new, status: :unprocessable_entity
       end
     end
   
     def edit
       authorize @post
-      @categories = Blog::Category.where(parent_id: nil)
-      @post_authors = Blog::PostAuthor.all
+      @categories =  Category.where(parent_id: nil)
+      @post_authors =  PostAuthor.all
       @page_title = "Editing" + " " + @post.meta_title.titleize 
     end
   
     def update
       authorize @post
     
-      if params[:blog_post][:main_image].present?
-        @post.main_image.attach(params[:blog_post][:main_image])
+      if params[:post][:main_image].present?
+        @post.main_image.attach(params[:post][:main_image])
       end
     
       if @post.update(post_params)
-        redirect_to edit_blog_post_path(@post), notice: 'Post was successfully updated.'
+        redirect_to edit_post_path(@post), notice: 'Post was successfully updated.'
       else
-        @categories = Blog::Category.where(parent_id: nil)
-        @post_authors = Blog::PostAuthor.all  # Ensure this is set on re-render
+        @categories =  Category.where(parent_id: nil)
+        @post_authors =  PostAuthor.all  # Ensure this is set on re-render
         render :edit, status: :unprocessable_entity
       end
     end
@@ -82,7 +82,7 @@ module Blog
     end
   
     def post_params
-      params.require(:blog_post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, :post_author, :post_type, :post_author_id, category_ids: [])
+      params.require(:post).permit(:title, :main_image, :main_image_alt_text, :meta_title, :description, :meta_description, :published, :published_at, :custom_url, :content, :slug, :writer, :post_author, :post_type, :post_author_id, category_ids: [])
     end
 
     def set_layout
@@ -97,4 +97,3 @@ module Blog
    end
 
   end
-end  

@@ -85,13 +85,13 @@
           <div class="mb-3 d-flex align-items-center justify-content-center" style="max-width: 200px;">
             <%= image_tag f.object.main_image, alt: "Main Image", class: "img-fluid rounded shadow" %>
           </div>
-          <p class="form__explainer-text">Select a new file to replace the image. It must be a JPEG, PNG, or WEBP.</p>
+          <p class="form__explainer-text">Select a new file to replace the image. It must be WEBP.</p>
         <% else %>
-          <p class="form__explainer-text">Select a file for the main image. It must be a JPEG, PNG, or WEBP.</p>
+          <p class="form__explainer-text">Select a file for the main image. It must be WEBP.</p>
         <% end %>
 
         <%= f.file_field :main_image, class: 'form-control' %>
-</div>
+      </div>
 
 
       <!-- Image alt text -->

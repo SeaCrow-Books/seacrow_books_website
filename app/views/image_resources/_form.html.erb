@@ -35,7 +35,7 @@
 
       <div class="col-12 form__group">
         <p class="form__label">Categories</p>
-        <% Blog::Category.all.each do |category| %>
+        <%  Category.all.each do |category| %>
           <div class="form-check">
             <%= form.check_box :category_ids, { multiple: true, checked: image_resource.categories.include?(category) }, category.id, nil %>
             <%= form.label "category_#{category.id}", class: 'form-check-label' do %>

@@ -1,4 +1,4 @@
-module Blog
+
     class PostAuthorsController < ApplicationController
       before_action :set_post_author, only: [:show, :edit, :update, :destroy]
       layout :set_layout
@@ -30,7 +30,7 @@ module Blog
   
       def update
         if @post_author.update(post_author_params)
-          redirect_to blog_post_author_path(@post_author), notice: 'Post author was successfully updated.'
+          redirect_to post_author_path(@post_author), notice: 'Post author was successfully updated.'
         else
           render :edit
         end
@@ -48,7 +48,7 @@ module Blog
       end
   
       def post_author_params
-        params.require(:blog_post_author).permit(:name, :description, :image)
+        params.require(:author).permit(:name, :description, :image)
       end
 
       def set_layout
@@ -65,5 +65,5 @@ module Blog
       end
 
     end
-  end
+
   
