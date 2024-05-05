@@ -12,11 +12,11 @@
       content_tag(:ul) do
         categories.each do |category|
           concat(content_tag(:li, style: "margin-left: #{20 * margin_level}px;") do
-            link_to(category.name, blog_category_path(category)) + 
+            link_to(category.name, category_path(category)) + 
             " | ".html_safe + 
-            (link_to('Edit', edit_blog_category_path(category)) if policy(category).update?).to_s.html_safe +
+            (link_to('Edit', edit_category_path(category)) if policy(category).update?).to_s.html_safe +
             " | ".html_safe +
-            (link_to('Delete', blog_category_path(category), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' }) if policy(category).destroy?).to_s.html_safe +
+            (link_to('Delete', category_path(category), method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' }) if policy(category).destroy?).to_s.html_safe +
             (display_categories(category.child_categories, margin_level + 1) unless category.child_categories.empty?)
           end)
         end
@@ -42,7 +42,7 @@
       render_content = ''.html_safe
   
       # Display the category title linking to its show page
-      render_content += content_tag(:h3, link_to(category.name.titleize, blog_category_path(category)), class: 'category-show__sub-title')
+      render_content += content_tag(:h3, link_to(category.name.titleize, category_path(category)), class: 'category-show__sub-title')
   
       # Display the category's posts using the `latest_posts` partial
       render_content += render(partial: 'shared/latest_posts', locals: { posts: category.posts.published })
