@@ -7,17 +7,17 @@
         </div>
 
         <div class="col-2">
-          <%= link_to 'Add New Image', new_blog_image_resource_path, class: 'btn btn-primary mb-3' %>
+          <%= link_to 'Add New Image', new_image_resource_path, class: 'btn btn-primary mb-3' %>
         </div>
 
         <div class="col-10">
           <!-- Search form -->
-          <%= form_with(url: blog_image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
+          <%= form_with(url: image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
             <%= select_tag :filter, 
                 options_for_select(
                   [['All', nil]] +
                   [['Categories', {disabled: true}]] + 
-                  Blog::Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
+                   Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
                   [['Tags', {disabled: true}]] +
                   ActsAsTaggableOn::Tag.order(:name).map { |t| ["#{t.name}", "tag_#{t.id}"] },
                   params[:filter]
@@ -56,9 +56,9 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to 'Show', blog_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
-                <%= link_to 'Edit', edit_blog_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
-                <%= link_to 'Delete', blog_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm', method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(image_resource).destroy? %>
+                <%= link_to 'Show', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
+                <%= link_to 'Edit', edit_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
+                <%= link_to 'Delete', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm', method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(image_resource).destroy? %>
               </td>
             </tr>
           <% end %>

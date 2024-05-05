@@ -12,7 +12,7 @@
         </div>
       <% end %>
 
-      <% if image_resource.image.attached? %>
+      <% if image_resource.image.attached? && image_resource.image.persisted? %>
         <div class="col-12 mb-3 form__group">
           <%= image_tag image_resource.image, alt: image_resource.alt_description, class: "img-fluid rounded" %>
         </div>
@@ -33,9 +33,26 @@
         <%= form.text_field :alt_description, class: 'form-control form__input' %>
       </div>
 
+      <!-- Image Type -->
+      <div class="form-group">
+        <%= form.label :type, class: "form-label" %>
+        <div class="form-check">
+          <%= form.radio_button :image_type, "standard", id: "image_type_standard", class: "form-check-input" %>
+          <%= form.label "image_type_standard", class: "form-check-label" do %>
+            Standard
+          <% end %>
+        </div>
+        <div class="form-check">
+          <%= form.radio_button :image_type, "book cover", id: "image_type_book_cover", class: "form-check-input" %>
+          <%= form.label "image_type_book_cover", class: "form-check-label" do %>
+            Book Cover
+          <% end %>
+        </div>
+      </div>
+
       <div class="col-12 form__group">
         <p class="form__label">Categories</p>
-        <% Blog::Category.all.each do |category| %>
+        <%  Category.all.each do |category| %>
           <div class="form-check">
             <%= form.check_box :category_ids, { multiple: true, checked: image_resource.categories.include?(category) }, category.id, nil %>
             <%= form.label "category_#{category.id}", class: 'form-check-label' do %>
@@ -74,12 +91,7 @@
           <small class="form-text text-muted form__explainer-text">Enter a new tag here. This will be added to the list of tags.</small>
         </div>
       </div>
-
-      <div class="col-12 form__group">
-        <%= form.label :notes, class: 'form-label form__label' %>
-        <%= form.rich_text_area :notes, class: 'form-control form__input' %>
-      </div>
-
+      
       <div class="col-12 form__group">
         <%= form.submit 'Save', class: 'btn btn-primary form__submit' %>
       </div>

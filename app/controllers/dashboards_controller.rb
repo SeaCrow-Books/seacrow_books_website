@@ -3,9 +3,9 @@ class DashboardsController < ApplicationController
 
   def blog
     @page_title = "Blog Dashboard"
-    @categories = Blog::Category.all
-    @posts = Blog::Post.all
-    @post_authors = Blog::PostAuthor.all
+    @categories =  Category.all
+    @posts =  Post.all
+    @post_authors =  PostAuthor.all
   end
 
   def book
