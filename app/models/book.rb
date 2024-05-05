@@ -25,10 +25,7 @@
 
     validates :manuscript_pdf, file_content_type: { in: %w(application/pdf) }
     validates :manuscript_epub, file_content_type: { in: %w(application/epub+zip) }
-  
-
-    # For ActiveStorage attachment validation:
-    validates :cover, image_content_type: true
+    validates :cover, file_content_type: { in: %w(image/webp), message: "must be a WEBP image" }
 
     # Friendly_id
     extend FriendlyId
