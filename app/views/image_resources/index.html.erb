@@ -1,66 +1,61 @@
 
+<div class="row">
+  <div class="header">
+    <h1>Images</h1>
+  </div>
 
-      <div class="row">
+  <div class="col-2">
+    <%= link_to 'Add New Image', new_image_resource_path, class: 'btn btn-primary mb-3' %>
+  </div>
 
-        <div class="header">
-          <h1>Images</h1>
-        </div>
+  <div class="col-10">
+    <!-- Search form -->
+    <%= form_with(url: image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
+      <%= select_tag :filter, 
+          options_for_select(
+            [['All', nil]] +
+            [['Categories', {disabled: true}]] + 
+             Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
+            [['Tags', {disabled: true}]] +
+            ActsAsTaggableOn::Tag.order(:name).map { |t| ["#{t.name}", "tag_#{t.id}"] },
+            params[:filter]
+          ),
+          class: 'form-select'
+      %>
+      <button class="btn btn-outline-primary" type="submit" id="button-addon2">Filter</button>
+    <% end %>
+  </div>
+</div>
 
-        <div class="col-2">
-          <%= link_to 'Add New Image', new_image_resource_path, class: 'btn btn-primary mb-3' %>
-        </div>
-
-        <div class="col-10">
-          <!-- Search form -->
-          <%= form_with(url: image_resources_path, method: :get, local: true, class: 'input-group mb-3') do %>
-            <%= select_tag :filter, 
-                options_for_select(
-                  [['All', nil]] +
-                  [['Categories', {disabled: true}]] + 
-                   Category.all.map { |c| ["#{c.name}", "category_#{c.id}"] } +
-                  [['Tags', {disabled: true}]] +
-                  ActsAsTaggableOn::Tag.order(:name).map { |t| ["#{t.name}", "tag_#{t.id}"] },
-                  params[:filter]
-                ),
-                class: 'form-select'
-            %>
-            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Filter</button>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Tags</th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @image_resources.each do |image_resource| %>
+      <tr>
+        <td><%= image_resource.name %></td>
+        <td><%= image_resource.category.name if image_resource.category %></td>
+        <td><%= image_resource.tag_list.join(', ') %></td>
+        <td>
+          <% if image_resource.image.attached? %>
+            <%= image_tag image_resource.image, loading: "lazy", class: "image-resource__resize_to_smaller_image" %>
+          <% else %>
+            No Image
           <% end %>
-        </div>
-
-      </div>
-
-
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Categories</th>
-            <th>Tags</th>
-            <th>Image</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @image_resources.each do |image_resource| %>
-            <tr>
-              <td><%= image_resource.name %></td>
-              <td><%= image_resource.categories.map(&:name).join(', ') %></td>
-
-              <td><%= image_resource.tags.join(', ') %></td>
-              <td>
-                <% if image_resource.image.attached? %>
-                  <%= image_tag image_resource.image, loading: "lazy", class: "image-resource__resize_to_smaller_image" %>
-                <% else %>
-                  No Image
-                <% end %>
-              </td>
-              <td>
-                <%= link_to 'Show', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
-                <%= link_to 'Edit', edit_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
-                <%= link_to 'Delete', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm', method: :delete, data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' } if policy(image_resource).destroy? %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+        </td>
+        <td>
+          <%= link_to 'Show', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
+          <%= link_to 'Edit', edit_image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm' %>
+          <%= link_to 'Delete', image_resource_path(image_resource), class: 'btn btn-outline-primary btn-sm', method: :delete, data: { turbo_confirm: 'Are you sure?' } if policy(image_resource).destroy? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

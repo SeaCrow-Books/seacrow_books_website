@@ -4,7 +4,7 @@ class ImageResource < ApplicationRecord
     attr_accessor :new_tag 
 
     # Relationships
-    has_and_belongs_to_many :categories, join_table: 'categories_image_resources'
+    belongs_to :category
     
     # Attachments
     has_one_attached :image
@@ -15,6 +15,7 @@ class ImageResource < ApplicationRecord
     validates :image_type, presence: true
     validates :alt_description, presence: true
     validates :image, presence: true, file_content_type: { in: %w(image/webp)}
+    validates :category, presence: true
     
     # Friendly_id
     extend FriendlyId

@@ -5,7 +5,7 @@ module ImageResourcesHelper
       elsif image_type == "book cover"
         { width: 350, height: 200 }
       else
-        { width: 700, height: 400 } # Default dimensions
+        { width: 700, height: 400 }
       end
     end
   end

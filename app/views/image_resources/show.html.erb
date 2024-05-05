@@ -22,15 +22,11 @@
         </div>
     </div>
 
-    <!-- Categories and Tags -->
+    <!-- Category and Tags -->
     <div class="row mt-4">
         <div class="col-6 mb-3">
-          <h3>Categories:</h3>
-          <ul class="list-group">
-            <% @image_resource.categories.each do |category| %>
-              <li class="list-group-item"><%= category.name.capitalize %></li>
-            <% end %>
-          </ul>
+          <h3>Category:</h3>
+          <p><%= @image_resource.category.name.capitalize if @image_resource.category %></p>
         </div>
         <div class="col-6 mb-3">
           <h3>Tags:</h3>
