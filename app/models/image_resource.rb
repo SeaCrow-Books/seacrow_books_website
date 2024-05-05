@@ -11,7 +11,8 @@ class ImageResource < ApplicationRecord
     has_rich_text :notes
 
     # Validations
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true, uniqueness: { message: "must be unique" }
+    validates :image_type, presence: true
     validates :alt_description, presence: true
     validates :image, presence: true, file_content_type: { in: %w(image/webp)}
     
