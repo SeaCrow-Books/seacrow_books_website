@@ -38,19 +38,11 @@
             <% end %>
           </div>
 
-          <!-- Categories -->
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-              <% @post.categories.each_with_index do |category, index| %>
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                  <%= link_to category_path(category), itemprop: "item" do %>
-                    <span itemprop="name"><%= category.name %></span>
-                  <% end %>
-                  <meta itemprop="position" content="<%= index + 1 %>" />
-                </li>
-              <% end %>
-            </ol>
-          </nav>
+        <!-- Single Categories Breadcrumb for the post -->
+        <% if @post.categories.any? %>
+          <%= build_breadcrumbs(get_full_category_path(@post)) %>
+        <% end %>
+
         </div>      
       </div>
 
