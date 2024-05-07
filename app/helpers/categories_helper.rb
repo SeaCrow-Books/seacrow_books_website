@@ -2,11 +2,11 @@
   module CategoriesHelper
 
     # I think this method is now redundant after adding sub-child
-    def category_hierarchy(categories, parent_id = nil, &block) 
-      categories.select { |c| c.parent_id == parent_id }.map do |category|
-        render_category(category, &block)
-      end.join.html_safe
-    end
+  #  def category_hierarchy(categories, parent_id = nil, &block) 
+  #    categories.select { |c| c.parent_id == parent_id }.map do |category|
+  #      render_category(category, &block)
+  #    end.join.html_safe
+  #  end
 
     def display_categories(categories, margin_level = 0)
       content_tag(:ul) do
@@ -54,6 +54,35 @@
   
       render_content
     end
+
+
+
+    def build_breadcrumbs(categories)
+      content_tag(:nav, {'aria-label' => 'breadcrumb'}, itemscope: true, itemtype: 'https://schema.org/BreadcrumbList') do
+        content_tag(:ol, class: 'breadcrumb') do
+          categories.each_with_index.map do |category, index|
+            content_tag(:li, class: 'breadcrumb-item', itemprop: 'itemListElement', itemscope: true, itemtype: 'https://schema.org/ListItem') do
+              link_to(category_path(category), itemprop: "item") do
+                concat(tag.span(category.name, itemprop: "name"))
+              end + (index < categories.length - 1 ? tag.meta('', itemprop: 'position', content: index + 1) : '')
+            end
+          end.join.html_safe
+        end
+      end
+    end
+    
+def get_full_category_path(post)
+  deepest_category = post.categories.max_by { |category| category_depth(category) }
+  path = []
+  current_category = deepest_category
+
+  while current_category
+    path.unshift(current_category)
+    current_category = current_category.parent_category
+  end
+
+  path
+end
 
     private
   
