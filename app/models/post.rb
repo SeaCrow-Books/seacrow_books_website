@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   # Callbacks
   before_save :set_meta_title
   before_save :set_publication_date
+  before_create :assign_unique_id
 
   # Validations
   validates :title, presence: true
@@ -53,4 +54,18 @@ class Post < ApplicationRecord
   def set_publication_date
     self.published_at ||= Time.current # Set the publication date only if it's not set.
   end
+
+  def assign_unique_id
+    self.id = next_unique_id
+  end
+
+  def next_unique_id
+    max_id = Post.maximum(:id) || 0
+    next_id = max_id.next
+    while Post.exists?(id: next_id)
+      next_id = next_id.next
+    end
+    next_id
+  end
+  
 end
