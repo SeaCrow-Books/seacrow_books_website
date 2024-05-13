@@ -1,0 +1,214 @@
+/* SEACROW THEME
+
+This is the themeing file for SeaCrow Books. 
+
+We are using a BEM system for naming. 
+
+PLEASE NOTE:
+The Bootstrap styleing is loaded with this file, you don't need an additional Bootstap file. 
+
+Version: 1.0
+
+TOC
+1. Overrides
+2. Global Resets
+3. Page
+4. Navbar
+5. Images
+6. Buttons
+
+
+*/
+
+
+/* 
+==============================================================================================
+1. OVERIDES
+
+This section is overriding the defaults from the Bootstrap theme. It is essential this is loaded BEFORE the boostrap styling. 
+
+*/
+
+// New Colours
+$seacrow-dark-pink: #CC1B34;
+$seacrow-light-pink: #E16E7F;
+$seacrow-gray: #EED8DB;
+$seacrow-black: #120809;
+
+// Overide defaults
+$primary:       $seacrow-dark-pink;
+$secondary:     $seacrow-gray;
+// $success:       $green !default;
+$info:          $seacrow-light-pink;
+// $warning:       $yellow !default;
+// $danger:        $red !default;
+// $light:         $gray-100 !default;
+// $dark:          $gray-800 !default;
+
+// $font-family-sans-serif: "Helvetica Neue", sans-serif !default;
+// $font-family-monospace:  Menlo, Monaco, Consolas !default;
+// $font-size-base: 1rem !default;
+// $line-height-base: 1.5 !default;
+$font-family-base: 'Poppins', sans-serif; 
+$headings-font-family: 'Cormorant', serif;
+// $font-size-sm:             $font-size-base * .875 !default;
+// $font-size-lg:             $font-size-base * 1.25 !default;
+// $font-weight-normal:       400 !default;
+// $font-weight-bold:         700 !default;
+// $headings-font-weight:     500 !default;
+
+@import "bootstrap";
+
+/* 
+==============================================================================================
+2. GLOBAL RESETS
+
+This section looks to reset style at impact across the website, these are not page specific.
+
+*/
+
+// Overides the body and adds link colour
+body {
+    color: $seacrow-black;
+
+    a {
+    color: $seacrow-dark-pink;
+    text-decoration: none;
+    
+    &:hover {
+        color: $seacrow-light-pink;
+    }
+    }
+}
+  
+// Override headings font
+h1, h2, h3, h4, h5, h6 {
+    color: $seacrow-dark-pink;
+}
+  
+/* 
+==============================================================================================
+3. PAGE STLYING
+
+This is the default styling for pages. It should be used on all pages where logical and then overridden with specific styling if required. 
+
+*/
+
+// Styles the page
+.page {
+       
+    h1 {
+        // Styles h1
+        font-weight: 600;
+    }
+
+    h2 {
+        // Styles h2
+        margin-top: 2rem;
+    }
+
+    h3 {
+        // styles h3
+        font-weight: 400;
+        font-size: 1.5rem;
+    }
+
+}
+
+// Styles the page title 
+.page__title {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+// Styles the header for pages
+.header {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* 
+==============================================================================================
+4. NAVBAR
+
+This is the default styling for THE NAVBAR
+
+*/
+
+/* Custom navbar background */
+.branded-bg {
+    background-color: $seacrow-light-pink; 
+}
+
+// Styles the navbar logo
+.navbar__logo {
+    margin-right: 1rem;
+}
+
+
+
+/* 
+==============================================================================================
+5. IMAGES
+
+This is the default styling for images
+
+*/
+
+// Styles image to gray when hovered
+.image-link {
+    background-color: grey;
+    display: inline-block;
+        
+    img.clickable-image {
+        transition: opacity 0.3s ease;
+            
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}
+
+/* 
+==============================================================================================
+6. BUTTONS
+
+This is the default styling for buttons.
+
+*/
+
+
+// Makes button_to an inline element
+.button_to,
+.button_to div {
+  display: inline;
+}
+
+
+
+// FIX
+  /* weighing for  headers */
+  
+  .post-show__title, .featured-post__title, .tile-post__title {
+    font-weight: 600;
+  }
+  .post-show__article {
+    h2 {
+      font-weight: 600;
+    }
+  }
+  
+
+// STYLES THE HOME PAGE
+
+.home-page__sub-title {
+    // Styles sub-title
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+
+}
+
+// Shows a row can be dragged and dropped
+.draggable-row:hover {
+    cursor: grab; /* or 'cursor: move;' depending on your preference */
+}

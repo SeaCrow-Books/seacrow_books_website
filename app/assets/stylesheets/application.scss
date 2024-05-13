@@ -2,17 +2,16 @@
 @import "actiontext.css";
 
 // Import Mixins
-@import "styling/mixins";
-
-// Import custom Bootstrap overrides
-@import "themes/romance_branding_overides";
+@import "styling/mixins"; // DEL ME, MOVE AWAY FROM MIXINS
 
 // Import Bootstrap Core
-@import "bootstrap";
+// @import "bootstrap";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
 
-// Import other Application-specific Styles
-@import "styling/*";
+// Import custom Bootstrap overrides
+@import "seacrow_theme"; // This is a the theme file that overides the default Bootstrap colours.
 
-// Import custom Bootstrap styles
-@import "themes/romance_branding_styles";
+// Import other Application-specific Styles
+@import "styling/*"; // DEL ME
+
+
