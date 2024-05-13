@@ -11,12 +11,22 @@ Version: 1.0
 
 TOC
 1. Overrides
-2. Global Resets
-3. Page
-4. Navbar
-5. Images
-6. Buttons
-
+2. Mixins
+3. Boostrap load
+4. Global Resets
+5. Page
+6. Navbar
+7. Images
+8. Buttons
+9. Cards
+10. Forms
+11. Books
+12. Posts
+13. Post Authors
+14. Categories
+15. Image Resources
+16. Pages
+17. Footer
 
 */
 
@@ -33,6 +43,7 @@ This section is overriding the defaults from the Bootstrap theme. It is essentia
 $seacrow-dark-pink: #CC1B34;
 $seacrow-light-pink: #E16E7F;
 $seacrow-gray: #EED8DB;
+$seacrow-grey: #707070 !default;
 $seacrow-black: #120809;
 
 // Overide defaults
@@ -57,11 +68,115 @@ $headings-font-family: 'Cormorant', serif;
 // $font-weight-bold:         700 !default;
 // $headings-font-weight:     500 !default;
 
+/* 
+==============================================================================================
+2. MIXINS
+
+This section is for global mixins. Most stay above the Bootstrap load. 
+
+*/
+
+
+// Provides the gray link
+@mixin gray-link-formatting {
+    a { 
+        color: inherit; // this ensures the link has the same color as its parent h2 element
+        text-decoration: none; // this removes the underline
+    
+        // change color on hover to gray
+        &:hover {
+            color: gray;
+        }
+    }
+}
+
+// Styles the table of contents
+@mixin table-of-contents {
+    // Styles the TOC
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    
+    .table-of-contents__title {
+        // styles the header
+        font-size: 1.4rem;
+    }
+
+    .table-of-contents__link {
+        // Styles link
+        a { text-decoration: none; }
+    }
+
+    .table-of-contents__link-child {
+        // Styles child link
+        margin-left: 20px;
+        a { text-decoration: none; }
+    }
+}
+
+// Styles the FAQ
+@mixin faq {
+    // styles faq
+   
+    .faq__title {
+        // Styles titles
+    }
+
+    .faq__description {
+        // Styles description
+    }
+
+    .faq__block {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
+    .faq__question {
+        // Styles question
+        font-size: 1.5rem;
+        text-transform: capitalize;
+    }
+
+    .faq__answer {
+        // styles answer
+    }
+
+}
+
+// Styles the blockquote
+@mixin blockquote {
+    padding-left: 1rem;            /* Provides space between the text and the border */
+    border-left: 4px solid #ccc;   /* Gray border on the left */
+    font-style: italic;            /* Typically, blockquotes are italicized */
+    margin-left: 0;                /* Reset left margin */
+    margin-right: 0;               /* Reset right margin */
+}
+
+// Styles a link to gray
+@mixin gray-link {
+    a {
+        text-decoration: none;  /* Removes the underline */
+        color: gray;
+    }
+
+    a:hover {
+        text-decoration: underline; /* Adds the underline back when hovered */
+    }
+}
+
+/* 
+==============================================================================================
+3. BOOTSTRAP LOAD
+
+This loads boostrap, its position is important, don't just move it like some kine of mad person. 
+
+*/
+
+
 @import "bootstrap";
 
 /* 
 ==============================================================================================
-2. GLOBAL RESETS
+4. GLOBAL RESETS
 
 This section looks to reset style at impact across the website, these are not page specific.
 
@@ -85,10 +200,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: $seacrow-dark-pink;
 }
+
+// Shows a row can be dragged and dropped
+.draggable-row:hover {
+    cursor: grab; /* or 'cursor: move;' depending on your preference */
+}
+
   
 /* 
 ==============================================================================================
-3. PAGE STLYING
+5. PAGE STLYING
 
 This is the default styling for pages. It should be used on all pages where logical and then overridden with specific styling if required. 
 
@@ -129,7 +250,7 @@ This is the default styling for pages. It should be used on all pages where logi
 
 /* 
 ==============================================================================================
-4. NAVBAR
+6. NAVBAR
 
 This is the default styling for THE NAVBAR
 
@@ -149,7 +270,7 @@ This is the default styling for THE NAVBAR
 
 /* 
 ==============================================================================================
-5. IMAGES
+7. IMAGES
 
 This is the default styling for images
 
@@ -171,7 +292,7 @@ This is the default styling for images
 
 /* 
 ==============================================================================================
-6. BUTTONS
+8. BUTTONS
 
 This is the default styling for buttons.
 
@@ -184,11 +305,323 @@ This is the default styling for buttons.
   display: inline;
 }
 
+/* 
+==============================================================================================
+9. CARDS
 
+This section styles cards
 
-// FIX
-  /* weighing for  headers */
+*/
+
+// Style cards
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+}
   
+.card:hover {
+    transform: translateY(-5px); /* Move the card up on hover */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Enhance shadow on hover */
+}
+
+
+.card-reading-time {
+    font-size: 0.9em; /* Adjust font size as needed */
+    color: $seacrow-light-pink; /* Adjust color as needed */
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    padding: 5px; /* Add some padding around the text */
+    margin-top: 10px; /* Space from the content above */
+    .bi-stopwatch-fill {
+    margin-right: 5px; /* Adjust this value as needed for spacing */
+    }
+}
+
+/* 
+==============================================================================================
+10. FORMS
+
+This section style forms.
+
+*/
+
+.form__container {
+    /* Styles the form container */
+  }
+  
+  .form__base {
+    /* Styles the base form element */
+  }
+  
+  .form__row {
+    /* Styles for form rows */
+  }
+  
+  .form__group {
+    /* Styles for form groups, typically used for form input and its label */
+    margin-bottom: 2rem;
+  }
+  
+  .form__label {
+    /* Styles for form labels */
+    font-size: 1.25rem;
+  }
+  
+  .form__explainer-text {
+    /* Styles the explainer text */
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: gray;
+  }
+
+  .form__input {
+    /* Styles for form inputs */
+    margin-bottom: 1rem;
+  }
+  
+  .form__submit {
+    /* Styles for submit button */
+  }
+  
+  .form__data-item {
+    /* Styles for individual data items, like user metadata */
+  }
+
+  // Textarea styling
+  textarea.form-control {
+    overflow: hidden;
+    resize: none; // Prevent manual resizing
+  }
+    
+  // Maximum height for text area
+  .form__size_maximum {
+    min-width: 100%;
+    height: 1000px;
+}
+
+
+/* 
+==============================================================================================
+11. BOOKS
+
+This section styles the Book object. 
+
+*/
+
+.book-show__cover-image {
+    // Style the cover image
+    margin-bottom: 2rem;
+}
+
+.book-show__book-details {
+    // Style the book details
+    margin-bottom: 1rem;
+}
+
+.book-show__book-details-table {
+    // Styles the book details table
+    font-size: 0.8rem;
+}
+
+.book-show__book-details-table-link {
+    // Stlyes table link
+    @include gray-link;
+}
+
+.book-show__other-titles  {
+    // Styles other titles
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;   
+}
+
+.book-show_other-titles-title {
+    // Styles the other titles title
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.book-show__book-title {
+    // Sytles the book title
+}
+
+.book-show__book-author {
+    // Styles book author
+    @include gray-link;
+}
+
+.book-show__book-description {
+    // Styles book description
+}
+
+
+/* 
+==============================================================================================
+12. POSTS
+
+This section styles the Post object. 
+
+*/
+
+// POST WIDE STYLING
+.post-header {
+    // styles the standard header for post views
+    margin-top: 3rem;
+    padding-bottom: 2rem;
+
+    .post-header__title {
+        //styles the title
+    }
+}
+
+// Flag ship post
+.featured-post {
+    // Styles featured post
+    .featured-post__image {
+        // Styles the image
+    }
+
+    .featured-post__title {
+        // Featured post title    
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .featured-post__title-link {
+        // Styles the title link
+        color: inherit;
+        text-decoration: none;
+    
+    }
+
+    .featured-post__description {
+        // Styles the description
+    }
+
+}
+
+// tile posts, this are the smaller tiled posts e.g. latest posts
+.tile-post {
+    // Styles the post
+    margin-bottom: 2rem;
+    
+    .tile-post__image {
+        // Style image
+    }
+
+    .tile-post__title {
+        // Style title
+    }
+
+    .tile-post__title-link {
+        // Styles the title link
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .tile-post__description {
+        // Style description
+    }
+
+} 
+
+// STYLES THE POST FORM
+.post-form {
+    // Styles the post form
+    
+    .post-form__input-label {
+        // Styles post input label
+        font-size: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    .post_form__input-description {
+        // Styles the input description
+        font-size: 1rem;
+        color: $seacrow-grey;
+    }
+
+    .post_form__input {
+        // stlyes the input element
+    }
+
+    .post_form__button {
+        // Styles buttons
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+// STYLES THE SHOW PAGE
+.post-show__main-image {
+    // styles the main image section
+    margin-bottom: 3rem;
+}
+
+.post-show__title {
+    // Styles the title 
+    margin-bottom: 1rem;
+}
+
+.post-show__metadata {
+    // Styles the metadata 
+    margin-bottom: 0.5rem;
+}
+
+.post-show__metadata-persona-link {
+    // Styles the persona link
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-show__metadata-edit-link {
+    // Styles the edit link
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-show__categories{
+    // Styles the category
+}
+
+.post-show__categories-link {
+    // Styles the category links
+}
+
+.post-show__alert {
+    // Styles the alerts in a post
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.table-of-contents {
+    @include table-of-contents;
+}
+
+.post-show__article {
+    // styles article
+
+    h2, h3, h4, h5, h6 {
+        margin-top: 2rem;
+    }
+
+    .post-show__sub-title {
+        // Styles the subtitles
+        text-transform: capitalize;
+    }
+
+    .post-show__media {
+        // styles post images and media
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    blockquote {@include blockquote;}
+
+    .faq {@include faq;}
+}
+
+  /* weighing for  headers */
   .post-show__title, .featured-post__title, .tile-post__title {
     font-weight: 600;
   }
@@ -199,6 +632,93 @@ This is the default styling for buttons.
   }
   
 
+// STYLES THE INDEX PAGE
+
+.tile-post__sub-title {
+    // Styles sub-title
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $seacrow-grey; 
+}
+
+
+.post-title-in-card {
+    // This stles the post title in the shared card
+    font-size: 1.5rem;
+}
+
+
+/* 
+==============================================================================================
+13. POST AUTHORS
+
+This section styles the Post Author object. 
+
+*/
+
+.post-author-show__title {
+    // Styles titles
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.post-author-show__description {
+    // Styles the description
+  
+}
+
+.post-author-show__image {
+    // Styles the image
+    margin-bottom: 2rem;
+}
+
+/* 
+==============================================================================================
+14. CATEGORIES
+
+This section styles the Category object. 
+
+*/
+
+.category-show__title {
+    // Styles titles
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.category-show__description {
+    // styles description
+    margin-bottom: 2rem;
+}
+
+.category-show__sub-title {
+    // Style the sub-titles for the categories
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 
+==============================================================================================
+15. IMAGE RESOURCES
+
+This section styles the Image Resources object. 
+
+*/
+
+.image-resource__resize_to_smaller_image {
+    max-width: 150px; /* Set your desired max width */
+    max-height: 150px; /* Set your desired max height */
+}
+
+
+/* 
+==============================================================================================
+16. Pages
+
+This section styles the Pages object
+
+*/
+
 // STYLES THE HOME PAGE
 
 .home-page__sub-title {
@@ -208,7 +728,15 @@ This is the default styling for buttons.
 
 }
 
-// Shows a row can be dragged and dropped
-.draggable-row:hover {
-    cursor: grab; /* or 'cursor: move;' depending on your preference */
+
+/* 
+==============================================================================================
+17. FOOTER
+
+This section styles the Footer object. 
+
+*/
+
+.footer {
+    margin-top: 5rem;
 }
