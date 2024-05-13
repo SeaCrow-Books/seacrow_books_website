@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
     def home
-      @page_title = 'Welcome' 
+      @page_title = 'Independent Book Publisher' 
       @page_description = 'Home of high quality romance fiction'
       @featured_books = Book.all.order(series_number: :asc)
       @latest_posts =  Post.regular_posts.limit(9)
