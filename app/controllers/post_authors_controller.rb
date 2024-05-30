@@ -48,7 +48,7 @@
       end
   
       def post_author_params
-        params.require(:author).permit(:name, :description, :image)
+        params.require(:post_author).permit(:name, :description, :image)
       end
 
       def set_layout
