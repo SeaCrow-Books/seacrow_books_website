@@ -31,9 +31,9 @@
           <div class="mb-3 d-flex align-items-center justify-content-center">
             <%= image_tag form.object.image, class: "img-fluid" %>
           </div>
-          <p class="form__explainer-text">Select new file to replace image. It must be a JPEG, PNG, or WEBP.<p>
+          <p class="form__explainer-text">Select new file to replace image. It must be WEBP.<p>
         <% else %>
-          <p class="form__explainer-text">Select file for main image. It must be a JPEG, PNG, or WEBP.<p>
+          <p class="form__explainer-text">Select file for main image. It must be WEBP.<p>
         <% end %>
 
         <%= form.file_field :image, class: 'form-control' %>
