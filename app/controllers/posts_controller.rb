@@ -12,8 +12,8 @@
       @regular_posts = @posts.regular_posts.limit(18)
 
       authorize @posts
-      @page_title = 'Articles'
-      @page_description = 'Articles all about erotic fiction.'
+      @page_title = 'SeaCrow Blog'
+      @page_description = 'Articles from SeaCrow Books about romance and erotic fiction.'
     end
     
     def show
@@ -34,7 +34,7 @@
   
     def create
       @post = Post.new(post_params)
-      authorize @post
+      authorize @postall
     
       if @post.save
         redirect_to  post_path(@post), notice: 'Post was successfully created.'
