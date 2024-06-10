@@ -34,7 +34,7 @@
   
     def create
       @post = Post.new(post_params)
-      authorize @postall
+      authorize @post
     
       if @post.save
         redirect_to  post_path(@post), notice: 'Post was successfully created.'
