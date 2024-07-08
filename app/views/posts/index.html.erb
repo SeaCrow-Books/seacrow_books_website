@@ -7,7 +7,7 @@
         <%  @ultimate_guides.each do |ultimate_guide| %>
 
           <div class="col-lg-6 d-flex">
-            <div class="card shadow-sm w-100">
+            <div class="card shadow-sm w-100 mb-3">
               <%= link_to post_path(ultimate_guide) do %>
                 <%= image_tag ultimate_guide.main_image, loading: "lazy", alt: ultimate_guide.main_image_alt_text, class: "card-img-top" %> 
               <% end %>
