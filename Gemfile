@@ -78,6 +78,7 @@ gem 'acts_as_list'
 gem 'acts-as-taggable-on'
 gem 'ahoy_matey'
 gem "bootstrap"
+gem 'brevo'
 gem 'chartkick'
 gem 'devise'
 gem 'friendly_id'
